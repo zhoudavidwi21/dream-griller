@@ -1,0 +1,102 @@
+<?php
+ob_start();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap implementation -->
+  <?php include "bootstrap.php" ?>
+  <!-- Template but./tons -->
+  <link rel="stylesheet" href="./res/css/button.css">
+  <!-- Template background -->
+  <link href="./res/css/background.css" rel="stylesheet">
+
+  <title>Header</title>
+</head>
+
+<body>
+
+  <!-- Header - Navbar -->
+  <nav class="navbar navbar-expand-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.php">
+        <img src="./res/img/logo/Logo_Basis_transparent_Schrift_groß_KLEIN_500x260.png" alt="Dream Griller Logo" width="125" height="65">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.php">Homepage</a>
+          </li>
+
+          <!-- menu for all persons START -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Menü
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="index.php?site=history">Unsere Geschichte</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+             <li><a class="dropdown-item" href="index.php?site=data_security">Datenschutz</a></li>
+              <li><a class="dropdown-item" href="index.php?site=terms_and_conditions">AGBs</a></li>
+              <li><a class="dropdown-item" href="index.php?site=imprint">Impressum</a></li>
+            </ul>
+          </li>
+
+          <!-- menu for all persons END-->
+
+      </div>
+      <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === "user" || $_SESSION['role'] === "admin")) { ?>
+
+        <!-- menu for logged in person START-->
+        <div class="d-flex gap-1 dropdown">
+          <button class="btn btn-anmelden dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <?php echo $_SESSION['username']; ?>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="index.php?site=profil_administration">Profil bearbeiten</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="index.php?site=view_orders">Meine Bestellungen ansehen</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <?php if ($_SESSION['role'] === "admin") { ?>
+              <li><a class="dropdown-item" href="index.php?site=admin_user-administration">Benutzer verwalten</a></li>
+              <li><a class="dropdown-item" href="index.php?site=admin_product-administration">Artikel verwalten</a></li>
+              <li>
+              <hr class="dropdown-divider">
+              </li>
+            <?php } ?>
+
+            <li><a class="dropdown-item" href="../general/logout.php">Logout</a></li>
+
+          </ul>
+        </div>
+        <!-- menu for logged in person END-->
+      <?php } else { ?>
+        <div class="d-flex gap-1">
+          <a class="btn btn-anmelden" href="index.php?site=login" role="button">anmelden</a>
+          <a class="btn btn-registrieren" href="index.php?site=register" role="button">registrieren</a>
+        </div>
+      <?php } ?>
+
+    </div>
+
+  </nav>
+
+
+</body>
+
+</html>

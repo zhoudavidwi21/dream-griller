@@ -1,0 +1,64 @@
+.dropdown-menu{
+    --bs-dropdown-link-active-bg: rgb(138, 83, 0); /* Farbe Hintergrund von Dropdown-items beim Klick*/
+}
+
+.btn-anmelden {
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: rgba(48, 46, 43, 0.943); /* Farbe der Schrift */
+    --bs-btn-bg: rgba(146, 61, 24, 0.336); /* Hintergrundfarbe */
+    --bs-btn-border-color: rgb(0, 0, 0); /* Rahmenfarbe */
+    --bs-btn-border-radius: 0.25rem; /* Rahmenradius */
+    --bs-btn-hover-color: rgb(255, 235, 205); /* Farbe der Schrift beim Hover */
+    --bs-btn-hover-bg: ; /* Hintergrundfarbe beim Hover */
+    --bs-btn-hover-border-color: ; /* Rahmenfarbe beim Hover */
+    --bs-btn-focus-shadow-rgb: ; /* Schattenfarbe beim Fokus */
+    --bs-btn-active-color: rgba(67, 46, 22, 0.804); /* Farbe der Schrift beim Klick */
+    --bs-btn-active-bg: rgb(255, 235, 205); /* Hintergrundfarbe beim Klick */
+    --bs-btn-active-border-color: rgb(255, 235, 205); /* Rahmenfarbe beim Klick */
+} 
+
+.btn-registrieren {
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: rgb(255, 255, 255); /* Farbe der Schrift */
+    --bs-btn-bg: rgb(141, 80, 57); /* Hintergrundfarbe */
+    --bs-btn-border-color: rgb(0, 0, 0); /* Rahmenfarbe */
+    --bs-btn-border-radius: 0.25rem; /* Rahmenradius */
+    --bs-btn-hover-color: rgb(255, 235, 205); /* Farbe der Schrift beim Hover */
+    --bs-btn-hover-bg: ; /* Hintergrundfarbe beim Hover */
+    --bs-btn-hover-border-color: ; /* Rahmenfarbe beim Hover */
+    --bs-btn-focus-shadow-rgb: ; /* Schattenfarbe beim Fokus */
+    --bs-btn-active-color: rgb(255, 255, 255); /* Farbe der Schrift beim Klick */
+    --bs-btn-active-bg: rgb(138, 83, 0); /* Hintergrundfarbe beim Klick */
+    --bs-btn-active-border-color: rgb(138, 83, 0); /* Rahmenfarbe beim Klick */
+} 
+
+.btn-sonstige {
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: rgb(255, 255, 255); /* Farbe der Schrift */
+    --bs-btn-bg: rgb(94, 56, 0); /* Hintergrundfarbe */
+    --bs-btn-border-color: rgb(0, 0, 0); /* Rahmenfarbe */
+    --bs-btn-border-radius: 0.25rem; /* Rahmenradius */
+    --bs-btn-hover-color: rgb(255, 255, 255); /* Farbe der Schrift beim Hover */
+    --bs-btn-hover-bg: rgb(94, 56, 0); /* Hintergrundfarbe beim Hover */
+    --bs-btn-hover-border-color: ; /* Rahmenfarbe beim Hover */
+    --bs-btn-focus-shadow-rgb: ; /* Schattenfarbe beim Fokus */
+    --bs-btn-active-color: rgb(255, 255, 255); /* Farbe der Schrift beim Klick */
+    --bs-btn-active-bg: rgb(94, 56, 0); /* Hintergrundfarbe beim Klick */
+    --bs-btn-active-border-color: rgb(94, 56, 0); /* Rahmenfarbe beim Klick */
+}
+
+/* Button template */
+.btn-template {
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: rgb(187, 24, 24); /* Farbe der Schrift */
+    --bs-btn-bg: rgb(24, 89, 230); /* Hintergrundfarbe */
+    --bs-btn-border-color: rgb(89, 230, 24); /* Rahmenfarbe */
+    --bs-btn-border-radius: 0.55rem; /* Rahmenradius */
+    --bs-btn-hover-color: rgb(0, 0, 0); /* Farbe der Schrift beim Hover */
+    --bs-btn-hover-bg: rgb(210, 223, 27); /* Hintergrundfarbe beim Hover */
+    --bs-btn-hover-border-color: rgb(0, 0, 0); /* Rahmenfarbe beim Hover */
+    --bs-btn-focus-shadow-rgb: rgb(174, 0, 255); /* Schattenfarbe beim Fokus */
+    --bs-btn-active-color: rgb(174, 0, 255); /* Farbe der Schrift beim Klick */
+    --bs-btn-active-bg: rgb(0, 255, 191); /* Hintergrundfarbe beim Klick */
+    --bs-btn-active-border-color: rgb(255, 0, 0); /* Rahmenfarbe beim Klick */
+} 
