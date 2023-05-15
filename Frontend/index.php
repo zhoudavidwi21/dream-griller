@@ -25,18 +25,18 @@
 
     <?php
 
-    $path = '*.php';
+    $path = './sites/*.php';
 
     $validSites = glob($path);
 
     if (!isset($_GET['site'])) {
-      include "homepage.php";
+      include "./sites/homepage.php";
     } else {
-      if (!in_array($_GET['site'] . '.php', $validSites)) {
-        include "error.php";
+      if (!in_array("./sites/". $_GET['site'] . '.php', $validSites)) {
+        include "./sites/error.php";
       } else {
         $site = $_GET['site'];
-        include "$site.php";
+        include "./sites/$site.php";
       }
     }
 
