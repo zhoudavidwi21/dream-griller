@@ -15,6 +15,8 @@ ob_start();
   <link rel="stylesheet" href="./res/css/button.css">
   <!-- Template background -->
   <link href="./res/css/background.css" rel="stylesheet">
+  <!-- Template shopping cart -->
+  <link href="./res/css/shoppingcart.css" rel="stylesheet">
 
   <title>Header</title>
 </head>
@@ -49,6 +51,7 @@ ob_start();
              <li><a class="dropdown-item" href="index.php?site=data_security">Datenschutz</a></li>
               <li><a class="dropdown-item" href="index.php?site=terms_and_conditions">AGBs</a></li>
               <li><a class="dropdown-item" href="index.php?site=imprint">Impressum</a></li>
+              <li><a class="dropdown-item" href="index.php?site=shoppingcart">Warenkorb (Test)</a></li>
             </ul>
           </li>
 
