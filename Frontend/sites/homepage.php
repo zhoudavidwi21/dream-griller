@@ -28,7 +28,7 @@
                             <span class="price fs-4">50€</span>
                         </div>
                         <div class="card-footer">
-                            <a class="btn btn-primary btn-sm" href="#!">In den Einkaufswagen</a>
+                            <a id="prodcart1" class="btn btn-primary btn-sm" href="#!">In den Einkaufswagen</a>
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                             <span class="price fs-4">120€</span>
                         </div>
                         <div class="card-footer">
-                            <a class="btn btn-primary btn-sm" href="#!">In den Einkaufswagen</a>
+                            <a id="prodcart2" class="btn btn-primary btn-sm" href="#!">In den Einkaufswagen</a>
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                             <span class="price fs-4">180€</span>
                         </div>
                         <div class="card-footer">
-                            <a class="btn btn-primary btn-sm" href="#!">In den Einkaufswagen</a>
+                            <a id="prodcart3" class="btn btn-primary btn-sm" href="#!">In den Einkaufswagen</a>
                         </div>
                     </div>
                 </div>
