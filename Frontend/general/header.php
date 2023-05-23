@@ -15,6 +15,9 @@ ob_start();
   <link rel="stylesheet" href="./res/css/button.css">
   <!-- Template background -->
   <link href="./res/css/background.css" rel="stylesheet">
+  <!-- Template shopping cart -->
+  <link href="./res/css/shoppingcart.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <title>Header</title>
 </head>
@@ -49,6 +52,7 @@ ob_start();
              <li><a class="dropdown-item" href="index.php?site=data_security">Datenschutz</a></li>
               <li><a class="dropdown-item" href="index.php?site=terms_and_conditions">AGBs</a></li>
               <li><a class="dropdown-item" href="index.php?site=imprint">Impressum</a></li>
+              <li><a class="dropdown-item" href="index.php?site=shoppingcart">Warenkorb (Test)</a></li>
             </ul>
           </li>
 
@@ -87,6 +91,8 @@ ob_start();
         <!-- menu for logged in person END-->
       <?php } else { ?>
         <div class="d-flex gap-1">
+          <button id="cartbtn" type="button" data-container="body" data-toggle="popover" style="font-size:24px">
+          <i class="fa fa-shopping-cart"></i><a id="quantity"></a></button>
           <a class="btn btn-anmelden" href="index.php?site=login" role="button">anmelden</a>
           <a class="btn btn-registrieren" href="index.php?site=register" role="button">registrieren</a>
         </div>

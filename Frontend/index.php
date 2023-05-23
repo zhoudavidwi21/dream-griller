@@ -15,6 +15,8 @@
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 </head>
 
 <body>
@@ -48,6 +50,7 @@
   <?php include "./general/footer.php"; ?>
 
   <script src="./js/getdata.js"></script>
+  <script src="./js/cart.js"></script>
 
 </body>
 
