@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 17. Mai 2023 um 13:37
+-- Erstellungszeit: 29. Mai 2023 um 17:30
 -- Server-Version: 10.4.24-MariaDB
 -- PHP-Version: 8.1.6
 
@@ -24,13 +24,6 @@ CREATE DATABASE IF NOT EXISTS `dreamgriller_db` DEFAULT CHARACTER SET utf8 COLLA
 USE `dreamgriller_db`;
 
 -- --------------------------------------------------------
--- Die unteren 2 Zeilen (31 & 33) löschen, wenn inkompatibel. 
--- Rechte für `dgadmin`@`localhost`
--- 
-
--- GRANT ALL PRIVILEGES ON *.* TO `dgadmin`@`localhost` IDENTIFIED BY PASSWORD '*CE520F9D43BEB74F07FEBBD6A7420B04117D164C' WITH GRANT OPTION;
-
--- GRANT ALL PRIVILEGES ON `dreamgriller\_db`.* TO `dgadmin`@`localhost`;
 
 --
 -- Tabellenstruktur für Tabelle `cartitems`
@@ -176,6 +169,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `description` text NOT NULL,
   `price` double NOT NULL,
   `stock` int(11) NOT NULL,
+  `image` mediumblob DEFAULT NULL,
   `gas` tinyint(1) NOT NULL,
   `charcoal` tinyint(1) NOT NULL,
   `portable` tinyint(1) NOT NULL,
