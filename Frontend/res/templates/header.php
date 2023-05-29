@@ -84,7 +84,7 @@ ob_start();
               </li>
             <?php } ?>
 
-            <li><a class="dropdown-item" href="../general/logout.php">Logout</a></li>
+            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
 
           </ul>
         </div>
