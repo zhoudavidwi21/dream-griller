@@ -1,4 +1,4 @@
-<?php include "./general/sessions.php"; ?>
+<?php include "./res/templates/sessions.php"; ?>
 
 <div class="text-center container-fluid">
   <div class="row">
