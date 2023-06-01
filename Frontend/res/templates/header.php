@@ -77,9 +77,7 @@ ob_start();
             </li>
 
             <?php if ($_SESSION['role'] === "admin") { ?>
-              <li><a class="dropdown-item" href="index.php?site=admin_area">Admin Bereich(In Arbeit)</a></li>
-              <li><a class="dropdown-item" href="index.php?site=admin_user-administration">Benutzer verwalten(In Arbeit)</a></li>
-              <li><a class="dropdown-item" href="index.php?site=admin_product-administration">Artikel verwalten(In Arbeit)</a></li>
+              <li><a class="dropdown-item" href="index.php?site=admin_area">Admin Bereich</a></li>
               <li><hr class="dropdown-divider"></li>
             <?php } ?>
 
