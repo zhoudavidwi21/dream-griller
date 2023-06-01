@@ -20,7 +20,7 @@
 </head>
 
 <body>
-
+  <!-- Header Area --->
   <?php include "./res/templates/header.php"; ?>
 
   <main>
@@ -47,6 +47,7 @@
 
   </main>
 
+  <!-- Footer Area --->
   <?php include "./res/templates/footer.php"; ?>
 
   <script src="./js/getdata.js"></script>
