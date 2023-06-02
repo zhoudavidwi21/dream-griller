@@ -95,6 +95,25 @@ ob_start();
         </div>
       <?php } ?>
 
+      <!-- Code for ShoppingCart -->
+      <div id="popover_content_wrapper" style="display: none">    
+
+        <span id="cart_details"></span>
+        <div id="htmltest"></div>
+
+        <div align="right">
+          <a href="#" class="btn btn-default" id="totalCart">
+          <span class="glyphicon glyphicon-trash"></span>
+          </a>
+        </div>
+        <div align="right">
+          <a href="#" class="btn btn-primary" id="check_out_cart">
+          <span class="glyphicon glyphicon-shopping-cart"></span> Zum Bezahlvorgang
+          </a>
+        </div>
+      </div>
+      <!-- End ShoppingCart -->
+
     </div>
 
   </nav>
