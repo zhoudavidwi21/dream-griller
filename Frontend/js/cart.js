@@ -6,22 +6,18 @@ $(document).ready(function() {
     function load_product_data(){
 
         $.ajax({
-            type: "GET",
-            url: "./res/sample.json",
-            success: function(response){
-                for(i in response){
-                    let entry = response[i]
+            
+            url: "../Backend/businesslogic/loadProductsToHome.php",
+            method: "GET",
+            dataType: "json",
 
-                    $("#pic" + i).attr("src", "./res/img/grill" + i + ".png")
-                    $("#text" + i).text(entry.info)
-                    $("#title" + i).text(entry.name)
-                    
-
-                }
+            success: function(data){
+                console.log(data)
+                $('#contentRow').html(data.products);
                 $("[id^=prodcart]").on("click", putInCart)
             },
-            error: function(){
-                console.log("error")
+            error: function(data){
+                console.log(data)
             }
         })
     }
@@ -30,19 +26,19 @@ $(document).ready(function() {
 
         $.ajax({
 
-            url:"../Backend/businesslogic/getProductsFromCart.php",                     //selects * products from DB and returns json
-            method:"GET",
+            url: "../Backend/businesslogic/getProductsFromCart.php",                     //selects * products from DB and returns json
+            method: "GET",
             dataType: "json",
 
             success:function(data) {
                 $('#cart_details').html(data.tabledata);                                //tabledata is loaded
                 $('#totalCart').html("<b>Gesamtsumme " + data.total + " €</b>");        //total amount is loaded (money to pay)
-                $('#quantity').text(data.count);                                        //overall products count (in Navbar)
+                $('#quantity').text(" " + data.count);                                  //overall products count (in Navbar)
                 $("[id^=removeProduct]").on("click", removeItem)                        //removeButtons are enabled
                 $("[id^=btnQuant]").on("click", changeQuant) 
             },
             error: function(data){
-                console.log("error");
+                console.log(data);
             }
         });
 

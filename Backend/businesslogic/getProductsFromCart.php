@@ -4,7 +4,6 @@
     $total = 0;
     $count = 0;
 
-
     $db_obj = new mysqli($host, $dbUser, $dbPassword, $database);           //joining two tables as multiple information is required
     $sql = "SELECT ci.quantity, ci.id as item_id, pr.price, pr.name
             FROM `cartitems` ci
