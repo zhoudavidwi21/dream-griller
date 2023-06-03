@@ -1,9 +1,10 @@
 <?php
     require_once('../db/dbaccess.php');
 
+    $griller = $_POST["griller"];                                           //product categorie was passed
 
     $db_obj = new mysqli($host, $dbUser, $dbPassword, $database);
-    $sql = "SELECT * FROM `products`";           
+    $sql = "SELECT * FROM `products` WHERE $griller = 1";           
     $result = $db_obj->query($sql);
 
     $output = '';                                                                      
@@ -24,13 +25,13 @@
                     </div>
                 </div>
             </div>
-        '; 
+        ';                      //append formatted div-blocks related to amount of products (depending on griller categorie)
     }
 
     $data = array(
         'products' => $output
     );
     
-    echo json_encode($data); 
+    echo json_encode($data);    //json format is sent to FE
     
 ?>

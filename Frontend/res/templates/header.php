@@ -96,7 +96,7 @@ ob_start();
       <?php } ?>
 
       <!-- Code for ShoppingCart -->
-      <div id="popover_content_wrapper" style="display: none">    
+      <div id="popover_content" style="display: none">    
 
         <span id="cart_details"></span>
         <div id="htmltest"></div>

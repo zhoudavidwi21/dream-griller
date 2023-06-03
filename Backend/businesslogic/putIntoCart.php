@@ -2,7 +2,7 @@
     require_once('../db/dbaccess.php');
 
     $db_obj = new mysqli($host, $dbUser, $dbPassword, $database);
-    $sql = "INSERT INTO `cartitems`(`quantity`, `cart_id`, `product_id`) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO `cartitems`(`quantity`, `cart_id`, `product_id`) VALUES (?, ?, ?)";         //insert product to "cartitems"
     $stmt = $db_obj->prepare($sql);
 
     $quantity = 1;

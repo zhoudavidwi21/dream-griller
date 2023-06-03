@@ -49,7 +49,7 @@
 
     $data = array(
         'tabledata' => $output,
-        'total' => $total,                      //array is created and gets json encoded, information is sent to the frontend
+        'total' => number_format($total, 2),               //array is created and gets json encoded, information is sent to the frontend
         'count' => $count
     );
     

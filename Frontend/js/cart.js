@@ -1,20 +1,27 @@
 $(document).ready(function() {
 
-    load_product_data();
-    load_cart_data();
+    load_product_data("charcoal");                                              //load products for Homepage (default: charcoal)
+    load_cart_data();                                                           //load data for cart information
 
-    function load_product_data(){
+    $("input[name=grillCategories]").on("click", function(){
+        let categorie = $("input[name=grillCategories]:checked").val();         //"clicked" categorie is passed to load_product_data
+        load_product_data(categorie)
+    })
+
+
+
+    function load_product_data(griller){
 
         $.ajax({
             
             url: "../Backend/businesslogic/loadProductsToHome.php",
-            method: "GET",
+            method: "POST",
             dataType: "json",
+            data: {griller: griller},
 
             success: function(data){
-                console.log(data)
-                $('#contentRow').html(data.products);
-                $("[id^=prodcart]").on("click", putInCart)
+                $('#contentRow').html(data.products);                           //content from BE is appended
+                $("[id^=prodcart]").on("click", putInCart)                      //"In den Einkaufswagen" is enabled
             },
             error: function(data){
                 console.log(data)
@@ -26,7 +33,7 @@ $(document).ready(function() {
 
         $.ajax({
 
-            url: "../Backend/businesslogic/getProductsFromCart.php",                     //selects * products from DB and returns json
+            url: "../Backend/businesslogic/getProductsFromCart.php",                    //selects * products from DB and returns json
             method: "GET",
             dataType: "json",
 
@@ -53,12 +60,12 @@ $(document).ready(function() {
 
         $.ajax({
 
-            url:"../Backend/businesslogic/putIntoCart.php",
+            url:"../Backend/businesslogic/putIntoCart.php",         //product with related product_id is uploaded to DB
             method:"POST",                                              
             data: {id: id},                     
 
             success:function(data) {
-                load_cart_data();
+                load_cart_data();                                   //cart data gets refreshed
                 $('#cartbtn').popover("hide")                           
                 alert(data)
             },
@@ -75,16 +82,16 @@ $(document).ready(function() {
     function changeQuant(){
 
         let id = $(this).attr("id").slice(11)
-        let method = $(this).text()
+        let method = $(this).text()                                 //addition or subtraction
 
         $.ajax({
 
-            url:"../Backend/businesslogic/changeQuantityCart.php",
+            url:"../Backend/businesslogic/changeQuantityCart.php",  //quantity of related cartitem gets modified
             method:"POST",                                              
             data: {id: id, method: method},                     
 
             success:function(data) {
-                load_cart_data();
+                load_cart_data();                                   //cart data gets refreshed
                 $('#cartbtn').popover("hide")                           
                 alert(data)
             },
@@ -128,7 +135,7 @@ $(document).ready(function() {
 
         content: function(){
             load_cart_data();
-            return $('#popover_content_wrapper').html();                //Shopping cart structure is loaded
+            return $('#popover_content').html();                        //Shopping cart structure is loaded
         }
         
     })

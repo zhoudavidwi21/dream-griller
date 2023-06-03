@@ -16,6 +16,22 @@
             NUR HEUTE LAGER ABVERKAUF!!!!!
             </p></div>
         </div>
+
+        <h2 class="font-weight-light">Wählen Sie Ihren Grill!</h1>
+
+        <!-- Choose Grill Categorie -->
+        <div style="margin-bottom: 25px">
+            <input type="radio" class="btn-check" name="grillCategories" id="griller1" autocomplete="off" value="gas">
+            <label class="btn btn-secondary" for="griller1">Gas</label>
+
+            <input type="radio" class="btn-check" name="grillCategories" id="griller2" autocomplete="off" value="charcoal" checked>
+            <label class="btn btn-secondary" for="griller2">Holzkohle</label>
+
+            <input type="radio" class="btn-check" name="grillCategories" id="griller3" autocomplete="off" value="pellet">
+            <label class="btn btn-secondary" for="griller3">Pellet</label>
+        </div>
+        <!-- end of categories -->
+
         <!-- Content Row-->
         <div class="row gx-4 gx-lg-5" id="contentRow">
             
