@@ -17,7 +17,7 @@
             </p></div>
         </div>
 
-        <h2 class="font-weight-light">Wählen Sie Ihren Grill!</h1>
+        <h2 class="font-weight-light">Wählen Sie eine Kateogrie</h1>
 
         <!-- Choose Grill Categorie -->
         <div style="margin-bottom: 25px">
@@ -31,6 +31,11 @@
             <label class="btn btn-secondary" for="griller3">Pellet</label>
         </div>
         <!-- end of categories -->
+
+        <!--  Continuous Search Filter -->
+        <h4 class="font-weight-light">und suchen Sie nach Ihrem DreamGriller!</h4>
+        <input type="text" class="form-control" id="searchfilter" placeholder="Name des Produkts" style="margin-bottom: 25px; width: 50%">
+        <!--  Continuous Search Filter -->
 
         <!-- Content Row-->
         <div class="row gx-4 gx-lg-5" id="contentRow">

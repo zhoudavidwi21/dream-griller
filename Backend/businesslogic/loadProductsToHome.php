@@ -1,10 +1,11 @@
 <?php
     require_once('../db/dbaccess.php');
 
-    $griller = $_POST["griller"];                                           //product categorie was passed
+    $griller = $_POST["categorie"];                                           //product categorie and user input are passed
+    $input = $_POST["input"];
 
     $db_obj = new mysqli($host, $dbUser, $dbPassword, $database);
-    $sql = "SELECT * FROM `products` WHERE $griller = 1";           
+    $sql = "SELECT * FROM `products` WHERE `name` LIKE '%$input%' AND $griller = 1";           
     $result = $db_obj->query($sql);
 
     $output = '';                                                                      

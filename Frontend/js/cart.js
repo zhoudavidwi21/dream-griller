@@ -1,23 +1,34 @@
 $(document).ready(function() {
 
-    load_product_data("charcoal");                                              //load products for Homepage (default: charcoal)
+    
+    load_product_data("charcoal", "");                                          //load products for Homepage (default: charcoal, and empty String --> no "search" value)
     load_cart_data();                                                           //load data for cart information
+
+    
 
     $("input[name=grillCategories]").on("click", function(){
         let categorie = $("input[name=grillCategories]:checked").val();         //"clicked" categorie is passed to load_product_data
-        load_product_data(categorie)
+        load_product_data(categorie, "")
+    })
+
+    $("#searchfilter").on("keyup", function(){
+        let input = $("#searchfilter").val();                                   //"clicked" categorie and user input is passed
+        let categorie = $("input[name=grillCategories]:checked").val();
+        
+        load_product_data(categorie, input)
+
     })
 
 
 
-    function load_product_data(griller){
+    function load_product_data(categorie, input){
 
         $.ajax({
             
             url: "../Backend/businesslogic/loadProductsToHome.php",
             method: "POST",
             dataType: "json",
-            data: {griller: griller},
+            data: {categorie: categorie, input: input},
 
             success: function(data){
                 $('#contentRow').html(data.products);                           //content from BE is appended
