@@ -32,10 +32,13 @@
         $output .= '
         <tr>
             <td>'.$row["name"].'</td>
-            <td>'.$row["quantity"].' Stück</td>
+            <td>'.$row["quantity"].' Stück<br>
+                <button id="btnQuantAdd'. $row["item_id"].'">+</button>
+                <button id="btnQuantSub'. $row["item_id"].'">-</button>
+            </td>
             <td>'.$row["price"].' €</td>
             <td>'.$totalProduct.' €</td>
-            <td><button class="btn btn-danger btn-xs delete" id="removeProduct'. $row["item_id"].'">Entfernen</button></td>
+            <td><button class="btn btn-danger btn-xs delete" id="removeProduct'. $row["item_id"].'">Entf.</button></td>
         </tr>
         ';                                                                  //values of DB are inserted
 

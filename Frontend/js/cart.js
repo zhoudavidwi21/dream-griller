@@ -1,7 +1,30 @@
 $(document).ready(function() {
 
+    load_product_data();
     load_cart_data();
 
+    function load_product_data(){
+
+        $.ajax({
+            type: "GET",
+            url: "./res/sample.json",
+            success: function(response){
+                for(i in response){
+                    let entry = response[i]
+
+                    $("#pic" + i).attr("src", "./res/img/grill" + i + ".png")
+                    $("#text" + i).text(entry.info)
+                    $("#title" + i).text(entry.name)
+                    
+
+                }
+                $("[id^=prodcart]").on("click", putInCart)
+            },
+            error: function(){
+                console.log("error")
+            }
+        })
+    }
 
     function load_cart_data(){
 
@@ -16,6 +39,7 @@ $(document).ready(function() {
                 $('#totalCart').html("<b>Gesamtsumme " + data.total + " €</b>");        //total amount is loaded (money to pay)
                 $('#quantity').text(data.count);                                        //overall products count (in Navbar)
                 $("[id^=removeProduct]").on("click", removeItem)                        //removeButtons are enabled
+                $("[id^=btnQuant]").on("click", changeQuant) 
             },
             error: function(data){
                 console.log("error");
@@ -23,6 +47,56 @@ $(document).ready(function() {
         });
 
         
+    }
+
+
+    function putInCart(){
+        //über Session noch CartId holen !!
+
+        let id = $(this).attr("id").slice(8)
+
+        $.ajax({
+
+            url:"../Backend/businesslogic/putIntoCart.php",
+            method:"POST",                                              
+            data: {id: id},                     
+
+            success:function(data) {
+                load_cart_data();
+                $('#cartbtn').popover("hide")                           
+                alert(data)
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+        
+
+    }
+
+    
+
+    function changeQuant(){
+
+        let id = $(this).attr("id").slice(11)
+        let method = $(this).text()
+
+        $.ajax({
+
+            url:"../Backend/businesslogic/changeQuantityCart.php",
+            method:"POST",                                              
+            data: {id: id, method: method},                     
+
+            success:function(data) {
+                load_cart_data();
+                $('#cartbtn').popover("hide")                           
+                alert(data)
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+
     }
 
     function removeItem(){
@@ -38,10 +112,10 @@ $(document).ready(function() {
             success:function(data) {
                 load_cart_data();
                 $('#cartbtn').popover("hide")                           //reload cart data, hide popover and show message to customer
-                alert("Produkt erfolgreich entfernt") 
+                alert(data) 
             },
-            error: function(){
-                console.log("error");
+            error: function(data){
+                console.log(data);
             }
         });
 
