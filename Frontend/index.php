@@ -1,4 +1,4 @@
-<?php include "./general/sessions.php"; ?>
+<?php include "./res/templates/sessions.php"; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,8 +20,8 @@
 </head>
 
 <body>
-
-  <?php include "./general/header.php"; ?>
+  <!-- Header Area --->
+  <?php include "./res/templates/header.php"; ?>
 
   <main>
 
@@ -47,7 +47,8 @@
 
   </main>
 
-  <?php include "./general/footer.php"; ?>
+  <!-- Footer Area --->
+  <?php include "./res/templates/footer.php"; ?>
 
   <script src="./js/getdata.js"></script>
   <script src="./js/cart.js"></script>

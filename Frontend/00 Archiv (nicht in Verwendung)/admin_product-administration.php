@@ -1,4 +1,4 @@
-<?php include "../general/sessions.php"; ?>
+<?php include "./res/templates/sessions.php"; ?>
 
 <?php require_once('../../Backend/db/dbaccess.php'); ?>
 
@@ -23,7 +23,7 @@ if ($db_obj->connect_error) {
 <!-- Reservierungen anzeigen -->
 <div class="text-center container-fluid">
 
-  <h1 class="h1 mb-3 fw-normal">Reservierungen verwalten</h1>
+  <h1 class="h1 mb-3 fw-normal">Bestellungen verwalten</h1>
 
   <div class="row justify-content-md-center">
     <div class="col-sm-3 col-md-7 col-lg-10">

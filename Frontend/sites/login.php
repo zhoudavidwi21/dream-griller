@@ -1,5 +1,3 @@
-<?php include "./general/sessions.php"; ?>
-
 <?php require_once('../Backend/db/dbaccess.php'); ?>
 
 <?php

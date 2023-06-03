@@ -67,24 +67,21 @@ ob_start();
             <?php echo $_SESSION['username']; ?>
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="index.php?site=profil_administration">Profil bearbeiten</a></li>
+            <li><a class="dropdown-item" href="index.php?site=profile_administration">Profil bearbeiten (In Arbeit)</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="index.php?site=view_orders">Meine Bestellungen ansehen</a></li>
+            <li><a class="dropdown-item" href="index.php?site=view_orders">Meine Bestellungen ansehen(In Arbeit)</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <?php if ($_SESSION['role'] === "admin") { ?>
-              <li><a class="dropdown-item" href="index.php?site=admin_user-administration">Benutzer verwalten</a></li>
-              <li><a class="dropdown-item" href="index.php?site=admin_product-administration">Artikel verwalten</a></li>
-              <li>
-              <hr class="dropdown-divider">
-              </li>
+              <li><a class="dropdown-item" href="index.php?site=admin_area">Admin Bereich</a></li>
+              <li><hr class="dropdown-divider"></li>
             <?php } ?>
 
-            <li><a class="dropdown-item" href="../general/logout.php">Logout</a></li>
+            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
 
           </ul>
         </div>
@@ -93,10 +90,29 @@ ob_start();
         <div class="d-flex gap-1">
           <button id="cartbtn" type="button" data-container="body" data-toggle="popover" style="font-size:24px">
           <i class="fa fa-shopping-cart"></i><a id="quantity"></a></button>
-          <a class="btn btn-anmelden" href="index.php?site=login" role="button">anmelden</a>
-          <a class="btn btn-registrieren" href="index.php?site=register" role="button">registrieren</a>
+          <a class="btn btn-anmelden" href="index.php?site=login" role="button">Login(In Arbeit)</a>
+          <a class="btn btn-registrieren" href="index.php?site=register" role="button">Registration(In Arbeit)</a>
         </div>
       <?php } ?>
+
+      <!-- Code for ShoppingCart -->
+      <div id="popover_content_wrapper" style="display: none">    
+
+        <span id="cart_details"></span>
+        <div id="htmltest"></div>
+
+        <div align="right">
+          <a href="#" class="btn btn-default" id="totalCart">
+          <span class="glyphicon glyphicon-trash"></span>
+          </a>
+        </div>
+        <div align="right">
+          <a href="#" class="btn btn-primary" id="check_out_cart">
+          <span class="glyphicon glyphicon-shopping-cart"></span> Zum Bezahlvorgang
+          </a>
+        </div>
+      </div>
+      <!-- End ShoppingCart -->
 
     </div>
 

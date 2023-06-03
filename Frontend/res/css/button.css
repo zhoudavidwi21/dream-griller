@@ -47,6 +47,16 @@
     --bs-btn-active-border-color: rgb(94, 56, 0); /* Rahmenfarbe beim Klick */
 }
 
+
+.btn-dg-standard {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: rgba(97, 176, 203, 1);
+    --bs-btn-border-color: rgba(97, 176, 203, 1);
+    --bs-btn-hover-bg: rgba(78, 146, 169, 1);
+    --bs-btn-hover-border-color: rgba(78, 146, 169, 1);
+    --bs-btn-focus-shadow: 0 0 0 0.2rem rgba(97, 176, 203, 0.5);
+}
+
 /* Button template */
 .btn-template {
     --bs-btn-font-weight: 600;
