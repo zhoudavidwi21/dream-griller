@@ -134,10 +134,9 @@ class RequestHandler {
     }
 
     /** format success response and exit
-     * @param int $code HTTP code (2xx)
-     * @param array $data result object
+     * @param mixed $data object, could be "anything"
      */
-    private function success($data) {
+    private function success(mixed $data) {
         header('Content-Type: application/json');
         echo(json_encode($data));
         exit;

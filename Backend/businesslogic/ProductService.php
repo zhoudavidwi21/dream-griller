@@ -22,7 +22,7 @@ class ProductService {
         return $products;
     }
 
-    public function saveProduct($requestData): ?Product {
+    public function saveProduct($requestData): mixed {
         $product = new Product($requestData);
 
         return $product;
