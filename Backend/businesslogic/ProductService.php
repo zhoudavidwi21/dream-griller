@@ -11,12 +11,20 @@
 class ProductService {
 
     public function getAllProducts(): array {
+        $products = [];
+
+        return $products;
     }
 
     public function getProductByCategory($category): ?array {
+        $products = [];
+
+        return $products;
     }
 
     public function saveProduct($requestData): ?Product {
+        $product = new Product($requestData);
 
+        return $product;
     }
 }
