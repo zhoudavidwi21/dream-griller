@@ -135,7 +135,7 @@ class RequestHandler {
 
     /** format success response and exit
      * @param int $code HTTP code (2xx)
-     * @param $data result object
+     * @param array $data result object
      */
     private function success($data) {
         header('Content-Type: application/json');
