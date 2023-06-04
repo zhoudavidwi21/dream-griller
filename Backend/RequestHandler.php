@@ -58,7 +58,7 @@ class RequestHandler {
                 $this->success($this->productService->getAllProducts());
                 break;
             case 'product':
-                $this->success($this->productService->getProductByName($params['name']));
+                $this->success($this->productService->getProductByCategory($params['category']));
                 break;
             case 'orders':
                 $this->success($this->orderService->getAllOrders());
@@ -72,15 +72,25 @@ class RequestHandler {
         }
     }
 
-    private function handlePostRequest(string $resource, array $params) {
+    private function handlePostRequest(string $resource) {
+        // Get the request body
+        $requestBody = file_get_contents('php://input');
+        $requestData = json_decode($requestBody, true);
+
+        // Check if the request body is valid JSON
+        if ($requestData.json_last_error() != JSON_ERROR_NONE) {
+            $this->error(400, "Invalid request body");
+        }
+
         switch ($resource) {
-            case 'users':
+            case 'user':
                 // Handle creating a new user
                 break;
-            case 'products':
+            case 'product':
                 // Handle creating a new product
+                $this->success($this->productService->saveProduct($requestData));
                 break;
-            case 'orders':
+            case 'order':
                 // Handle creating a new order
                 break;
             default:
