@@ -31,7 +31,34 @@ $(document).ready(function() {
             //data: {categorie: categorie, input: input},
 
             success: function(data){
-                $('#contentRow').html(data.products);                           //content from BE is appended
+                $.each(data, function(product) {
+                    console.log(product["name"], ",", jsonData["detail"]);
+    
+                    var posx = jsonData["coordx"];
+                    var posy = jsonData["coordy"];
+    
+                    $("#map").append("<img class='poi' id='poi"+i+"' style='top:"+ posy +"px; left:"+ posx +"px;' src='img/marker.png'>");
+    
+                    $("#map").append("<span class='detail poi"+i+"' style='top:"+ (posy-40) +"px; left:"+ (posx-85) +"px;'><b>"+jsonData["name"]+"</b>: "+jsonData["detail"]+"</span>");
+    
+                });
+                
+                let content = `
+                <div class="col-md-4 mb-5">
+                <div class="card h-100" id="item-'.$row["id"].'">
+                    <div class="card-body">
+                        <a><h2 id="title'.$row["id"].'" class="card-title">'.$row["name"].'</h2></a>
+                        <img id="pic0" class="img-fluid rounded mb-4 mb-lg-0" src="https://dummyimage.com/200x200/dee2e6/6c757d.png">
+                        <p id="text'.$row["id"].'" class="card-text">'.$row["description"].'</p>
+                        <span class="price fs-4">'.$row["price"].' €</span>
+                    </div>
+                    <div class="card-footer">
+                        <a id="prodcart'.$row["id"].'" class="btn btn-sonstige btn-sm">In den Einkaufswagen</a>
+                    </div>
+                </div>
+            </div>`
+                
+                $('#contentRow').html(content);                           //content from BE is appended
                 $("[id^=prodcart]").on("click", putInCart)                      //"In den Einkaufswagen" is enabled
             },
             error: function(data){

@@ -13,7 +13,7 @@ class ProductService {
     private Database $database;
 
     public function __construct(){
-        $this->$database = new Database();
+        $this->database = new Database();
     }
 
 
@@ -26,8 +26,10 @@ class ProductService {
 
     public function getProductByCategory($category): ?array {
         $products = [];
-        $sql = "SELECT * FROM `products` WHERE `name` LIKE '%$input%' AND $category = 1";
+        $sql = "SELECT * FROM `products` WHERE $category = 1";
         $res = $database->executeQuery($query);
+
+        
 
 
         return $products;
