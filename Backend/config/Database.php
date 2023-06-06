@@ -8,7 +8,7 @@ class Database {
     private $db_obj;
 
     public function __construct() {
-        $dbAccessFile = 'C:\xampp\htdocs\DreamGriller\Backend\config\dbaccess.php';
+        $dbAccessFile = './config/dbaccess.php';
         if (file_exists($dbAccessFile)) {
             include $dbAccessFile;
             $this->host = $host;

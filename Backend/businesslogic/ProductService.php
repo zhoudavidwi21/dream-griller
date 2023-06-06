@@ -46,6 +46,8 @@ class ProductService {
         $query = "SELECT * FROM products WHERE $category = 1";
         $res = $this->database->executeQuery($query);
 
+        $products = [];
+
         foreach ($res as $row) {
             $product = new Product(
                 $row['id'],
