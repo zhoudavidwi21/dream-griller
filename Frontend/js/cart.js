@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    // on_page_load()
+    //on_page_load()
     load_product_data("charcoal", "");                                          //load products for Homepage (default: charcoal, and empty String --> no "search" value)
     load_cart_data();                                                           //load data for cart information
 

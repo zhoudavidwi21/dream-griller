@@ -45,7 +45,7 @@ class ProductService {
     public function getProductByCategory($category): ?array {
         $products = [];
         $sql = "SELECT * FROM products WHERE $category = 1";
-        print_r($sql);
+//        print_r($sql);
         $res = $this->database->executeQuery($sql);
 
         foreach ($res as $row) {
