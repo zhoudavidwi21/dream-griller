@@ -27,9 +27,11 @@ class RequestHandler {
         $requestUri = $_SERVER['REQUEST_URI'];
 
         // Extract the resource and additional parameters from the request URI
-        $resource = $this->getResourceFromUri($requestUri);
-        $params = $this->getParamsFromUri($requestUri);
+//        $resource = $this->getResourceFromUri($requestUri);
+//        $params = $this->getParamsFromUri($requestUri);
 
+        $resource = $_GET['resource'] ?? '';
+        $params = $_GET['params'] ?? [];
         // Map the HTTP method and resource to the appropriate handler
         switch ($requestMethod) {
             case 'GET':
@@ -175,8 +177,4 @@ class RequestHandler {
 
         return $params;
     }
-
-
-
-
 }
