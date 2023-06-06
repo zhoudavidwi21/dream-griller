@@ -26,12 +26,24 @@ class ProductService {
 
     public function getProductByCategory($category): ?array {
         $products = [];
-        $sql = "SELECT * FROM `products` WHERE $category = 1";
-        $res = $database->executeQuery($query);
+        $sql = "SELECT * FROM `products` WHERE `name` LIKE '%$input%' AND $category = 1";
+        $res = $this->database->executeQuery($sql);
 
-        
-
-
+        foreach ($res as $row) {
+            $product = new Product(
+                $row['id'],
+                $row['name'],
+                $row['description'],
+                $row['price'],
+                $row['image'],
+                $row['rating'],
+                $row['gas'],
+                $row['charcoal'],
+                $row['pellet'],
+                $row['sale'],
+            );
+            $products[] = $product;
+        }
         return $products;
     }
 
