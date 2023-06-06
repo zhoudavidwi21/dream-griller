@@ -42,11 +42,9 @@ class ProductService {
         return $products;
     }
 
-    public function getProductByCategory($category): ?array {
-        $products = [];
-        $sql = "SELECT * FROM products WHERE $category = 1";
-//        print_r($sql);
-        $res = $this->database->executeQuery($sql);
+    public function getProductsByCategory($category): ?array {
+        $query = "SELECT * FROM products WHERE $category = 1";
+        $res = $this->database->executeQuery($query);
 
         foreach ($res as $row) {
             $product = new Product(
@@ -54,7 +52,7 @@ class ProductService {
                 $row['name'],
                 $row['description'],
                 $row['price'],
-                $row['image'],
+                null, // CHANGE THIS LINE
                 $row['rating'],
                 boolval($row['gas']),
                 boolval($row['charcoal']),
