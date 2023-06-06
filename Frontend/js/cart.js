@@ -25,21 +25,14 @@ $(document).ready(function() {
 
         $.ajax({
             
-            url: "../Backend/RequestHandler.php/product/" +  categorie + "/" + input,
+            url: "../Backend/RequestHandler.php/product/" +  categorie,
             method: "GET",
             dataType: "json",
             //data: {categorie: categorie, input: input},
 
             success: function(data){
                 $.each(data, function(product) {
-                    console.log(product["name"], ",", jsonData["detail"]);
-    
-                    var posx = jsonData["coordx"];
-                    var posy = jsonData["coordy"];
-    
-                    $("#map").append("<img class='poi' id='poi"+i+"' style='top:"+ posy +"px; left:"+ posx +"px;' src='img/marker.png'>");
-    
-                    $("#map").append("<span class='detail poi"+i+"' style='top:"+ (posy-40) +"px; left:"+ (posx-85) +"px;'><b>"+jsonData["name"]+"</b>: "+jsonData["detail"]+"</span>");
+                    console.log(product["id"], ",", product["name"]);
     
                 });
                 
@@ -58,8 +51,8 @@ $(document).ready(function() {
                 </div>
             </div>`
                 
-                $('#contentRow').html(content);                           //content from BE is appended
-                $("[id^=prodcart]").on("click", putInCart)                      //"In den Einkaufswagen" is enabled
+                //$('#contentRow').html(content);                           //content from BE is appended
+                //$("[id^=prodcart]").on("click", putInCart)                      //"In den Einkaufswagen" is enabled
             },
             error: function(data){
                 console.log(data)

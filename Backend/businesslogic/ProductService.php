@@ -13,6 +13,7 @@ class ProductService {
     private Database $database;
 
     public function __construct(){
+        include "./config/Database.php";
         $this->database = new Database();
     }
 
@@ -37,10 +38,10 @@ class ProductService {
                 $row['price'],
                 $row['image'],
                 $row['rating'],
-                $row['gas'],
-                $row['charcoal'],
-                $row['pellet'],
-                $row['sale'],
+                boolval($row['gas']),
+                boolval($row['charcoal']),
+                boolval($row['pellet']),
+                boolval($row['sale'])
             );
             $products[] = $product;
         }

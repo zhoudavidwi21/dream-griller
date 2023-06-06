@@ -12,6 +12,10 @@ class RequestHandler {
     //...
 
     public function __construct() {
+        include "./businesslogic/UserService.php";
+        include "./businesslogic/ProductService.php";
+        include "./businesslogic/OrderService.php";
+        include "./businesslogic/CartService.php";
         $this->userService = new UserService();
         $this->productService = new ProductService();
         $this->orderService = new OrderService();

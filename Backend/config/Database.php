@@ -8,7 +8,7 @@ class Database {
     private $pdo;
 
     public function __construct() {
-        $dbAccessFile = './dbaccess.php';
+        $dbAccessFile = 'C:\xampp\htdocs\dreamgriller\dream-griller\Backend\config\dbaccess.php';
         if (file_exists($dbAccessFile)) {
             include $dbAccessFile;
             $this->host = $host;
