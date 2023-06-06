@@ -47,9 +47,9 @@ $(document).ready(function() {
 
             success: function(response){
                 console.log("success");
-                $.each(response, function(product) {
-                    console.log(product["id"], ",", product["name"]);
-    
+                console.log("Response: " + response);
+                $.each(response, function(key, product) {
+                    console.log("Product: " + product.id + ", " + product.name)
                 });
                 
             //     let content = `
