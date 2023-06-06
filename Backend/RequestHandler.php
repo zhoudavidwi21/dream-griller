@@ -144,7 +144,7 @@ class RequestHandler {
      */
     private function success(mixed $data) {
         header('Content-Type: application/json');
-        echo(json_encode($data));
+        echo json_encode($data);
         exit;
     }
 

@@ -25,12 +25,13 @@ $(document).ready(function() {
 
         $.ajax({
             
-            url: "../Backend/RequestHandler.php/product/" +  categorie,
+            url: "../Backend/RequestHandler.php?resource=product&params[category]=" +  categorie,
             method: "GET",
             dataType: "json",
             //data: {categorie: categorie, input: input},
 
             success: function(data){
+                console.log("success");
                 $.each(data, function(product) {
                     console.log(product["id"], ",", product["name"]);
     
@@ -56,6 +57,7 @@ $(document).ready(function() {
             },
             error: function(data){
                 console.log(data)
+                console.log("error")
             }
         })
     }

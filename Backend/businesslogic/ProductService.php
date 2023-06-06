@@ -1,4 +1,5 @@
 <?php
+include "./models/Product.php";
 
 /**
  * TODO: Implement Product Service Class
@@ -9,6 +10,8 @@
  *  - DELETE product .. delete existing product
  */
 class ProductService {
+
+    
 
     private Database $database;
 
@@ -27,7 +30,7 @@ class ProductService {
 
     public function getProductByCategory($category): ?array {
         $products = [];
-        $sql = "SELECT * FROM `products` WHERE `name` LIKE '%$input%' AND $category = 1";
+        $sql = "SELECT * FROM `products` WHERE $category = 1";
         $res = $this->database->executeQuery($sql);
 
         foreach ($res as $row) {
@@ -37,7 +40,7 @@ class ProductService {
                 $row['description'],
                 $row['price'],
                 $row['image'],
-                $row['rating'],
+                $row['stock'],
                 boolval($row['gas']),
                 boolval($row['charcoal']),
                 boolval($row['pellet']),
