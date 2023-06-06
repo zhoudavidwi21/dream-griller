@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
-    
-    load_product_data("charcoal", "");                                          //load products for Homepage (default: charcoal, and empty String --> no "search" value)
+    on_page_load()
+    //load_product_data("charcoal", "");                                          //load products for Homepage (default: charcoal, and empty String --> no "search" value)
     load_cart_data();                                                           //load data for cart information
 
     
@@ -19,6 +19,20 @@ $(document).ready(function() {
 
     })
 
+    function on_page_load() {
+        $.ajax({
+            url: '../Backend/RequestHandler.php?resource=products',
+            method: 'GET', // Change to 'POST', 'PUT', 'DELETE' as needed
+            success: function(response) {
+                // Handle successful response
+                console.log(JSON.parse(response));
+            },
+            error: function(xhr, status, error) {
+                // Handle error
+                console.log(error);
+            }
+        });
+    }
 
 
     function load_product_data(categorie, input){

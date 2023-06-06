@@ -22,10 +22,10 @@ class ProductService {
 
 
 
-    public function getAllProducts(): array {
-        $products = [];
-
-        return $products;
+    public function getAllProducts(): ?array {
+        $query = "SELECT * FROM products";
+        print_r($this->database->executeQuery($query));
+        return $this->database->executeQuery($query);
     }
 
     public function getProductByCategory($category): ?array {
@@ -40,12 +40,13 @@ class ProductService {
                 $row['description'],
                 $row['price'],
                 $row['image'],
-                $row['stock'],
+                $row['rating'],
                 boolval($row['gas']),
                 boolval($row['charcoal']),
                 boolval($row['pellet']),
                 boolval($row['sale'])
             );
+            $this->debug_to_console($product);
             $products[] = $product;
         }
         return $products;
@@ -55,5 +56,13 @@ class ProductService {
         $product = new Product($requestData);
 
         return $product;
+    }
+
+    function debug_to_console($data) {
+        $output = $data;
+        if (is_array($output))
+            $output = implode(',', $output);
+
+        echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
     }
 }
