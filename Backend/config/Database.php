@@ -7,10 +7,10 @@ class Database {
     private $database;
     private $pdo;
 
-    public function __construct($host, $dbUser, $dbPassword, $database) {
+    public function __construct() {
         include 'dbaccess.php';
 
-        $this->host = $host;
+        $this->$host = $host;
         $this->$dbUser = $dbUser;
         $this->$dbPassword = $dbPassword;
         $this->$database = $database;

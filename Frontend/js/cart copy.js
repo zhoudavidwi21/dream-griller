@@ -25,10 +25,10 @@ $(document).ready(function() {
 
         $.ajax({
             
-            url: "../Backend/RequestHandler.php/product/" +  categorie + "/" + input,
-            method: "GET",
+            url: "../Backend/businesslogic/loadProductsToHome.php",
+            method: "POST",
             dataType: "json",
-            //data: {categorie: categorie, input: input},
+            data: {categorie: categorie, input: input},
 
             success: function(data){
                 $('#contentRow').html(data.products);                           //content from BE is appended
