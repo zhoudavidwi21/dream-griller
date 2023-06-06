@@ -11,8 +11,6 @@ include "./models/Product.php";
  */
 class ProductService {
 
-    
-
     private Database $database;
 
     public function __construct(){
@@ -24,13 +22,30 @@ class ProductService {
 
     public function getAllProducts(): ?array {
         $query = "SELECT * FROM products";
-        print_r($this->database->executeQuery($query));
-        return $this->database->executeQuery($query);
+        $res = $this->database->executeQuery($query);
+        foreach ($res as $row) {
+            $product = new Product(
+                $row['id'],
+                $row['name'],
+                $row['description'],
+                $row['price'],
+                null,
+                $row['rating'],
+                boolval($row['gas']),
+                boolval($row['charcoal']),
+                boolval($row['pellet']),
+                boolval($row['sale'])
+            );
+            $products[] = $product;
+        }
+        //print_r($products);
+        return $products;
     }
 
     public function getProductByCategory($category): ?array {
         $products = [];
-        $sql = "SELECT * FROM `products` WHERE $category = 1";
+        $sql = "SELECT * FROM products WHERE $category = 1";
+        print_r($sql);
         $res = $this->database->executeQuery($sql);
 
         foreach ($res as $row) {
@@ -46,7 +61,6 @@ class ProductService {
                 boolval($row['pellet']),
                 boolval($row['sale'])
             );
-            $this->debug_to_console($product);
             $products[] = $product;
         }
         return $products;
@@ -58,11 +72,4 @@ class ProductService {
         return $product;
     }
 
-    function debug_to_console($data) {
-        $output = $data;
-        if (is_array($output))
-            $output = implode(',', $output);
-
-        echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
-    }
 }

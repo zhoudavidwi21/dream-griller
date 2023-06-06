@@ -5,7 +5,7 @@ class Database {
     private $dbUser;
     private $dbPassword;
     private $database;
-    private $pdo;
+    private $db_obj;
 
     public function __construct() {
         $dbAccessFile = 'C:\xampp\htdocs\DreamGriller\Backend\config\dbaccess.php';
@@ -15,23 +15,16 @@ class Database {
             $this->dbUser = $dbUser;
             $this->dbPassword = $dbPassword;
             $this->database = $database;
-            $this->connect();
+            $this->createNewDBObject();
         } else {
             die("Database access file not found.");
         }
     }
 
-    private function connect() {
-        try {
-            $dsn = "mysql:host={$this->host};dbname={$this->database}";
-            $options = [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                PDO::ATTR_EMULATE_PREPARES => false
-            ];
-            $this->pdo = new PDO($dsn, $this->dbUser, $this->dbPassword, $options);
-        } catch (PDOException $e) {
-            die("Database connection failed: " . $e->getMessage());
+    private function createNewDBObject() {
+        $this->db_obj = new mysqli($this->host, $this->dbUser, $this->dbPassword, $this->database);
+        if ($this->db_obj->connect_error) {
+            die("Database connection failed: " . $this->db_obj->connect_error);
         }
     }
 
@@ -61,13 +54,16 @@ class Database {
     public function executeQuery(string $query, array $params = []): ?array
     {
         try {
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $this->db_obj->prepare($query);
             // Bind the named placeholders with their corresponding values
             foreach ($params as $placeholder => $value) {
-                $stmt->bindValue($placeholder, $value);
+                $stmt->bind_param($placeholder, $value);
             }
-            $stmt->execute($params);
-            return $stmt->fetchAll();
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $data = $result->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+            return $data;
         } catch (PDOException $e) {
             die("Query execution failed: " . $e->getMessage());
         }
