@@ -8,13 +8,17 @@ class Database {
     private $pdo;
 
     public function __construct() {
-        include 'dbaccess.php';
-
-        $this->$host = $host;
-        $this->$dbUser = $dbUser;
-        $this->$dbPassword = $dbPassword;
-        $this->$database = $database;
-        $this->connect();
+        $dbAccessFile = './dbaccess.php';
+        if (file_exists($dbAccessFile)) {
+            include $dbAccessFile;
+            $this->host = $host;
+            $this->dbUser = $dbUser;
+            $this->dbPassword = $dbPassword;
+            $this->database = $database;
+            $this->connect();
+        } else {
+            die("Database access file not found.");
+        }
     }
 
     private function connect() {
