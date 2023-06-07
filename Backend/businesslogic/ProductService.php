@@ -38,7 +38,6 @@ class ProductService {
             );
             $products[] = $product;
         }
-        //print_r($products);
         return $products;
     }
 
