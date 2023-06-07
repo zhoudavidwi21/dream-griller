@@ -64,7 +64,7 @@ class RequestHandler {
                 $this->success($this->productService->getAllProducts());
                 break;
             case 'product':
-                $this->success($this->productService->getProductsByCategory($params['category']));
+                $this->success($this->productService->getProductsByCategory($params['category'], $params['input']));
                 break;
             case 'orders':
                 $this->success($this->orderService->getAllOrders());

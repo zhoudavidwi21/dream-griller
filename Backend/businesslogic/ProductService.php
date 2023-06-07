@@ -42,8 +42,8 @@ class ProductService {
         return $products;
     }
 
-    public function getProductsByCategory($category): ?array {
-        $query = "SELECT * FROM products WHERE $category = 1";
+    public function getProductsByCategory($category, $input): ?array {
+        $query = "SELECT * FROM products WHERE `name` LIKE '%$input%' AND $category = 1";
         $res = $this->database->executeQuery($query);
 
         $products = [];
