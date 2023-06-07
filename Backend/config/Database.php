@@ -35,7 +35,7 @@ class Database {
      * @param array $params (optional) An array of parameters to bind to the query placeholders.
      * (E.g.: ['ssi', 'Max', 'Mustermann', 43]
      * @return array|null Returns an array containing the fetched result set, or null if no results found.
-     * @throws PDOException If the query execution fails.
+     * @throws Exception If the query execution fails.
      *
      * Example 1:
      *     $query = "SELECT * FROM products";
@@ -64,7 +64,7 @@ class Database {
             $data = $result->fetch_all(MYSQLI_ASSOC);
             $stmt->close();
             return $data;
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             die("Query execution failed: " . $e->getMessage());
         }
     }

@@ -1,7 +1,7 @@
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-lg-6">
-            <form>
+            <form id="productForm">
                 <!-- Product Name -->
                 <div class="mb-3">
                     <label for="productName" class="form-label fw-bold">Produkt Name</label>
@@ -27,8 +27,8 @@
                     </div>
                     <div class="col">
                         <div class="mb-3">
-                            <label for="productStock" class="form-label fw-bold">Stück</label>
-                            <input type="number" class="form-control" id="productStock" name="productStock" placeholder="0">
+                            <label for="productRating" class="form-label fw-bold">Bewertung</label>
+                            <input type="number" class="form-control" id="productRating" name="productRating" placeholder="0">
                         </div>
                     </div>
                 </div>
@@ -58,8 +58,9 @@
                     <input type="file" class="form-control" id="productImage" name="productImage">
                 </div>
 
-                <button type="submit" class="btn btn-registrieren">Produkt hinzufügen</button>
+                <button id="addProductButton" type="submit" class="btn btn-registrieren">Produkt hinzufügen</button>
             </form>
         </div>
     </div>
 </div>
+<script src="../js/addProduct.js"></script>

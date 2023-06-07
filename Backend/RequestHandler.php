@@ -159,22 +159,4 @@ class RequestHandler {
         exit;
     }
 
-    private function getResourceFromUri($uri): string {
-        $uriParts = explode('/', $uri);
-        // Resource has to be the first part of uri
-        return $uriParts[1];
-    }
-
-    private function getParamsFromUri($uri): array
-    {
-        $uriParts = explode('/', $uri);
-        $params = [];
-
-        // Extract the parameters from the URI
-        for ($i = 2; $i < count($uriParts); $i += 2) {
-            $params[$uriParts[$i]] = $uriParts[$i + 1];
-        }
-
-        return $params;
-    }
 }

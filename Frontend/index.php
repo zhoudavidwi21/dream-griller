@@ -52,7 +52,6 @@
 
   <script src="./js/getdata.js"></script>
   <script src="./js/cart.js"></script>
-
 </body>
 
 </html>

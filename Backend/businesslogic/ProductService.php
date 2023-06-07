@@ -67,6 +67,7 @@ class ProductService {
     }
 
     public function saveProduct($requestData): mixed {
+        if ($requestData !== null)
         $product = new Product($requestData);
 
         return $product;
