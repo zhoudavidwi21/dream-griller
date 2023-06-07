@@ -13,14 +13,14 @@
 
       <script type="text/javascript">
         (function() {
-          var timeLeft = 50,
+          var timeLeft = 5,
             cinterval;
           var timeDec = function() {
             timeLeft--;
             document.getElementById('countdown').innerHTML = timeLeft;
             if (timeLeft === 0) {
               clearInterval(cinterval);
-              document.location.href = "index.php"
+              document.location.href = "./index.php"
             }
           };
           cinterval = setInterval(timeDec, 1000);

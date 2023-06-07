@@ -38,7 +38,7 @@
         include "./sites/error.php";
       } else {
         $site = $_GET['site'];
-        include "./sites/$site.php";
+        include "./sites/$site.php";        
       }
     }
 

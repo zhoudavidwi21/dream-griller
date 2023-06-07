@@ -52,7 +52,6 @@ ob_start();
              <li><a class="dropdown-item" href="index.php?site=data_security">Datenschutz</a></li>
               <li><a class="dropdown-item" href="index.php?site=terms_and_conditions">AGBs</a></li>
               <li><a class="dropdown-item" href="index.php?site=imprint">Impressum</a></li>
-              <li><a class="dropdown-item" href="index.php?site=shoppingcart">Warenkorb (Test)</a></li>
             </ul>
           </li>
 

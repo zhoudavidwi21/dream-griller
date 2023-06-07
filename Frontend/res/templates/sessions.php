@@ -1,4 +1,4 @@
-<?php require_once('../Backend/db/dbaccess.php'); ?>
+<?php require_once('../Backend/config/dbaccess.php'); ?>
 
 <?php
 //must be on every page before the HTML
@@ -17,8 +17,8 @@ if (isset($_COOKIE['loginCookie'])) {
   $sessionDuration = 2628000; // 1 month
 }
 
-if (isset($_COOKIE['loginCookie']) && isset($_COOKIE['userId'])) {
-  $_SESSION['userId'] = $_COOKIE['userId'];
+if (isset($_COOKIE['loginCookie']) && isset($_COOKIE['id'])) {
+  $_SESSION['id'] = $_COOKIE['id'];
 
   $db_obj = new mysqli($host, $dbUser, $dbPassword, $database);
 
@@ -28,21 +28,22 @@ if (isset($_COOKIE['loginCookie']) && isset($_COOKIE['userId'])) {
     exit();
   }
 
-  $sql = "SELECT * FROM `users` WHERE `username` = ? AND `deleted` = 0";
+//  $sql = "SELECT * FROM `users` WHERE `username` = ? AND `enabled` = 1";
+  $sql = "SELECT * FROM `users` WHERE `username` = ?";
   $stmt = $db_obj->prepare($sql);
-  $stmt->bind_param("s", $_SESSION['userId']);
+  $stmt->bind_param("s", $_SESSION['id']);
   $stmt->execute();
   $result = $stmt->get_result();
 
   if ($result->num_rows === 0) {
     $stmt->close();
     $db_obj->close();
-    header('Refresh: 1; url=./general/logout.php');
+    header('Refresh: 1; url=logout.php');
   } else {
     //fetch_assoc returns an array as key-value-pair, 
     //fetch_array returns potentially an array with numeric keys
     $row = $result->fetch_assoc();
-    $_SESSION["userId"] = $row["userId"];
+    $_SESSION["id"] = $row["id"];
     $_SESSION["username"] = $row["username"];
     $_SESSION["role"] = $row["role"];
     $_SESSION['loginTime'] = time();
@@ -52,6 +53,6 @@ if (isset($_COOKIE['loginCookie']) && isset($_COOKIE['userId'])) {
 }
 
 if (isset($_SESSION['loginTime']) && time() >= $_SESSION['loginTime'] + $sessionDuration) {
-  header('Refresh: 1; url=./general/logout.php');
+  header('Refresh: 1; url=logout.php');
 }
 ?>
