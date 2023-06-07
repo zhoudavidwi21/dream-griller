@@ -1,4 +1,4 @@
-<?php include "../res/templates/sessions.php"; ?>
+<?php include "./res/templates/sessions.php"; ?>
 
 <?php
 //Nur Admins können Newsbeiträge erstellen

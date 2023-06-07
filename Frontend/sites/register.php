@@ -6,10 +6,6 @@
 
 <?php
 if (isset($_POST["submit"])) {
-  if (
-    $genderErr == "" && $companyErr == "" && $firstnameErr == "" && $lastnameErr == "" && $emailErr == "" && $usernameErr == ""
-    && $passwordErr == "" && $passwordCheckErr == "" && $agreeDatenschutzErr == "" && $agreeAgbsErr == ""
-  ) {
     //function only comes in here when no errors have occurred
     //database connection created
     $db_obj = new mysqli($host, $dbUser, $dbPassword, $database);
@@ -17,36 +13,31 @@ if (isset($_POST["submit"])) {
       echo 'Connection error: ' . $db_obj->connect_error;
       exit();
     }
-    $sql = "INSERT INTO `users`
-    (`username`, `email`, `password`, `gender`, `companyName`, `firstName`, `lastName`) 
-    VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO `users`(`username`, `email`, `password`) VALUES (?, ?, ?)";
 
     //hashing passwor
-    $password = password_hash($password, PASSWORD_DEFAULT);
+   // $password = password_hash($password, PASSWORD_DEFAULT);
 
     //create SQL-statement
     $stmt = $db_obj->prepare($sql);
 
-    $stmt->bind_param("sssssss", $username, $email, $password, $gender, $company, $firstname, $lastname);
+    $stmt->bind_param("sss", $username, $email, $password);
 
     if ($stmt->execute()) {
       //close the statement
       $stmt->close();
       //close the connection
       $db_obj->close();
-      header('Refresh:0; url=index.php?site=/sites/register_confirmed');
+      header('Refresh:0; url=index.php?site=register_confirmed');
       exit();
     } else {
       echo '<p class="red"> Registrierung fehlgeschlagen! </p>';
     }
   } else {
-    $_SESSION['regGender'] = $gender;
-    $_SESSION['regCompany'] = $company;
-    $_SESSION['regFirstname'] = $firstname;
-    $_SESSION['regLastname'] = $lastname;
-    $_SESSION['regUsername'] = $username;
+
+
   }
-}
+
 ?>
 
 <div class="text-center container-fluid">
@@ -82,13 +73,28 @@ if (isset($_POST["submit"])) {
           </div>
 
           <div class="form-floating">
-            <input type="text" class="form-control has-validation" id="vorname" placeholder="Vorname" name="firstname" aria-describedby="validationFirstname" value="" required>
+            <input type="text" class="form-control has-validation" id="vorname" placeholder="Vorname" name="firstname" aria-describedby="validationFirstname" value="" >
             <label for="vorname">Vorname *</label>
           </div>
 
           <div class="form-floating">
-            <input type="text" class="form-control has-validation" id="nachname" placeholder="Nachname" name="lastname" aria-describedby="validationLastname" value="" required>
+            <input type="text" class="form-control has-validation" id="nachname" placeholder="Nachname" name="lastname" aria-describedby="validationLastname" value="" >
             <label for="nachname">Nachname *</label>
+          </div>
+
+          <div class="form-floating">
+            <input type="text" class="form-control has-validation" id="adresse" placeholder="Adresse" name="adress" aria-describedby="validationAdress" value="" >
+            <label for="adresse">Adresse *</label>
+          </div>
+
+          <div class="form-floating">
+            <input type="text" class="form-control has-validation" id="postleitzahl" placeholder="Postleitzahl" name="postcode" aria-describedby="validationPostcode" value="" >
+            <label for="postleitzahl">Postleitzahl *</label>
+          </div>
+
+          <div class="form-floating">
+            <input type="text" class="form-control has-validation" id="ort" placeholder="Ort" name="city" aria-describedby="validationCity" value="" >
+            <label for="ort">Ort *</label>
           </div>
 
           <div class="form-floating">
@@ -99,6 +105,19 @@ if (isset($_POST["submit"])) {
           <div class="form-floating">
             <input type="text" class="form-control has-validation" id="benutzername" placeholder="Benutzername" name="username" aria-describedby="validationUsername" value="" required>
             <label for="benutzername">Benutzername *</label>
+          </div>
+
+          <br>
+
+          <div class="mb-1">
+          <label for="zahlungsmethode" hidden>Zahlungsinformationen *</label>
+            <select class="form-select has-validation" aria-label="Default select example" id="zahlungsmethode" name="method_of_payment" aria-describedby="validationMethod_of_payment">
+              <option value="" ?>Zahlungsmethode auswählen *
+              </option>
+              <option value="kreditkarte" >Kreditkarte</option>
+              <option value="vorkasse" >Vorkasse</option>
+              <option value="bar" >Bar</option>
+            </select>
           </div>
 
           <br>
