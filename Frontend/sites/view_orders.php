@@ -1,4 +1,4 @@
-<?php include "./general/sessions.php"; ?>
+<?php include "../res/templates/sessions.php"; ?>
 
 <?php require_once('../Backend/db/dbaccess.php'); ?>
 

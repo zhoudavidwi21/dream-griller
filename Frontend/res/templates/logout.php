@@ -8,9 +8,9 @@ if (!isset($_SESSION)) {
 $_SESSION = array();
 session_unset();
 session_destroy();
-if (isset($_COOKIE['userId'])) {
-    unset($_COOKIE['userId']); 
-    setcookie('userId', null, time() - 3600, "/"); 
+if (isset($_COOKIE['id'])) {
+    unset($_COOKIE['id']); 
+    setcookie('id', null, time() - 3600, "/"); 
 }
 if (isset($_COOKIE['username'])) {
     unset($_COOKIE['username']); 
@@ -20,4 +20,4 @@ if (isset($_COOKIE['loginCookie'])) {
     unset($_COOKIE['loginCookie']); 
     setcookie('loginCookie', null, time() - 3600, "/"); 
 }
-header('Refresh:0; url=../index.php');
+header('Refresh:0; url=./index.php');

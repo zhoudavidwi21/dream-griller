@@ -1,6 +1,4 @@
-<?php include "./res/templates/sessions.php"; ?>
-
-<?php require_once('../Backend/config/dbaccess.php'); ?>
+<?php require_once('../Backend/db/dbaccess.php'); ?>
 
 <?php
 //to output the session parameters:
@@ -33,8 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       exit();
     }
 
- //   $sql = "SELECT * FROM `users` WHERE `username` = ? AND `enabled` = 1";
-    $sql = "SELECT * FROM `users` WHERE `username` = ?";
+    $sql = "SELECT * FROM `users` WHERE `username` = ? AND `enabled` = 0";
     $stmt = $db_obj->prepare($sql);
     $stmt->bind_param("s", $_POST["username"]);
     $stmt->execute();
@@ -50,13 +47,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       //fetch_array potentially returns an array with numeric keys
       $row = $result->fetch_assoc();
       if (password_verify(trim($_POST["password"]), $row["password"])) {
-        $_SESSION["id"] = $row["id"];
+        $_SESSION["userId"] = $row["userId"];
         $_SESSION["username"] = $row["username"];
         $_SESSION["role"] = $row["role"];
         $_SESSION['loginTime'] = time();
         $stmt->close();
         $db_obj->close();
-        header('Location: ./index.php');
+        header('Location: ../index.php');
         exit();
       } else {
         echo "<div class='alert alert-danger' role='alert'>
