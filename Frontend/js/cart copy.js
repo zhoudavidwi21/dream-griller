@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    //on_page_load()
+    
     load_product_data("charcoal", "");                                          //load products for Homepage (default: charcoal, and empty String --> no "search" value)
     load_cart_data();                                                           //load data for cart information
 
@@ -19,60 +19,23 @@ $(document).ready(function() {
 
     })
 
-    function on_page_load() {
-        $.ajax({
-            url: '../Backend/RequestHandler.php?resource=products',
-            method: 'GET', // Change to 'POST', 'PUT', 'DELETE' as needed
-            dataType: 'json',
-            success: function(response) {
-                // Handle successful response
-                console.log(response);
-            },
-            error: function(xhr, status, error) {
-                // Handle error
-                console.log(error);
-            }
-        });
-    }
 
 
     function load_product_data(categorie, input){
 
         $.ajax({
             
-            url: "../Backend/RequestHandler.php?resource=product&params[category]=" +  categorie,
-            method: "GET",
+            url: "../Backend/businesslogic/loadProductsToHome.php",
+            method: "POST",
             dataType: "json",
-            //data: {categorie: categorie, input: input},
+            data: {categorie: categorie, input: input},
 
-            success: function(response){
-                console.log("success");
-                console.log("Response: " + response);
-                $.each(response, function(key, product) {
-                    console.log("Product: " + product.id + ", " + product.name)
-                });
-                
-            //     let content = `
-            //     <div class="col-md-4 mb-5">
-            //     <div class="card h-100" id="item-'.$row["id"].'">
-            //         <div class="card-body">
-            //             <a><h2 id="title'.$row["id"].'" class="card-title">'.$row["name"].'</h2></a>
-            //             <img id="pic0" class="img-fluid rounded mb-4 mb-lg-0" src="https://dummyimage.com/200x200/dee2e6/6c757d.png">
-            //             <p id="text'.$row["id"].'" class="card-text">'.$row["description"].'</p>
-            //             <span class="price fs-4">'.$row["price"].' €</span>
-            //         </div>
-            //         <div class="card-footer">
-            //             <a id="prodcart'.$row["id"].'" class="btn btn-sonstige btn-sm">In den Einkaufswagen</a>
-            //         </div>
-            //     </div>
-            // </div>`
-                
-                //$('#contentRow').html(content);                           //content from BE is appended
-                //$("[id^=prodcart]").on("click", putInCart)                      //"In den Einkaufswagen" is enabled
+            success: function(data){
+                $('#contentRow').html(data.products);                           //content from BE is appended
+                $("[id^=prodcart]").on("click", putInCart)                      //"In den Einkaufswagen" is enabled
             },
-            error: function(response){
-                console.log(response)
-                console.log("error")
+            error: function(data){
+                console.log(data)
             }
         })
     }

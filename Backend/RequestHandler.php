@@ -12,6 +12,10 @@ class RequestHandler {
     //...
 
     public function __construct() {
+        include "./businesslogic/UserService.php";
+        include "./businesslogic/ProductService.php";
+        include "./businesslogic/OrderService.php";
+        include "./businesslogic/CartService.php";
         $this->userService = new UserService();
         $this->productService = new ProductService();
         $this->orderService = new OrderService();
@@ -23,9 +27,11 @@ class RequestHandler {
         $requestUri = $_SERVER['REQUEST_URI'];
 
         // Extract the resource and additional parameters from the request URI
-        $resource = $this->getResourceFromUri($requestUri);
-        $params = $this->getParamsFromUri($requestUri);
+//        $resource = $this->getResourceFromUri($requestUri);
+//        $params = $this->getParamsFromUri($requestUri);
 
+        $resource = $_GET['resource'] ?? '';
+        $params = $_GET['params'] ?? [];
         // Map the HTTP method and resource to the appropriate handler
         switch ($requestMethod) {
             case 'GET':
@@ -58,7 +64,7 @@ class RequestHandler {
                 $this->success($this->productService->getAllProducts());
                 break;
             case 'product':
-                $this->success($this->productService->getProductByCategory($params['category']));
+                $this->success($this->productService->getProductsByCategory($params['category']));
                 break;
             case 'orders':
                 $this->success($this->orderService->getAllOrders());
@@ -138,7 +144,7 @@ class RequestHandler {
      */
     private function success(mixed $data) {
         header('Content-Type: application/json');
-        echo(json_encode($data));
+        echo json_encode($data);
         exit;
     }
 
@@ -171,8 +177,4 @@ class RequestHandler {
 
         return $params;
     }
-
-
-
-
 }

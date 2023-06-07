@@ -17,7 +17,7 @@
             </p></div>
         </div>
 
-        <h2 class="font-weight-light">Wählen Sie eine Kateogrie</h1>
+        <h2 class="font-weight-light">Wählen Sie eine Kateogrie</h2>
 
         <!-- Choose Grill Categorie -->
         <div style="margin-bottom: 25px">
