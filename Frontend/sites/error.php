@@ -13,7 +13,7 @@
 
       <script type="text/javascript">
         (function() {
-          var timeLeft = 50,
+          var timeLeft = 5,
             cinterval;
           var timeDec = function() {
             timeLeft--;

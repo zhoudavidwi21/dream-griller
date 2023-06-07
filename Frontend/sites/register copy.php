@@ -1,6 +1,6 @@
-<?php include "./general/sessions.php"; ?>
+<?php include "./res/templates/sessions.php"; ?>
 
-<?php include "./general/register_validation.php"; ?>
+<?php include "./res/templates/register_validation.php"; ?>
 
 <?php require_once('../Backend/db/dbaccess.php'); ?>
 
@@ -64,7 +64,6 @@ if (isset($_POST["submit"])) {
         <hr class="featurette-divider">
 
         <form method="POST">
-
           <div class="mb-1">
             <label for="anrede" hidden>Anrede *</label>
             <select class="form-select has-validation
