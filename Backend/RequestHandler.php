@@ -58,8 +58,11 @@ class RequestHandler {
             case 'products':
                 $this->success(200, $this->productService->getAllProducts());
                 break;
+            case 'productCat':
+                $this->success(200, $this->productService->getProductsByCategory($params['category'], $params['input']));
+                break;
             case 'product':
-                $this->success(200, $this->productService->getProductsByCategory($params['category']));
+                $this->success(200, $this->productService->getProductById($params['id']));
                 break;
             case 'orders':
                 $this->success(200, $this->orderService->getAllOrders());
