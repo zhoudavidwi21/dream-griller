@@ -1,7 +1,7 @@
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-lg-6">
-            <form>
+            <form id="productForm" action="" method="POST" enctype="multipart/form-data">
                 <!-- Product Name -->
                 <div class="mb-3">
                     <label for="productName" class="form-label fw-bold">Produkt Name</label>
@@ -27,8 +27,8 @@
                     </div>
                     <div class="col">
                         <div class="mb-3">
-                            <label for="productStock" class="form-label fw-bold">Stück</label>
-                            <input type="number" class="form-control" id="productStock" name="productStock" placeholder="0">
+                            <label for="productRating" class="form-label fw-bold">Bewertung</label>
+                            <input type="number" class="form-control" id="productRating" step="0.1" name="productRating" placeholder="0">
                         </div>
                     </div>
                 </div>
@@ -38,16 +38,16 @@
                     <label for="productCategories" class="form-label fw-bold">Kategorie</label>
                     <div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="gas-griller" id="categoryGasGriller" name="productCategories">
-                            <label class="form-check-label" for="categoryGasGriller">Gas Griller</label>
+                            <input class="form-check-input" type="checkbox" value="gas" id="categoryGas" name="productCategories">
+                            <label class="form-check-label" for="categoryGas">Gas Griller</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="charcoal-griller" id="categoryCharcoalGriller" name="productCategories">
-                            <label class="form-check-label" for="categoryCharcoalGriller">Kohle Griller</label>
+                            <input class="form-check-input" type="checkbox" value="charcoal" id="categoryCharcoal" name="productCategories">
+                            <label class="form-check-label" for="categoryCharcoal">Kohle Griller</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="portable" id="categoryPortable" name="productCategories">
-                            <label class="form-check-label" for="categoryPelletGriller">Pellet Griller</label>
+                            <input class="form-check-input" type="checkbox" value="pellet" id="categoryPellet" name="productCategories">
+                            <label class="form-check-label" for="categoryPellet">Pellet Griller</label>
                         </div>
                     </div>
                 </div>
@@ -55,10 +55,10 @@
                 <!-- Product Image -->
                 <div class="mb-3">
                     <label for="productImage" class="form-label fw-bold">Bild</label>
-                    <input type="file" class="form-control" id="productImage" name="productImage">
+                    <input type="file" class="form-control" id="productImage" name="productImage" accept="image/*">
                 </div>
 
-                <button type="submit" class="btn btn-registrieren">Produkt hinzufügen</button>
+                <button id="addProductButton" type="submit" class="btn btn-registrieren">Produkt hinzufügen</button>
             </form>
         </div>
     </div>
