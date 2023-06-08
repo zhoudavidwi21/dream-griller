@@ -77,11 +77,11 @@ class RequestHandler {
 //        // Get the request body
 //        $requestBody = file_get_contents('php://input');
 //        $requestData = json_decode($requestBody, true);
-//
-//        // Check if the request body is valid JSON
-//        if (json_last_error() !== JSON_ERROR_NONE) {
-//            $this->error(400, "Invalid request body");
-//        }
+
+        // Check if the request body is valid JSON
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            $this->error(400, "Invalid request body");
+        }
 
         switch ($resource) {
             case 'user':

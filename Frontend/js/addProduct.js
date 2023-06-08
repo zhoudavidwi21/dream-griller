@@ -4,8 +4,6 @@ $(document).ready(function () {
         const form = $(e.target);
         const formData = new FormData(form[0]);
 
-
-
         // Get the image file
         const fileInput = form.find('input[type="file"]');
         const file = fileInput[0].files[0];
