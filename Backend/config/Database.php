@@ -72,4 +72,15 @@ class Database {
             die("Query execution failed: " . $e->getMessage());
         }
     }
+
+    /**
+     * Retrieves the last inserted ID from the database connection.
+     *
+     * @return int|null The last inserted ID, or null if no ID is available.
+     */
+    public function getLastInsertedId(): ?int
+    {
+        return $this->pdo->lastInsertId();
+    }
+
 }

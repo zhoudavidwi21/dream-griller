@@ -24,11 +24,6 @@ class RequestHandler {
 
     public function handleRequest() {
         $requestMethod = $_SERVER['REQUEST_METHOD'];
-        $requestUri = $_SERVER['REQUEST_URI'];
-
-        // Extract the resource and additional parameters from the request URI
-//        $resource = $this->getResourceFromUri($requestUri);
-//        $params = $this->getParamsFromUri($requestUri);
 
         $resource = $_GET['resource'] ?? '';
         $params = $_GET['params'] ?? [];
@@ -38,7 +33,7 @@ class RequestHandler {
                 $this->handleGetRequest($resource, $params);
                 break;
             case 'POST':
-                $this->handlePostRequest($resource, $params);
+                $this->handlePostRequest($resource);
                 break;
             case 'PUT':
                 $this->handlePutRequest($resource, $params);
@@ -47,7 +42,7 @@ class RequestHandler {
                 $this->handleDeleteRequest($resource, $params);
                 break;
             default:
-                $this->error(405, "Method not allowed");
+                $this->error(501, "Method not implemented");
                 break;
         }
     }
@@ -55,22 +50,22 @@ class RequestHandler {
     private function handleGetRequest(string $resource, array $params) {
         switch ($resource) {
             case 'users':
-                $this->success($this->userService->getAllUsers());
+                $this->success(200, $this->userService->getAllUsers());
                 break;
             case 'user':
-                $this->success($this->userService->getUserByName($params['name']));
+                $this->success(200, $this->userService->getUserByName($params['name']));
                 break;
             case 'products':
-                $this->success($this->productService->getAllProducts());
+                $this->success(200, $this->productService->getAllProducts());
                 break;
             case 'product':
-                $this->success($this->productService->getProductsByCategory($params['category']));
+                $this->success(200, $this->productService->getProductsByCategory($params['category']));
                 break;
             case 'orders':
-                $this->success($this->orderService->getAllOrders());
+                $this->success(200, $this->orderService->getAllOrders());
                 break;
             case 'order':
-                $this->success($this->orderService->getOrderById($params['id']));
+                $this->success(200, $this->orderService->getOrderById($params['id']));
                 break;
             default:
                 $this->error(404, "Resource not found");
@@ -79,14 +74,14 @@ class RequestHandler {
     }
 
     private function handlePostRequest(string $resource) {
-        // Get the request body
-        $requestBody = file_get_contents('php://input');
-        $requestData = json_decode($requestBody, true);
-
-        // Check if the request body is valid JSON
-        if ($requestData.json_last_error() != JSON_ERROR_NONE) {
-            $this->error(400, "Invalid request body");
-        }
+//        // Get the request body
+//        $requestBody = file_get_contents('php://input');
+//        $requestData = json_decode($requestBody, true);
+//
+//        // Check if the request body is valid JSON
+//        if (json_last_error() !== JSON_ERROR_NONE) {
+//            $this->error(400, "Invalid request body");
+//        }
 
         switch ($resource) {
             case 'user':
@@ -94,13 +89,13 @@ class RequestHandler {
                 break;
             case 'product':
                 // Handle creating a new product
-                $this->success($this->productService->saveProduct($requestData));
+                $this->success(201, $this->productService->saveProduct($_POST, $_FILES));
                 break;
             case 'order':
                 // Handle creating a new order
                 break;
             default:
-                $this->error(404, "Resource not found");
+                $this->error(500, "Post request failed");
                 break;
         }
     }
@@ -142,7 +137,8 @@ class RequestHandler {
     /** format success response and exit
      * @param mixed $data object, could be "anything"
      */
-    private function success(mixed $data) {
+    private function success(int $code, mixed $data) {
+        http_response_code($code);
         header('Content-Type: application/json');
         echo json_encode($data);
         exit;
