@@ -66,10 +66,25 @@ class ProductService {
     }
 
     public function saveProduct($requestData): mixed {
-        if ($requestData !== null)
-        $product = new Product($requestData);
+        if ($requestData !== null) {
+            $obj = json_decode($requestData);
+            $product = new Product(
+                null,
+                $obj["productName"],
+                $obj["productDescription"],
+                $obj["productPrice"],
+                $obj["productDescription"],
+                $obj["productDescription"],
+                $obj["productDescription"],
+                $obj["productDescription"],
+                $obj["productDescription"],
+                $obj["productDescription"],
+            );
 
-        return $product;
+
+            return $product;
+
+        }
     }
 
 }

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 06. Jun 2023 um 17:31
--- Server-Version: 10.4.24-MariaDB
--- PHP-Version: 8.1.6
+-- Erstellungszeit: 07. Jun 2023 um 17:48
+-- Server-Version: 10.4.27-MariaDB
+-- PHP-Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,68 +26,18 @@ USE `dreamgriller_db`;
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `cartitems`
---
-
-DROP TABLE IF EXISTS `cartitems`;
-CREATE TABLE `cartitems` (
-  `id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL DEFAULT 1,
-  `cart_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- TRUNCATE Tabelle vor dem Einfügen `cartitems`
---
-
-TRUNCATE TABLE `cartitems`;
---
--- Daten für Tabelle `cartitems`
---
-
-INSERT INTO `cartitems` (`id`, `quantity`, `cart_id`, `product_id`) VALUES
-(3, 2, 2, 1);
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `carts`
---
-
-DROP TABLE IF EXISTS `carts`;
-CREATE TABLE `carts` (
-  `id` int(11) NOT NULL,
-  `totalprice` double NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- TRUNCATE Tabelle vor dem Einfügen `carts`
---
-
-TRUNCATE TABLE `carts`;
---
--- Daten für Tabelle `carts`
---
-
-INSERT INTO `carts` (`id`, `totalprice`) VALUES
-(1, 0),
-(2, 0);
-
--- --------------------------------------------------------
-
---
 -- Tabellenstruktur für Tabelle `coupons`
 --
 
 DROP TABLE IF EXISTS `coupons`;
-CREATE TABLE `coupons` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `coupons` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` text NOT NULL,
   `amount` double NOT NULL DEFAULT 10,
   `expirydate` date NOT NULL,
-  `expired` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `expired` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- TRUNCATE Tabelle vor dem Einfügen `coupons`
@@ -109,8 +59,8 @@ INSERT INTO `coupons` (`id`, `code`, `amount`, `expirydate`, `expired`) VALUES
 --
 
 DROP TABLE IF EXISTS `customers`;
-CREATE TABLE `customers` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `customers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `gender` text NOT NULL,
   `firstname` text NOT NULL,
   `lastname` text NOT NULL,
@@ -118,8 +68,10 @@ CREATE TABLE `customers` (
   `postcode` int(11) NOT NULL,
   `city` text NOT NULL,
   `user_id` int(11) NOT NULL,
-  `cart_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `cart_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- TRUNCATE Tabelle vor dem Einfügen `customers`
@@ -131,27 +83,9 @@ TRUNCATE TABLE `customers`;
 --
 
 INSERT INTO `customers` (`id`, `gender`, `firstname`, `lastname`, `adress`, `postcode`, `city`, `user_id`, `cart_id`) VALUES
-(1, 'Männlich', 'Max', 'Musteradmin', 'Höchstädtpl. 6', 1200, 'Wien', 1, 1),
-(2, 'Weiblich', 'Maximiliane', 'Mustertest', 'Auenweg 5', 4322, 'Pragtal', 2, 2);
+(1, 'Männlich', 'Max', 'Musteradmin', 'Höchstädtpl. 6', 1200, 'Wien', 1, NULL),
+(2, 'Weiblich', 'Maximiliane', 'Mustertest', 'Auenweg 5', 4322, 'Pragtal', 2, NULL);
 
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `invoices`
---
-
-DROP TABLE IF EXISTS `invoices`;
-CREATE TABLE `invoices` (
-  `id` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `order_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- TRUNCATE Tabelle vor dem Einfügen `invoices`
---
-
-TRUNCATE TABLE `invoices`;
 -- --------------------------------------------------------
 
 --
@@ -159,13 +93,16 @@ TRUNCATE TABLE `invoices`;
 --
 
 DROP TABLE IF EXISTS `orders`;
-CREATE TABLE `orders` (
-  `id` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `cart_id` int(11) NOT NULL,
-  `customer_id` int(11) NOT NULL,
-  `coupon_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `total` double(7,2) NOT NULL,
+  `date` date NOT NULL DEFAULT current_timestamp(),
+  `fk_customerId` int(11) NOT NULL,
+  `fk_couponId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_customerId` (`fk_customerId`),
+  KEY `fk_couponId` (`fk_couponId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- TRUNCATE Tabelle vor dem Einfügen `orders`
@@ -179,8 +116,8 @@ TRUNCATE TABLE `orders`;
 --
 
 DROP TABLE IF EXISTS `products`;
-CREATE TABLE `products` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text NOT NULL,
   `description` text NOT NULL,
   `price` double NOT NULL,
@@ -189,8 +126,9 @@ CREATE TABLE `products` (
   `gas` tinyint(1) NOT NULL,
   `charcoal` tinyint(1) NOT NULL,
   `pellet` tinyint(1) NOT NULL,
-  `sale` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `sale` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- TRUNCATE Tabelle vor dem Einfügen `products`
@@ -209,18 +147,41 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `rating`, `image`,
 -- --------------------------------------------------------
 
 --
+-- Tabellenstruktur für Tabelle `products_orders`
+--
+
+DROP TABLE IF EXISTS `products_orders`;
+CREATE TABLE IF NOT EXISTS `products_orders` (
+  `fk_orderId` int(11) NOT NULL,
+  `fk_productId` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  KEY `fk_orderId` (`fk_orderId`),
+  KEY `fk_productId` (`fk_productId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- TRUNCATE Tabelle vor dem Einfügen `products_orders`
+--
+
+TRUNCATE TABLE `products_orders`;
+-- --------------------------------------------------------
+
+--
 -- Tabellenstruktur für Tabelle `users`
 --
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` text NOT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT 1,
-  `admin` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `admin` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_username` (`username`) USING HASH,
+  UNIQUE KEY `unique_email` (`email`) USING HASH
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- TRUNCATE Tabelle vor dem Einfügen `users`
@@ -236,129 +197,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `enabled`, `admin`) 
 (2, 'test', 'test@test.com', '$2y$10$tNfno1XTq6bYZ6eHw3j7HOH5RbUaHFkQCX0RNFgNOlU.QFaJPL9iW', 1, 0);
 
 --
--- Indizes der exportierten Tabellen
---
-
---
--- Indizes für die Tabelle `cartitems`
---
-ALTER TABLE `cartitems`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_product_id` (`product_id`),
-  ADD KEY `fk_cart_id_2` (`cart_id`);
-
---
--- Indizes für die Tabelle `carts`
---
-ALTER TABLE `carts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indizes für die Tabelle `coupons`
---
-ALTER TABLE `coupons`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indizes für die Tabelle `customers`
---
-ALTER TABLE `customers`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_user_id` (`user_id`),
-  ADD KEY `fk_cart_id` (`cart_id`);
-
---
--- Indizes für die Tabelle `invoices`
---
-ALTER TABLE `invoices`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_order_id` (`order_id`);
-
---
--- Indizes für die Tabelle `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_cart_id_3` (`cart_id`),
-  ADD KEY `fk_customer_id` (`customer_id`),
-  ADD KEY `fk_coupon_id` (`coupon_id`);
-
---
--- Indizes für die Tabelle `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indizes für die Tabelle `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `unique_username` (`username`) USING HASH,
-  ADD UNIQUE KEY `unique_email` (`email`) USING HASH;
-
---
--- AUTO_INCREMENT für exportierte Tabellen
---
-
---
--- AUTO_INCREMENT für Tabelle `cartitems`
---
-ALTER TABLE `cartitems`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT für Tabelle `carts`
---
-ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT für Tabelle `coupons`
---
-ALTER TABLE `coupons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT für Tabelle `customers`
---
-ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT für Tabelle `invoices`
---
-ALTER TABLE `invoices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT für Tabelle `orders`
---
-ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT für Tabelle `products`
---
-ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT für Tabelle `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- Constraints der exportierten Tabellen
 --
-
---
--- Constraints der Tabelle `cartitems`
---
-ALTER TABLE `cartitems`
-  ADD CONSTRAINT `fk_cart_id_2` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`),
-  ADD CONSTRAINT `fk_product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 --
 -- Constraints der Tabelle `customers`
@@ -368,18 +208,18 @@ ALTER TABLE `customers`
   ADD CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Constraints der Tabelle `invoices`
---
-ALTER TABLE `invoices`
-  ADD CONSTRAINT `fk_order_id` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
-
---
 -- Constraints der Tabelle `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `fk_cart_id_3` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`),
-  ADD CONSTRAINT `fk_coupon_id` FOREIGN KEY (`coupon_id`) REFERENCES `coupons` (`id`),
-  ADD CONSTRAINT `fk_customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`);
+  ADD CONSTRAINT `fk_couponId` FOREIGN KEY (`fk_couponId`) REFERENCES `coupons` (`id`),
+  ADD CONSTRAINT `fk_customerId` FOREIGN KEY (`fk_customerId`) REFERENCES `customers` (`id`);
+
+--
+-- Constraints der Tabelle `products_orders`
+--
+ALTER TABLE `products_orders`
+  ADD CONSTRAINT `fk_orderId` FOREIGN KEY (`fk_orderId`) REFERENCES `orders` (`id`),
+  ADD CONSTRAINT `fk_productId` FOREIGN KEY (`fk_productId`) REFERENCES `products` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

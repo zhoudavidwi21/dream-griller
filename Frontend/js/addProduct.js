@@ -7,7 +7,7 @@ $(document).ready(function () {
             url: '../Backend/RequestHandler.php?resource=product',
             method: 'POST', // Change to 'POST', 'PUT', 'DELETE' as needed
             dataType: 'json',
-            data: json,
+            data: json, // TODO Test json post body
             success: function(response) {
                 // Handle successful response
                 console.log("Successfully added product");
