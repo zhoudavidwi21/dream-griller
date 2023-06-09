@@ -18,7 +18,6 @@ $(document).ready(function() {
     
     load_product_data("charcoal", "");                                          //load products for Homepage (default: charcoal, and empty String --> no "search" value)
     load_cart_data();                                                           //load data for cart information
-    //checkOut();
 
     
 
@@ -138,18 +137,6 @@ $(document).ready(function() {
         $('#totalCart').html("<b>Gesamtsumme " + parseFloat(overallSum.toFixed(2)) + " €</b>");
         $('#quantity').text(" " + count);
         
-    }
-
-    function checkOut(){
-        if(globalCart.length === 0){
-            $("#emptyCart").show()
-            return
-        }
-
-        $("#emptyCart").hide();
-        $("check_out_cart").attr("href", "index.php?site=login");
-
-
     }
 
 

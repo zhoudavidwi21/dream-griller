@@ -106,7 +106,7 @@ class RequestHandler {
     private function handlePutRequest(string $resource, array $params) {
         switch ($resource) {
             case 'user':
-                // Handle updating a user
+                $this->success(204, $this->userService->changeUserStatus($params['id'], $params['newValue']));
                 break;
             case 'product':
                 // Handle updating a product

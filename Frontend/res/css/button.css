@@ -72,3 +72,7 @@
     --bs-btn-active-bg: rgb(0, 255, 191); /* Hintergrundfarbe beim Klick */
     --bs-btn-active-border-color: rgb(255, 0, 0); /* Rahmenfarbe beim Klick */
 } 
+
+.table-fit {
+    width: 1px;
+}

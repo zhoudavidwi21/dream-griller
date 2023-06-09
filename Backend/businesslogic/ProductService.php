@@ -14,7 +14,7 @@ class ProductService {
     private Database $database;
 
     public function __construct(){
-        include "./config/Database.php";
+        require_once "./config/Database.php";
         $this->database = new Database();
     }
 
