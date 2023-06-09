@@ -106,7 +106,7 @@ ob_start();
           </a>
         </div>
         <div align="right">
-          <a href="#" class="btn btn-primary" id="check_out_cart">
+          <a href="#" class="btn btn-outline-dark" id="check_out_cart">
           <span class="glyphicon glyphicon-shopping-cart"></span> Zum Bezahlvorgang
           </a>
         </div>

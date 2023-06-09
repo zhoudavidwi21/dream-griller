@@ -62,7 +62,7 @@ $(document).ready(function() {
                     <div class="card h-100" id="item-">
                     <div class="card-body">
                     <a><h2 id="title-${product.id}" class="card-title">${product.name}</h2></a>
-                    <img id="pic-${product.id}" class="img-fluid rounded mb-4 mb-lg-0" src="https://dummyimage.com/200x200/dee2e6/6c757d.png">
+                    <img id="pic-${product.id}" class="img-fluid rounded mb-4 mb-lg-0" src="./res/img/products/6481f8b978031_products-image(1).jpg">
                     <p id="description-${product.id}" class="card-text">${product.description}</p>
                     <span id="price-${product.id}" class="price fs-4">${product.price} €</span>
                     </div>
@@ -119,7 +119,7 @@ $(document).ready(function() {
                 </td>
                 <td>${item.price} €</td>
                 <td>${total} €</td>
-                <td><button class="btn btn-danger btn-xs delete" id="removeProduct${item.id}">Entf.</button></td>
+                <td><button class="btn btn-outline-danger" id="removeProduct${item.id}">Entf.</button></td>
             </tr>
             `
         });
@@ -166,7 +166,7 @@ $(document).ready(function() {
 
                 sessionStorage.setItem("cart", JSON.stringify(globalCart))
 
-                load_cart_data();                                                       //cart data gets refreshed
+                load_cart_data();
 
             },
             error: function(data){
@@ -197,11 +197,11 @@ $(document).ready(function() {
             itemToChange.quantity -= 1;
         }
 
+        console.log(itemToChange)
+
         sessionStorage.setItem("cart", JSON.stringify(globalCart))
 
-        load_cart_data();
-
-
+        $('#cartbtn').popover("show");
     }
 
     function removeItem(id){
@@ -219,8 +219,7 @@ $(document).ready(function() {
 
         sessionStorage.setItem("cart", JSON.stringify(globalCart))
         
-        load_cart_data();
-
+        $('#cartbtn').popover("show");
     }
     
     $('#cartbtn').popover({
