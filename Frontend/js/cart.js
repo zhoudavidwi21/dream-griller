@@ -18,6 +18,7 @@ $(document).ready(function() {
     
     load_product_data("charcoal", "");                                          //load products for Homepage (default: charcoal, and empty String --> no "search" value)
     load_cart_data();                                                           //load data for cart information
+    //checkOut();
 
     
 
@@ -126,10 +127,29 @@ $(document).ready(function() {
 
         content += "</table></div>";
 
+        if(globalCart.length === 0){
+            content += '<div id="emptyCart" align="center">Es sind keine Produkte im Warenkorb</div>'
+            $("#check_out_cart").attr("href", "#");
+        }else{
+            $("#check_out_cart").attr("href", "index.php?site=checkOutOrder");
+        }
+
         $('#cart_details').html(content);
         $('#totalCart').html("<b>Gesamtsumme " + parseFloat(overallSum.toFixed(2)) + " €</b>");
         $('#quantity').text(" " + count);
         
+    }
+
+    function checkOut(){
+        if(globalCart.length === 0){
+            $("#emptyCart").show()
+            return
+        }
+
+        $("#emptyCart").hide();
+        $("check_out_cart").attr("href", "index.php?site=login");
+
+
     }
 
 
