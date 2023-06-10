@@ -52,7 +52,8 @@
 
   <script src="./js/getdata.js"></script>
   <script src="./js/cart.js"></script>
-
+  <script src="./js/addProduct.js"></script>
+  <script src="./js/userList.js"></script>
 </body>
 
 </html>

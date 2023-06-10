@@ -1,6 +1,21 @@
 $(document).ready(function() {
 
-    //on_page_load()
+    $(document).on('click', '.btnQuant', function(){
+        changeQuant(parseInt($(this).attr("id").slice(11), 10), $(this).text())     //slicing and passing Product ID + method (quant +1 or -1)
+    })
+    $(document).on('click', '[id^=removeProduct]', function(){
+        removeItem(parseInt($(this).attr("id").slice(13), 10))                      //slicing productId from product that should be removed
+    });
+    
+    var cartExists = sessionStorage.getItem("cart")
+
+    if (cartExists) {
+        var globalCart = JSON.parse(cartExists);                                //saving sessionStorage-Item in global variable
+    } else {
+        var globalCart = [];
+    }
+
+    
     load_product_data("charcoal", "");                                          //load products for Homepage (default: charcoal, and empty String --> no "search" value)
     load_cart_data();                                                           //load data for cart information
 
@@ -19,31 +34,21 @@ $(document).ready(function() {
 
     })
 
-    /*function on_page_load() {
-        $.ajax({
-            url: '../Backend/RequestHandler.php?resource=products',
-            method: 'GET', // Change to 'POST', 'PUT', 'DELETE' as needed
-            dataType: 'json',
-            success: function(response) {
-                // Handle successful response
-                console.log(response);
-            },
-            error: function(xhr, status, error) {
-                // Handle error
-                console.log(error);
-            }
-        });
-    }*/
 
-
-    function load_product_data(categorie, input){
+    function load_product_data(categorie, input){                   //loads product for specific category and user input (searchfield)
 
         $.ajax({
             
-            url: "../Backend/RequestHandler.php?resource=product&params[category]=" +  categorie + "&params[input]=" + input,
+            url: "../Backend/RequestHandler.php",
             method: "GET",
             dataType: "json",
-            //data: {categorie: categorie, input: input},
+            data: {
+                resource: "productCat",
+                params: {
+                  category: categorie,
+                  input: input
+                }
+            },
 
             success: function(response){
 
@@ -54,22 +59,24 @@ $(document).ready(function() {
 
                     let content = `
                     <div class="col-md-4 mb-5">
-                        <div class="card h-100" id="item-">
-                            <div class="card-body">
-                                <a><h2 id="title-${product.id}" class="card-title">${product.name}</h2></a>
-                                <img id="pic-${product.id}" class="img-fluid rounded mb-4 mb-lg-0" src="https://dummyimage.com/200x200/dee2e6/6c757d.png">
-                                <p id="description-${product.id}" class="card-text">${product.description}</p>
-                                <span id="price-${product.id}" class="price fs-4">${product.price} €</span>
-                            </div>
-                            <div class="card-footer">
-                                <a id="prodcart-${product.id}" class="btn btn-sonstige btn-sm">In den Einkaufswagen</a>
-                            </div>
-                        </div>
+                    <div class="card h-100" id="item-">
+                    <div class="card-body">
+                    <a><h2 id="title-${product.id}" class="card-title">${product.name}</h2></a>
+                    <img id="pic-${product.id}" class="img-fluid rounded mb-4 mb-lg-0" src="./res/img/products/6481f8b978031_products-image(1).jpg">
+                    <p id="description-${product.id}" class="card-text">${product.description}</p>
+                    <span id="price-${product.id}" class="price fs-4">${product.price} €</span>
+                    </div>
+                    <div class="card-footer">
+                    <a id="prodcart-${product.id}" class="btn btn-sonstige btn-sm">In den Einkaufswagen</a>
+                    </div>
+                    </div>
                     </div>
                     `
 
-                    $('#contentRow').append(content);
-                    $('#prodcart-' + product.id).on("click", putInCart)
+                    $('#contentRow').append(content);                               //for every product a div block is appended
+                    $('#prodcart-' + product.id).on("click", function(){            //enables "in den Einkaufswagen"
+                        putInCart($(this).attr("id").slice(9))
+                    })
                     
                 });
                 
@@ -80,45 +87,94 @@ $(document).ready(function() {
         })
     }
 
-    function load_cart_data(){
 
-        $.ajax({
+    function load_cart_data(){                                                      //load cart in form of a popover
 
-            url: "../Backend/businesslogic/getProductsFromCart.php",                    //selects * products from DB and returns json
-            method: "GET",
-            dataType: "json",
+        let content = `
+        <div class="table-responsive" id="order_table">
+            <table class="table table-bordered table-striped">
+                <tr>  
+                    <th>Name</th>  
+                    <th>Anzahl</th>  
+                    <th>Preis</th>  
+                    <th>Gesamt</th>  
+                    <th></th>  
+                </tr>
+        `
+        let count = 0;
+        let overallSum = 0;
 
-            success:function(data) {
-                $('#cart_details').html(data.tabledata);                                //tabledata is loaded
-                $('#totalCart').html("<b>Gesamtsumme " + data.total + " €</b>");        //total amount is loaded (money to pay)
-                $('#quantity').text(" " + data.count);                                  //overall products count (in Navbar)
-                $("[id^=removeProduct]").on("click", removeItem)                        //removeButtons are enabled
-                $("[id^=btnQuant]").on("click", changeQuant) 
-            },
-            error: function(data){
-                console.log(data);
-            }
+        $.each(globalCart, function(key, item) {
+           
+            let total = parseFloat((item.price * item.quantity).toFixed(2));
+            count++;
+            overallSum += total;
+            
+            content += `
+            <tr>
+                <td>${item.name}</td>
+                <td id="quantText${item.id}">${item.quantity} Stück<br>
+                    <button id="btnQuantAdd${item.id}" class="btnQuant">+</button>
+                    <button id="btnQuantSub${item.id}" class="btnQuant">-</button>
+                </td>
+                <td>${item.price} €</td>
+                <td>${total} €</td>
+                <td><button class="btn btn-outline-danger" id="removeProduct${item.id}">Entf.</button></td>
+            </tr>
+            `
         });
 
+        content += "</table></div>";        //for every item in the globalCart (= sessionStorageItem) one table row is appended
+
+        if(globalCart.length === 0){
+            content += '<div id="emptyCart" align="center">Es sind keine Produkte im Warenkorb</div>'
+            $("#check_out_cart").attr("href", "#");
+        }else{
+            $("#check_out_cart").attr("href", "index.php?site=checkOutOrder");          //if cart != empty --> link to checkout is enabled
+        }
+
+        $('#cart_details').html(content);
+        $('#totalCart').html("<b>Gesamtsumme " + parseFloat(overallSum.toFixed(2)) + " €</b>");
+        $('#quantity').text(" " + count);
         
     }
 
 
-    function putInCart(){
-        //über Session noch CartId holen !!
-
-        let id = $(this).attr("id").slice(9)
+    function putInCart(id){                                         //product with related product_id is written to cart
 
         $.ajax({
 
-            url:"../Backend/businesslogic/putIntoCart.php",         //product with related product_id is uploaded to DB
-            method:"POST",                                              
-            data: {id: id},                     
+            url:"../Backend/RequestHandler.php",                         
+            method:"GET",                                              
+            dataType: "json",
+            data: {
+                resource: "product",
+                params: {
+                  id: id
+                }
+              },                 
 
             success:function(data) {
-                load_cart_data();                                   //cart data gets refreshed
-                $('#cartbtn').popover("hide")                           
-                alert(data)
+
+                let itemExists = globalCart.find(function(item){
+                    return item.id === data.id;
+                })
+
+                if(itemExists){
+                    itemExists.quantity += 1                                    //if product already in cart --> quantity +1 (no new row)
+                }else{
+                    globalCart.push({
+                        id: data.id,
+                        name: data.name,
+                        price: data.price,
+                        quantity: 1
+                    })
+                }
+
+                sessionStorage.setItem("cart", JSON.stringify(globalCart))      //sessionStorage Item is updated
+
+                load_cart_data();
+
             },
             error: function(data){
                 console.log(data);
@@ -130,49 +186,47 @@ $(document).ready(function() {
 
     
 
-    function changeQuant(){
+    function changeQuant(id, method){                                   //modifiy quantity (dependent on product id and + or -)
 
-        let id = $(this).attr("id").slice(11)
-        let method = $(this).text()                                 //addition or subtraction
+        let itemToChange = globalCart.find(function(item){
+            return item.id === id;
+        })
 
-        $.ajax({
+        console.log(itemToChange)
 
-            url:"../Backend/businesslogic/changeQuantityCart.php",  //quantity of related cartitem gets modified
-            method:"POST",                                              
-            data: {id: id, method: method},                     
+        if(method === "+"){
+            itemToChange.quantity += 1;
 
-            success:function(data) {
-                load_cart_data();                                   //cart data gets refreshed
-                $('#cartbtn').popover("hide")                           
-                alert(data)
-            },
-            error: function(data){
-                console.log(data);
-            }
-        });
+        }else if(itemToChange.quantity === 1){
+            removeItem(itemToChange.id)
+            
+        }else{
+            itemToChange.quantity -= 1;
+        }
 
+        console.log(itemToChange)
+
+        sessionStorage.setItem("cart", JSON.stringify(globalCart))      //again cart is updated
+
+        $('#cartbtn').popover("show");                                  //popover is updated to instantly display changes
     }
 
-    function removeItem(){
+    function removeItem(id){
 
-        let id = $(this).attr("id").slice(13)                           //cuts off 13 chars from id, "number" of id remains
+        let itemToChange = globalCart.find(function(item){
+            return item.id === id;
+        })
 
-        $.ajax({
+        console.log(itemToChange)
 
-            url:"../Backend/businesslogic/removeFromCart.php",
-            method:"POST",                                              //cart id is passed and related row gets deleted
-            data: {id: id},                     
+        let index = globalCart.indexOf(itemToChange);                   //search for position of product that should be deleted
+        if (index > -1) {
+          globalCart.splice(index, 1);                                  //then cut it off array
+        }
 
-            success:function(data) {
-                load_cart_data();
-                $('#cartbtn').popover("hide")                           //reload cart data, hide popover and show message to customer
-                alert(data) 
-            },
-            error: function(data){
-                console.log(data);
-            }
-        });
-
+        sessionStorage.setItem("cart", JSON.stringify(globalCart))
+        
+        $('#cartbtn').popover("show");
     }
     
     $('#cartbtn').popover({

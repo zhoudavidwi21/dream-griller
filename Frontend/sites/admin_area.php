@@ -13,7 +13,7 @@
         <div class="col-lg-6 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Manage Products</h5>
+                    <h5 class="card-title">Kundenbereich</h5>
                     <a class="btn btn-dg-standard" href="index.php?site=manage_users">Benutzer verwalten</a>
                 </div>
             </div>
