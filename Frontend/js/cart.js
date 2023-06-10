@@ -1,16 +1,16 @@
 $(document).ready(function() {
 
     $(document).on('click', '.btnQuant', function(){
-        changeQuant(parseInt($(this).attr("id").slice(11), 10), $(this).text())
+        changeQuant(parseInt($(this).attr("id").slice(11), 10), $(this).text())     //slicing and passing Product ID + method (quant +1 or -1)
     })
     $(document).on('click', '[id^=removeProduct]', function(){
-        removeItem(parseInt($(this).attr("id").slice(13), 10))
+        removeItem(parseInt($(this).attr("id").slice(13), 10))                      //slicing productId from product that should be removed
     });
     
     var cartExists = sessionStorage.getItem("cart")
 
     if (cartExists) {
-        var globalCart = JSON.parse(cartExists);
+        var globalCart = JSON.parse(cartExists);                                //saving sessionStorage-Item in global variable
     } else {
         var globalCart = [];
     }
@@ -35,7 +35,7 @@ $(document).ready(function() {
     })
 
 
-    function load_product_data(categorie, input){
+    function load_product_data(categorie, input){                   //loads product for specific category and user input (searchfield)
 
         $.ajax({
             
@@ -73,8 +73,8 @@ $(document).ready(function() {
                     </div>
                     `
 
-                    $('#contentRow').append(content);
-                    $('#prodcart-' + product.id).on("click", function(){
+                    $('#contentRow').append(content);                               //for every product a div block is appended
+                    $('#prodcart-' + product.id).on("click", function(){            //enables "in den Einkaufswagen"
                         putInCart($(this).attr("id").slice(9))
                     })
                     
@@ -88,7 +88,7 @@ $(document).ready(function() {
     }
 
 
-    function load_cart_data(){
+    function load_cart_data(){                                                      //load cart in form of a popover
 
         let content = `
         <div class="table-responsive" id="order_table">
@@ -124,13 +124,13 @@ $(document).ready(function() {
             `
         });
 
-        content += "</table></div>";
+        content += "</table></div>";        //for every item in the globalCart (= sessionStorageItem) one table row is appended
 
         if(globalCart.length === 0){
             content += '<div id="emptyCart" align="center">Es sind keine Produkte im Warenkorb</div>'
             $("#check_out_cart").attr("href", "#");
         }else{
-            $("#check_out_cart").attr("href", "index.php?site=checkOutOrder");
+            $("#check_out_cart").attr("href", "index.php?site=checkOutOrder");          //if cart != empty --> link to checkout is enabled
         }
 
         $('#cart_details').html(content);
@@ -140,11 +140,11 @@ $(document).ready(function() {
     }
 
 
-    function putInCart(id){
+    function putInCart(id){                                         //product with related product_id is written to cart
 
         $.ajax({
 
-            url:"../Backend/RequestHandler.php",                                        //product with related product_id is uploaded to DB
+            url:"../Backend/RequestHandler.php",                         
             method:"GET",                                              
             dataType: "json",
             data: {
@@ -161,7 +161,7 @@ $(document).ready(function() {
                 })
 
                 if(itemExists){
-                    itemExists.quantity += 1
+                    itemExists.quantity += 1                                    //if product already in cart --> quantity +1 (no new row)
                 }else{
                     globalCart.push({
                         id: data.id,
@@ -171,7 +171,7 @@ $(document).ready(function() {
                     })
                 }
 
-                sessionStorage.setItem("cart", JSON.stringify(globalCart))
+                sessionStorage.setItem("cart", JSON.stringify(globalCart))      //sessionStorage Item is updated
 
                 load_cart_data();
 
@@ -186,7 +186,7 @@ $(document).ready(function() {
 
     
 
-    function changeQuant(id, method){
+    function changeQuant(id, method){                                   //modifiy quantity (dependent on product id and + or -)
 
         let itemToChange = globalCart.find(function(item){
             return item.id === id;
@@ -206,9 +206,9 @@ $(document).ready(function() {
 
         console.log(itemToChange)
 
-        sessionStorage.setItem("cart", JSON.stringify(globalCart))
+        sessionStorage.setItem("cart", JSON.stringify(globalCart))      //again cart is updated
 
-        $('#cartbtn').popover("show");
+        $('#cartbtn').popover("show");                                  //popover is updated to instantly display changes
     }
 
     function removeItem(id){
@@ -219,9 +219,9 @@ $(document).ready(function() {
 
         console.log(itemToChange)
 
-        let index = globalCart.indexOf(itemToChange);
+        let index = globalCart.indexOf(itemToChange);                   //search for position of product that should be deleted
         if (index > -1) {
-          globalCart.splice(index, 1);
+          globalCart.splice(index, 1);                                  //then cut it off array
         }
 
         sessionStorage.setItem("cart", JSON.stringify(globalCart))

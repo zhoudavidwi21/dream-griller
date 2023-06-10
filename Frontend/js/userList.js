@@ -2,14 +2,14 @@ $(document).ready(function() {
 
     $(document).on('click', '[id^=disableUser]', function(){
         changeStatus(parseInt($(this).attr("id").slice(11), 10), false)
-    })
+    })                                                                                  //slice userID from pushed buttons
     $(document).on('click', '[id^=enableUser]', function(){
         changeStatus(parseInt($(this).attr("id").slice(10), 10), true)
     });
 
     load_userList()
 
-    function load_userList(){
+    function load_userList(){                                                           //loads all current users from DB
 
         $.ajax({
 
@@ -47,7 +47,7 @@ $(document).ready(function() {
                         `
                     }
 
-                    content += "</tr>"
+                    content += "</tr>"                              //appends table row for every DB entry
 
                     
                 });
@@ -61,7 +61,7 @@ $(document).ready(function() {
         })
     }
 
-    function changeStatus(id, newValue){
+    function changeStatus(id, newValue){                            //changes user status to the respective opposite
         
         $.ajax({
 
