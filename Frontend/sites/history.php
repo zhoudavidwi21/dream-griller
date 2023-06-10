@@ -123,7 +123,7 @@
       </main>
       <hr class="featurette-divider">
       <br>
-      <p>VERGANGENHEIT IST GEGESSEN, <br> ZUKUNFT RIECHT FANTASTISCH <br> UND JEDER AUGENBLICK DES GRILLENS EIN GESCHENK.</p>
+      <p>VERGANGENHEIT IST GEGESSEN, <br> ZUKUNFT RIECHT FANTASTISCH <br> UND JEDER AUGENBLICK DES GRILLENS IST EIN GESCHENK.</p>
 
     </div>
     <div class="col">

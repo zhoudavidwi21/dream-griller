@@ -1,2 +1,0 @@
-// diese Zeile fehlt in sessions.php (als Zeile 1), in register.php als Zeile 5
-<?php require_once('../../Backend/db/dbaccess.php'); ?>

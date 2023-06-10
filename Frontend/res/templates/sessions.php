@@ -28,8 +28,7 @@ if (isset($_COOKIE['loginCookie']) && isset($_COOKIE['id'])) {
     exit();
   }
 
-//  $sql = "SELECT * FROM `users` WHERE `username` = ? AND `enabled` = 1";
-  $sql = "SELECT * FROM `users` WHERE `username` = ?";
+  $sql = "SELECT * FROM `customers` WHERE `username` = ? AND `enabled` = 1";
   $stmt = $db_obj->prepare($sql);
   $stmt->bind_param("s", $_SESSION['id']);
   $stmt->execute();

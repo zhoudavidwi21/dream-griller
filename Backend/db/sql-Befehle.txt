@@ -1,0 +1,2 @@
+//Rückstellen der customer-ID auf Wert 3 bei AUTO_INCREMENT
+ALTER TABLE customers AUTO_INCREMENT = 3;

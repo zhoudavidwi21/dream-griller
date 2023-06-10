@@ -1,5 +1,7 @@
 <?php include "./res/templates/sessions.php"; ?>
 
+<?php // include "./res/templates/register_validation.php"; ?>
+
 <?php require_once('../Backend/db/dbaccess.php'); ?>
 
 <?php
@@ -34,6 +36,8 @@ if (isset($_POST["submit"])) {
 
     $stmt->bind_param("sssssssssss", $gender, $company, $firstname, $lastname, $adress, $postcode, $city, $email, $username, $paymethod, $hashedPassword);
 
+   // $stmt->bind_param("ss", $_POST['username'], $_POST['password']);
+
     if ($stmt->execute()) {
       //close the statement
       $stmt->close();
@@ -62,7 +66,7 @@ if (isset($_POST["submit"])) {
 
         <hr class="featurette-divider">
 
-        <form id="registrationForm" method="POST" action="index.php?site=register" onsubmit="return validateForm()">
+        <form id="registrationForm" method="POST">
           <div class="mb-1">
             <label for="anrede" hidden>Anrede *</label>
             <select class="form-select" aria-label="Default select example" id="anrede" name="gender" required>
@@ -91,27 +95,28 @@ if (isset($_POST["submit"])) {
           </div>
 
           <div class="form-floating">
-            <input type="text" class="form-control" id="adresse" placeholder="Adresse" name="adress" required>
+            <input type="text" class="form-control" id="adresse" placeholder="Adresse" name="adress">
             <label for="adresse">Adresse *</label>
           </div>
 
           <div class="form-floating">
-            <input type="text" class="form-control" id="postleitzahl" placeholder="Postleitzahl" name="postcode" required>
+            <input type="text" class="form-control" id="postleitzahl" placeholder="Postleitzahl" name="postcode">
             <label for="postleitzahl">Postleitzahl *</label>
           </div>
 
           <div class="form-floating">
-            <input type="text" class="form-control" id="ort" placeholder="Ort" name="city" required>
+            <input type="text" class="form-control" id="ort" placeholder="Ort" name="city">
             <label for="ort">Ort *</label>
           </div>
 
           <div class="form-floating">
-            <input type="email" class="form-control" id="email" placeholder="E-Mail Adresse" name="email" required>
+            <input type="email" class="form-control" id="email" placeholder="E-Mail Adresse" name="email">
             <label for="email">E-Mail Adresse *</label>
           </div>
 
           <div class="form-floating">
-            <input type="text" class="form-control" id="benutzername" placeholder="Benutzername" name="username" required>
+<!--            <input type="text" class="form-control" id="benutzername" placeholder="Benutzername" name="username" aria-describedby="validationUsername" required>
+-->            <input type="text" class="form-control" id="benutzername" placeholder="Benutzername" name="username" required>
             <label for="benutzername">Benutzername *</label>
           </div>
 
@@ -119,7 +124,7 @@ if (isset($_POST["submit"])) {
 
           <div class="mb-1">
           <label for="zahlungsmethode" hidden>Zahlungsinformationen *</label>
-            <select class="form-select" aria-label="Default select example" id="zahlungsmethode" name="paymethod" required>
+            <select class="form-select" aria-label="Default select example" id="zahlungsmethode" name="paymethod">
               <option ?>Zahlungsmethode auswählen *
               </option>
               <option value="kreditkarte" >Kreditkarte</option>
@@ -131,7 +136,7 @@ if (isset($_POST["submit"])) {
           <br>
 
           <div class="form-floating">
-            <input type="password" class="form-control" id="passwort" placeholder="Passwort" name="password" required>
+            <input type="password" class="form-control" id="password" placeholder="Passwort" name="password" required>
             <label for="password">Passwort *</label>
           </div>
 
@@ -141,12 +146,12 @@ if (isset($_POST["submit"])) {
           </div>
 
           <div class="checkbox mt-3 mb-3">
-            <input type="checkbox" class="form-check-input" name="data_security" id="data_security" value="">
+            <input type="checkbox" class="form-check-input" name="data_security" id="data_security" value="checked" required>
             <label class="form-check-label" for="data_security"><a href="index.php?site=data_security" target="_blank">Datenschutz</a> akzeptieren *</label>
 
             <br>
 
-            <input type="checkbox" class="form-check-input" name="terms_and_conditions" id="terms_and_conditions" value="">
+            <input type="checkbox" class="form-check-input" name="terms_and_conditions" id="terms_and_conditions" value="checked" required>
             <label class="form-check-label" for="terms_and_conditions"><a href="index.php?site=terms_and_conditions" target="_blank">AGBs</a>
               akzeptieren *</label>
           </div>
@@ -163,5 +168,3 @@ if (isset($_POST["submit"])) {
     </div>
   </div>
 </div>
-
-<script src="./js/register_validation.js"></script>

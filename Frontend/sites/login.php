@@ -33,8 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       exit();
     }
 
- //   $sql = "SELECT * FROM `users` WHERE `username` = ? AND `enabled` = 1";
-    $sql = "SELECT * FROM `users` WHERE `username` = ?";
+    $sql = "SELECT * FROM `customers` WHERE `username` = ? AND `enabled` = 1";
     $stmt = $db_obj->prepare($sql);
     $stmt->bind_param("s", $_POST["username"]);
     $stmt->execute();
@@ -70,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 if (isset($_POST['remember']) && $_POST['remember'] == true) {
   $cookieDuration = 31536000; //valid for 1 year
-  setcookie('userId', $_SESSION['userId'], time() + $cookieDuration, "/");
+  setcookie('id', $_SESSION['id'], time() + $cookieDuration, "/");
   setcookie('loginCookie', $cookieDuration, time() + $cookieDuration, "/");
 }
 

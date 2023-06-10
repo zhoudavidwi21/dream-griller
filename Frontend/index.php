@@ -50,7 +50,7 @@
   <!-- Footer Area --->
   <?php include "./res/templates/footer.php"; ?>
 
-  <script src="./js/getdata.js"></script>
+  <script src="./js/register_validation.js"></script>
   <script src="./js/cart.js"></script>
   <script src="./js/addProduct.js"></script>
   <script src="./js/userList.js"></script>
