@@ -16,7 +16,7 @@ if (isset($_POST["submit"])) {
     $sql = "INSERT INTO `users`(`username`, `email`, `password`) VALUES (?, ?, ?)";
 
     //hashing passwor
-   // $password = password_hash($password, PASSWORD_DEFAULT);
+    $password = password_hash($password, PASSWORD_DEFAULT);
 
     //create SQL-statement
     $stmt = $db_obj->prepare($sql);
