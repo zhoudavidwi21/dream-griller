@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 11. Jun 2023 um 20:10
--- Server-Version: 10.4.28-MariaDB
--- PHP-Version: 8.2.4
+-- Erstellungszeit: 08. Jun 2023 um 18:27
+-- Server-Version: 10.4.24-MariaDB
+-- PHP-Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,14 +30,20 @@ USE `dreamgriller_db`;
 -- Tabellenstruktur für Tabelle `coupons`
 --
 
+DROP TABLE IF EXISTS `coupons`;
 CREATE TABLE `coupons` (
   `id` int(11) NOT NULL,
   `code` varchar(100) NOT NULL,
   `amount` double NOT NULL DEFAULT 10,
   `expirydate` date NOT NULL,
   `expired` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- TRUNCATE Tabelle vor dem Einfügen `coupons`
+--
+
+TRUNCATE TABLE `coupons`;
 --
 -- Daten für Tabelle `coupons`
 --
@@ -52,6 +58,7 @@ INSERT INTO `coupons` (`id`, `code`, `amount`, `expirydate`, `expired`) VALUES
 -- Tabellenstruktur für Tabelle `customers`
 --
 
+DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
@@ -59,28 +66,26 @@ CREATE TABLE `customers` (
   `password` varchar(256) NOT NULL,
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
-  `company` varchar(100) NOT NULL,
-  `gender` enum('Firma','Herr','Frau','Divers') NOT NULL,
+  `gender` varchar(100) NOT NULL,
   `adress` varchar(256) NOT NULL,
   `postcode` int(11) NOT NULL,
   `city` varchar(100) NOT NULL,
-  `paymethod` enum('Kreditkarte','Vorkasse','Bar') NOT NULL,
   `enabled` tinyint(4) NOT NULL DEFAULT 1,
   `role` enum('user','admin') NOT NULL DEFAULT 'user'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- TRUNCATE Tabelle vor dem Einfügen `customers`
+--
+
+TRUNCATE TABLE `customers`;
 --
 -- Daten für Tabelle `customers`
 --
 
-INSERT INTO `customers` (`id`, `username`, `email`, `password`, `firstname`, `lastname`, `company`, `gender`, `adress`, `postcode`, `city`, `paymethod`, `enabled`, `role`) VALUES
-(1, 'admin', 'admin@admin.com', '$2y$10$lklRkv2k3ucGkb8mkzXquOZJMUdBLnHsGp2vc8dguOyCZFWHWS45q', 'admin', 'admin', 'aaa', 'Herr', 'Ringstraße 1', 1010, 'Wien', 'Kreditkarte', 1, 'admin'),
-(2, 'test', 'test@test.com', '$2y$10$ifQ7ViSkXFNWTT8Cv3EjYOmOOyxYAdNNkAzya0cexZfZzgzmOjLoG', 'test', 'test', 'sss', 'Frau', 'Hochstädtplatz 1', 1200, 'Wien', 'Kreditkarte', 1, 'user'),
-(3, 'as', 'ma@ma.ar', '$2y$10$R4S9OpNT4S7mjWtwpebvpOLhz..X/my84jOw.U5Q6WuPz/smFtY9y', 'ASD', 'a', 'sfa', 'Herr', 'asd', 2, 'Wien', 'Vorkasse', 1, 'user'),
-(12, 'asadfsdfsd', 'a@a.wein', '$2y$10$EY3VQbBf27U1LKlVOmFkc.49klt.ZYaTcS7xna.rER35qNq9XWhiK', 'asdf', 'asdf', 'asdf', 'Herr', 'asdf', 222, 'asdf', 'Kreditkarte', 1, 'user'),
-(22, 'MF', 'ma@ma.at', '$2y$10$qffvnQVvxur2IYqI6r0sEuLlrPREzfc/MZedRkawGGEles/3GQrba', 'Martin', 'Frischmann', 'Martin EU', 'Firma', 'Ra 23', 2222, 'Wien', 'Kreditkarte', 1, 'user'),
-(24, 'sd', 'a@a.asdfsdf', '$2y$10$2c3/NnKH0Jle1mlDCv4.tunDzemwrOQ8dUaceufJpQDoPAI4svCta', 'Martin', 'Frischmann', 'Martin EU', 'Firma', 'asdf 34', 2222, 'Wien', 'Kreditkarte', 1, 'user'),
-(25, 'MJF', 'ma@master.at', '$2y$10$nNlRYNMoc2Ur5eQ9bA7Z.uhNDlmO6hNOSYJ8e2zjwxDkJ3qho13.m', 'Martin', 'Frischmann', 'Martin EU', 'Firma', 'asdf 34', 2222, 'Wien', 'Vorkasse', 1, 'user');
+INSERT INTO `customers` (`id`, `username`, `email`, `password`, `firstname`, `lastname`, `gender`, `adress`, `postcode`, `city`, `enabled`, `role`) VALUES
+(1, 'admin', 'admin@admin.com', '$2y$10$o66aklQJ8bmX7kMeWJatR./KQxFCbdvloZb4DXtP.wwnG6bpk2ahW', 'admin', 'admin', 'female', 'Ringstraße 1', 1010, 'Wien', 1, 'admin'),
+(2, 'test', 'test@test.com', '$2y$10$tRfDxbaJFHyX5cSQfzQRYuV3EVqhP4/QeJsthKul47HNnTG11HcWO', 'test', 'test', 'female', 'Hochstädtplatz 1', 1200, 'Wien', 1, 'user');
 
 -- --------------------------------------------------------
 
@@ -88,27 +93,27 @@ INSERT INTO `customers` (`id`, `username`, `email`, `password`, `firstname`, `la
 -- Tabellenstruktur für Tabelle `orders`
 --
 
+DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `total` double(7,2) NOT NULL,
   `date` date NOT NULL DEFAULT current_timestamp(),
   `fk_customerId` int(11) NOT NULL,
   `fk_couponId` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Daten für Tabelle `orders`
+-- TRUNCATE Tabelle vor dem Einfügen `orders`
 --
 
-INSERT INTO `orders` (`id`, `total`, `date`, `fk_customerId`, `fk_couponId`) VALUES
-(1, 234.00, '2023-06-11', 25, NULL);
-
+TRUNCATE TABLE `orders`;
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `products`
 --
 
+DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
@@ -120,8 +125,13 @@ CREATE TABLE `products` (
   `charcoal` tinyint(1) NOT NULL,
   `pellet` tinyint(1) NOT NULL,
   `sale` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- TRUNCATE Tabelle vor dem Einfügen `products`
+--
+
+TRUNCATE TABLE `products`;
 --
 -- Daten für Tabelle `products`
 --
@@ -135,8 +145,7 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `rating`, `image`,
 (6, 'Holzkohle Kugelgrill Ø 57cm', 'Napoleons Holzkohlegrill NK22CK-L mit geschraubten Beinen setzt alles auf die Komfort-Karte: Dank des drehbaren Deckels mit Eckscharnier kann der Grillmeister sicher über der Grillfläche hantieren. Ein großer Aschebehälter aus Stahl und der roboste Kohlerost sind nur weitere Annehmlichkeiten. Auf seinen großen, wetterbeständigen Rädern und mit seinen geschraubten Beinen lässt sich der Rodeo NK22CK-L einfach durchs Gelände ziehen. So ist er immer genau dort, wo Sie grillen wollen! Holzkohle Kugelgrill Ø 57cm', 199, 5.00, NULL, 0, 1, 0, 1),
 (8, 'Test Griller', 'Der beste Griller der Welt', 9.99, 5.00, NULL, 1, 1, 1, 0),
 (20, 'Griller with image', '', 0, 0.00, NULL, 0, 0, 0, 0),
-(30, 'Griller mit Bild', 'Wow dieser Griller hat sogar ein Bild!', 949.99, 4.50, '../Frontend/res/img/products/6481f8b978031_products-image(1).jpg', 1, 1, 1, 0),
-(31, 'hiho ', 'ein Wahnsinns-Griller', 999.99, 9.99, '../Frontend/res/img/products/64851d7edfd6f_Details_Sheriff_6.jpg', 1, 1, 1, 0);
+(30, 'Griller mit Bild', 'Wow dieser Griller hat sogar ein Bild!', 949.99, 4.50, '../Frontend/res/img/products/6481f8b978031_products-image(1).jpg', 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -144,12 +153,18 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `rating`, `image`,
 -- Tabellenstruktur für Tabelle `products_orders`
 --
 
+DROP TABLE IF EXISTS `products_orders`;
 CREATE TABLE `products_orders` (
   `fk_orderId` int(11) NOT NULL,
   `fk_productId` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- TRUNCATE Tabelle vor dem Einfügen `products_orders`
+--
+
+TRUNCATE TABLE `products_orders`;
 --
 -- Indizes der exportierten Tabellen
 --
@@ -203,19 +218,19 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT für Tabelle `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT für Tabelle `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT für Tabelle `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Constraints der exportierten Tabellen
