@@ -18,6 +18,7 @@
         <th>ID</th>
         <th>Username</th>
         <th>Email</th>
+<!--        <th>Passwort</th> -->
         <th>Vorname</th>
         <th>Nachname</th>
         <th>Firma</th>

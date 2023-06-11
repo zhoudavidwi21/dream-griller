@@ -21,6 +21,7 @@ class UserService{
                 $row['id'],
                 $row['username'],
                 $row['email'],
+//                $row['password'],
                 $row['firstname'],
                 $row['lastname'],
                 $row['company'],
@@ -28,7 +29,7 @@ class UserService{
                 $row['adress'],
                 $row['postcode'],
                 $row['city'],
- //               $row['paymethod'],
+                $row['paymethod'],
                 boolval($row['enabled']),
                 $row['role']
             );

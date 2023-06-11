@@ -30,16 +30,15 @@ $(document).ready(function() {
                     <tr>
                         <td>${user.id}</td>
                         <td>${user.username}</td>
-                        <td>${user.email}</td>
-                        <td>${user.password}</td>
+                        <td>${user.email}</td>                       
                         <td>${user.firstname}</td>
                         <td>${user.lastname}</td>
+                        <td>${user.company}</td>
                         <td>${user.gender}</td>
                         <td>${user.adress}</td>
                         <td>${user.postcode}</td>                        
                         <td>${user.city}</td>
                         <td>${user.paymethod}</td>
-
                         <td>${user.enabled}</td>
                         <td><a id="ordersUser${user.id}" class="btn btn-primary btn-sm" href="#">Bestellungen</a></td>                    
 
