@@ -35,20 +35,4 @@ $(document).ready(function () {
             }
         });
     }
-
-    function convertFormDataToJson(formData) {
-        const jsonObject = {};
-        for (const [key, value] of formData.entries()) {
-            if (jsonObject.hasOwnProperty(key)) {
-                if (Array.isArray(jsonObject[key])) {
-                    jsonObject[key].push(value);
-                } else {
-                    jsonObject[key] = [jsonObject[key], value];
-                }
-            } else {
-                jsonObject[key] = value;
-            }
-        }
-        return JSON.stringify(jsonObject);
-    }
 });
