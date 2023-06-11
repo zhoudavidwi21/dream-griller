@@ -51,15 +51,15 @@
                     <label for="productCategories" class="form-label fw-bold">Kategorie</label>
                     <div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="gas" id="categoryGas" name="productCategories">
+                            <input class="form-check-input" type="checkbox" value="gas" id="categoryGas" name="productCategoriesGas">
                             <label class="form-check-label" for="categoryGas">Gas Griller</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="charcoal" id="categoryCharcoal" name="productCategories">
+                            <input class="form-check-input" type="checkbox" value="charcoal" id="categoryCharcoal" name="productCategoriesCharcoal">
                             <label class="form-check-label" for="categoryCharcoal">Kohle Griller</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="pellet" id="categoryPellet" name="productCategories">
+                            <input class="form-check-input" type="checkbox" value="pellet" id="categoryPellet" name="productCategoriesPellet">
                             <label class="form-check-label" for="categoryPellet">Pellet Griller</label>
                         </div>
                     </div>

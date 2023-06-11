@@ -103,10 +103,10 @@ class ProductService {
         $description = $requestData['productDescription'] ?? '';
         $price = $requestData['productPrice'] ?? 0;
         $rating = $requestData['productRating'] ?? 0;
-        $gas = isset($requestData['productCategories'][0]);
-        $charcoal = isset($requestData['productCategories'][1]);
-        $pellet = isset($requestData['productCategories'][2]);
-        $sale = isset($requestData['productCategories']['sale']);
+        $gas = isset($requestData['productCategoriesGas']);
+        $charcoal = isset($requestData['productCategoriesCharcoal']);
+        $pellet = isset($requestData['productCategoriesPellet']);
+        $sale = isset($requestData['productCategoriesSale']);
         $image = null;
 
         // Handle image upload/saving
