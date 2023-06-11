@@ -1,3 +1,15 @@
+<?php include "./res/templates/sessions.php"; ?>
+
+<?php require_once('../Backend/db/dbaccess.php'); ?>
+
+<?php
+//Only logged in person can view orders
+if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
+  header('Refresh:1; url=index.php?site=error');
+  exit();
+}
+?>
+
 <div class="text-center container-fluid">
 
   <h1 class="h1 mb-3 fw-normal">Produkte verwalten</h1>
@@ -9,4 +21,28 @@
 
     </div>
   </div>
+</div>
+
+<div class="container"  style="margin-top: 25px">       
+  <table class="table table-fit">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Beschreibung</th>
+        <th>Preis</th>
+        <th>Bewertung</th>
+        <th>Bild</th>
+        <th>Katetorie-Gas</th>
+        <th>Kategorie-Kohle</th>
+        <th>Kategorie-Pellet</th>
+        <th>Verkauf</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="productTable">
+      
+    </tbody>
+  </table>
 </div>
