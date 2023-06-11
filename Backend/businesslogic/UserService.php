@@ -21,13 +21,14 @@ class UserService{
                 $row['id'],
                 $row['username'],
                 $row['email'],
-                $row['password'],
                 $row['firstname'],
                 $row['lastname'],
+                $row['company'],
                 $row['gender'],
                 $row['adress'],
                 $row['postcode'],
                 $row['city'],
+ //               $row['paymethod'],
                 boolval($row['enabled']),
                 $row['role']
             );

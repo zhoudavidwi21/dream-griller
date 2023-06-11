@@ -89,7 +89,7 @@ ob_start();
         <div class="d-flex gap-1">
           <button id="cartbtn" type="button" data-container="body" data-toggle="popover" style="font-size:24px">
           <i class="fa fa-shopping-cart"></i><a id="quantity"></a></button>
-          <a class="btn btn-anmelden" href="index.php?site=login" role="button">Login(In Arbeit)</a>
+          <a class="btn btn-anmelden" href="index.php?site=login" role="button">Login</a>
           <a class="btn btn-registrieren" href="index.php?site=register" role="button">Registration</a>
         </div>
       <?php } ?>
