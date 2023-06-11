@@ -18,11 +18,12 @@ class ProductService {
         $this->database = new Database();
     }
 
-
-
     public function getAllProducts(): ?array {
         $query = "SELECT * FROM products";
         $res = $this->database->executeQuery($query);
+
+        $products = [];
+
         foreach ($res as $row) {
             $product = new Product(
                 $row['id'],
@@ -39,6 +40,11 @@ class ProductService {
             $products[] = $product;
         }
         return $products;
+    }
+
+    public function changeProductStatus($id, $newValue){
+        $query = "UPDATE products SET `sale` = $newValue WHERE `id` = $id";
+        $res = $this->database->executeQuery($query);
     }
 
     public function getProductsByCategory($category, $input): ?array {

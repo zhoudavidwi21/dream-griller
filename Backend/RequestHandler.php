@@ -109,7 +109,7 @@ class RequestHandler {
                 $this->success(204, $this->userService->changeUserStatus($params['id'], $params['newValue']));
                 break;
             case 'product':
-                // Handle updating a product
+                $this->success(204, $this->productService->changeProductStatus($params['id'], $params['newValue']));
                 break;
             case 'order':
                 // Handle updating an order

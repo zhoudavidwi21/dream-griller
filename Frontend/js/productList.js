@@ -40,13 +40,13 @@ $(document).ready(function() {
                         <td>${product.sale}</td>
 
                    `
-                    if(product.enabled){
+                    if(product.sale){
                         content += `
-                        <td><a id="disableProduct${product.id}" class="btn btn-secondary btn-sm" href="#">Deaktivieren</a></td>
+                        <td><a id="disableProduct${product.id}" class="btn btn-secondary btn-sm" href="#">Produkt deaktivieren</a></td>
                         `
                     }else{
                         content += `
-                        <td><a id="enableProduct${product.id}" class="btn btn-success btn-sm" href="#">Aktivieren</a></td>
+                        <td><a id="enableProduct${product.id}" class="btn btn-success btn-sm" href="#">Produkt aktivieren</a></td>
                         `
                     }
 
@@ -63,5 +63,26 @@ $(document).ready(function() {
             }
         })
     }
+
+    function changeStatus(id, newValue){                            //changes user status to the respective opposite
+        
+        $.ajax({
+
+            url: "../Backend/RequestHandler.php?resource=product&params[id]=" +  id + "&params[newValue]=" + newValue,
+            method: "PUT",
+            dataType: "json",
+
+            success: function(){
+                console.log("changed");
+                load_productList();
+                
+            },
+            error: function(response){
+                console.log(response)
+            }
+        })
+
+    }
+
 
 })
