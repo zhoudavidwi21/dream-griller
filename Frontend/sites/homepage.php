@@ -12,11 +12,11 @@
             </div>
         </div>
         <!-- Call to Action-->
-        <div class="card text-white bg-secondary my-5 py-4 text-center">
+        <div class="card text-white bg-secondary my-5 py-6 text-center">
             <div class="card-body">
-                <h3 class="text-white m-0">Da der Sommer in schnellen Schritten naht,<br>
+                <h4 class="text-white m-0">Da der Sommer in schnellen Schritten naht,<br>
             bekommen Sie zu jedem Griller einen Gutschein von<br><strong>STEAK-FOR-ME</strong><br>dazu !!!!!
-            </p> </h3>
+            </p> </h4>
             </div>
         </div>
 
