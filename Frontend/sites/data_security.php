@@ -13,7 +13,7 @@
       <h3>Erklärung zur Informationspflicht</h3> -->
       <br>
 
-      <strong>Datenschutzerklärung</strong></p>
+      <h2 class="h2 mb-3 fw-normal">Datenschutzerklärung</h2>
 
       <p>In folgender Datenschutzerklärung informieren wir Sie über die wichtigsten Aspekte der Datenverarbeitung im
         Rahmen unserer Webseite. Wir erheben und verarbeiten personenbezogene Daten nur auf Grundlage der gesetzlichen

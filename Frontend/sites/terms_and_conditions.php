@@ -6,8 +6,11 @@
     </div>
     <div class="col-10">
 
-      <h1 class="h1 mb-3 fw-normal">Allgemeine Geschäftsbedingungen</h1>
+      <h1 class="h1 mb-3 fw-normal">Erklärung zur Informationspflicht</h1>
       <img class="mb-4" src="./res/img/logo/Logo_Basis_transparent_Schrift_groß_KLEIN_500x260.png" alt="Dream Griller Logo" width="250" height="130">
+
+      <!-- <h3 class="h3 mb-3 fw-normal">Dream Griller GmbH</h3>
+      <h3>Erklärung zur Informationspflicht</h3> -->
       <br>
 
       <h2 class="h2 mb-3 fw-normal">Inhaltsübersicht</h2>
@@ -44,7 +47,7 @@
         Unser Shop wird auf Shopify Inc. gehostet. Shopify stellt uns die Online-E-Commerce-Plattform zur Verfügung, die es uns ermöglicht, unsere Produkte und Dienstleistungen an Sie zu verkaufen.
         </p>
       </div>
-
+      
       <div class="ce-regular-text-element-content">
         <h3>§ 1 - BEDINGUNGEN FÜR DEN ONLINESHOP</h3>
         <p>Mit der Zustimmung zu diesen Allgemeinen Geschäftsbedingungen erklären Sie, dass Sie in dem Land Ihres Wohnsitzes mindestens volljährig sind oder dass Sie in dem Land Ihres Wohnsitz volljährig sind und uns Ihre Zustimmung gegeben haben, dass Ihre minderjährigen Angehörigen diese Website nutzen dürfen.
@@ -85,7 +88,8 @@
         Wir behalten uns das Recht vor, sind aber nicht verpflichtet, den Verkauf unserer Produkte oder Serviceleistungen auf gewisse Personen, geografische Regionen oder Gerichtsbarkeiten zu beschränken. Wir können dieses Recht von Fall zu Fall ausüben. Wir behalten uns das Recht vor, die Mengen der von uns angebotenen Produkte oder Serviceleistungen zu begrenzen. Alle Produktbeschreibungen oder Produktpreise können jederzeit ohne Vorankündigung und nach unserem alleinigen Ermessen geändert werden. Wir behalten uns das Recht vor, jedes Produkt jederzeit aus dem Angebot zu nehmen. Jedes Angebot für ein Produkt oder eine Serviceleistung, das auf dieser Website gemacht wird, ist ungültig, wo es verboten ist.
         Wir garantieren nicht, dass die Qualität von Produkten, Serviceleistungen, Informationen oder anderen Materialien, die von Ihnen gekauft oder erworben wurden, Ihren Erwartungen entspricht, oder dass Fehler in der Serviceleistung korrigiert werden.
         </p>
-        
+      </div>
+
       <div class="ce-regular-text-element-content">
         <h3>§ 6 - RICHTIGKEIT DER RECHNUNGS- UND KONTOINFORMATIONEN</h3>
         <p>Wir behalten uns das Recht vor, jegliche Bestellung, die Sie bei uns aufgeben, abzulehnen. Wir können nach eigenem Ermessen die Abnahmemengen pro Person, pro Haushalt oder pro Bestellung begrenzen oder stornieren. Diese Einschränkungen können Bestellungen umfassen, die von oder unter demselben Kundenkonto oder derselben Kreditkarte aufgegeben wurden und/oder Bestellungen, die dieselbe Rechnungs- und/oder Lieferadresse verwenden. Falls wir eine Bestellung ändern oder stornieren, werden wir versuchen, Sie zu benachrichtigen, indem wir die E-Mail und/oder die Rechnungsadresse/Telefonnummer kontaktieren, die zum Zeitpunkt der Bestellung angegeben wurde. Wir behalten uns das Recht vor, Bestellungen einzuschränken oder zu verbieten, die nach unserem alleinigen Ermessen den Anschein erwecken, von Händlern, Wiederverkäufern oder Distributoren aufgegeben worden zu sein.
@@ -124,7 +128,6 @@
         </p>
       </div>
 
-
       <div class="ce-regular-text-element-content">
         <h3>§ 11 - FEHLER, UNGENAUIGKEITEN UND AUSLASSUNGEN</h3>
         <p>Gelegentlich kann es vorkommen, dass unsere Website oder unsere Serviceleistung typografische Fehler, Ungenauigkeiten oder Auslassungen in Bezug auf Produktbeschreibungen, Preisgestaltung, Werbeaktionen, Angebote, Produktversandgebühr, Lieferzeit und Verfügbarkeit enthalten. Wir behalten uns das Recht vor, jederzeit und ohne vorherige Ankündigung (auch nachdem Sie Ihre Bestellung aufgegeben haben) jegliche Fehler, Ungenauigkeiten und Auslassungen zu korrigieren und Informationen zu ändern oder zu aktualisieren oder Bestellungen zu stornieren, wenn eine Information in Bezug auf die Serviceleistung oder auf irgendeiner zugehörigen Website falsch ist.
@@ -161,7 +164,7 @@
         </p>
       </div>
 
-      <div class="ce-regular-text-element-content">
+        <div class="ce-regular-text-element-content">
         <h3>§ 16 - KÜNDIGUNG</h3>
         <p>Die Verpflichtungen und Verbindlichkeiten der Parteien, die vor dem Kündigungsdatum entstanden sind, überdauern die Kündigung dieser Vereinbarung für alle Zwecke.
         Diese Allgemeinen Geschäftsbedingungen sind so lange gültig, bis sie von Ihnen oder uns gekündigt werden. Sie können diese Allgemeinen Geschäftsbedingungen jederzeit kündigen, indem Sie uns mitteilen, dass Sie unsere Dienste nicht mehr nutzen möchten, oder wenn Sie die Nutzung unserer Website einstellen.
@@ -198,6 +201,7 @@
 
     </div>
     <div class="col">
+
     </div>
   </div>
 </div>
