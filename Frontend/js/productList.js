@@ -9,6 +9,13 @@ $(document).ready(function() {
 
     load_productList()
 
+    function truncateDescription(description, maxLength) {
+        if (description.length > maxLength) {
+          return description.substring(0, maxLength) + '...';
+        }
+        return description;
+      }
+
     function load_productList(){                                                           //loads all current products from DB
 
         $.ajax({
@@ -30,10 +37,10 @@ $(document).ready(function() {
                     <tr>
                         <td>${product.id}</td>
                         <td>${product.name}</td>
-                        <td>${product.description}</td>                       
+                        <td>${truncateDescription(product.description, 50)}</td> 
                         <td>${product.price}</td>
                         <td>${product.rating}</td>
-                        <td>${product.image}</td>
+                        <td><img src="${product.image}" alt="Thumbnail" width="50px"></td>
                         <td>${product.gas}</td>
                         <td>${product.charcoal}</td>
                         <td>${product.pellet}</td>
