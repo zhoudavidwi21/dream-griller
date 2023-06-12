@@ -23,7 +23,7 @@ if ($db_obj->connect_error) {
 <div class="text-center container-fluid">
 
   <h1 class="h1 mb-3 fw-normal">Bestellungen ansehen</h1>
-
+<!--
   <div class="row justify-content-md-center">
     <div class="col-lg-2 col-md-3">
 
@@ -31,7 +31,7 @@ if ($db_obj->connect_error) {
 
     </div>
   </div>
-
+-->
 
   <h2 class="mt-5">Hallo
     <?php echo $_SESSION["username"]; ?>! <br>

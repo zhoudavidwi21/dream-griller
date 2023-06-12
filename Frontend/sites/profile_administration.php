@@ -43,7 +43,7 @@ if ($db_obj->connect_error) {
 </div>
 
 <div class="custom-container mt-5">
-    <h1>Hallo <?php echo $_SESSION["username"]; ?>!</h1>
+    <h2>Hallo <?php echo $_SESSION["username"]; ?>!</h2>
     <form>
     <div class="row">
         <div class="col-md-6 mb-3">
