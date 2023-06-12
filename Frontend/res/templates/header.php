@@ -39,7 +39,7 @@ ob_start();
             <a class="nav-link active" aria-current="page" href="index.php">Homepage</a>
           </li>
 
-          <!-- menu for all persons START -->
+      <!-- menu for all persons START -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Menü
@@ -54,10 +54,15 @@ ob_start();
               <li><a class="dropdown-item" href="index.php?site=imprint">Impressum</a></li>
             </ul>
           </li>
-
-          <!-- menu for all persons END-->
-
       </div>
+
+      <div class="d-flex gap-1">
+          <button id="cartbtn" type="button" data-container="body" data-toggle="popover" style="font-size:24px; margin-right: 10px">
+          <i class="fa fa-shopping-cart"></i><a id="quantity"></a></button>
+      </div>
+
+      <!-- menu for all persons END-->
+
       <?php if (isset($_SESSION['role']) && ($_SESSION['role'] === "user" || $_SESSION['role'] === "admin")) { ?>
 
         <!-- menu for logged in person START-->
@@ -87,8 +92,6 @@ ob_start();
         <!-- menu for logged in person END-->
       <?php } else { ?>
         <div class="d-flex gap-1">
-          <button id="cartbtn" type="button" data-container="body" data-toggle="popover" style="font-size:24px">
-          <i class="fa fa-shopping-cart"></i><a id="quantity"></a></button>
           <a class="btn btn-anmelden" href="index.php?site=login" role="button">Login</a>
           <a class="btn btn-registrieren" href="index.php?site=register" role="button">Registration</a>
         </div>

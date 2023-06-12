@@ -25,14 +25,52 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             success: function (response) {
+                showSuccessAlert();
                 // Handle successful response
                 console.log("Successfully added product");
             },
             error: function (xhr, status, error) {
+                showErrorAlert();
                 console.log("There has been an error");
                 // Handle error
                 console.log(error);
             }
         });
+    }
+
+    function showSuccessAlert() {
+        const alertDiv = $('<div>').addClass('alert alert-success alert-dismissible fade show').attr('role', 'alert');
+        const strongTag = $('<strong>').text('Produkt erfolgreich hinzugefügt!');
+        const button = $('<button>').addClass('btn-close').attr({
+            'type': 'button',
+            'data-bs-dismiss': 'alert',
+            'aria-label': 'Close'
+        });
+
+        alertDiv.append(strongTag, button);
+        $('h1').prepend(alertDiv);
+
+        // Automatically dismiss the alert after 3 seconds
+        setTimeout(function () {
+            alertDiv.alert('close');
+        }, 3000);
+    }
+
+    function showErrorAlert() {
+        const alertDiv = $('<div>').addClass('alert alert-danger alert-dismissible fade show').attr('role', 'alert');
+        const strongTag = $('<strong>').text('Fehler beim Hinzufügen des Produkts!');
+        const button = $('<button>').addClass('btn-close').attr({
+            'type': 'button',
+            'data-bs-dismiss': 'alert',
+            'aria-label': 'Close'
+        });
+
+        alertDiv.append(strongTag, button);
+        $('h1').prepend(alertDiv);
+
+        // Automatically dismiss the alert after 3 seconds
+        setTimeout(function () {
+            alertDiv.alert('close');
+        }, 3000);
     }
 });

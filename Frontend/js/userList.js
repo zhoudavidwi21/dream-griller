@@ -26,35 +26,38 @@ $(document).ready(function() {
 
                 $.each(response, function(key, user) {
 
-                    content += `
-                    <tr>
-                        <td>${user.id}</td>
-                        <td>${user.username}</td>
-                        <td>${user.email}</td>                       
-                        <td>${user.firstname}</td>
-                        <td>${user.lastname}</td>
-                        <td>${user.company}</td>
-                        <td>${user.gender}</td>
-                        <td>${user.adress}</td>
-                        <td>${user.postcode}</td>                        
-                        <td>${user.city}</td>
-                        <td>${user.paymethod}</td>
-                        <td>${user.enabled}</td>
-                        <td><a id="ordersUser${user.id}" class="btn btn-primary btn-sm" href="#">Bestellungen</a></td>                    
+                    if(user.username !== "admin"){
 
-                    `
-                    if(user.enabled && user.username !== "admin"){
                         content += `
-                        <td><a id="disableUser${user.id}" class="btn btn-secondary btn-sm" href="#">Deaktivieren</a></td>
+                        <tr>
+                            <td>${user.id}</td>
+                            <td>${user.username}</td>
+                            <td>${user.email}</td>                       
+                            <td>${user.firstname}</td>
+                            <td>${user.lastname}</td>
+                            <td>${user.company}</td>
+                            <td>${user.gender}</td>
+                            <td>${user.adress}</td>
+                            <td>${user.postcode}</td>                        
+                            <td>${user.city}</td>
+                            <td>${user.paymethod}</td>
+                            <td>${user.enabled}</td>
+                            <td><a id="ordersUser${user.id}" class="btn btn-primary btn-sm" href="#">Bestellungen</a></td>                    
+
                         `
-                    }else{
-                        content += `
-                        <td><a id="enableUser${user.id}" class="btn btn-success btn-sm" href="#">Aktivieren</a></td>
-                        `
+                        if(user.enabled){
+                            content += `
+                            <td><a id="disableUser${user.id}" class="btn btn-secondary btn-sm" href="#">Deaktivieren</a></td>
+                            `
+                        }else{
+                            content += `
+                            <td><a id="enableUser${user.id}" class="btn btn-success btn-sm" href="#">Aktivieren</a></td>
+                            `
+                        }
+
+                        content += "</tr>"                              //appends table row for every DB entry
                     }
                     
-
-                    content += "</tr>"                              //appends table row for every DB entry
 
                     
                 });
