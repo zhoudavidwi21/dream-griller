@@ -87,6 +87,9 @@ class RequestHandler {
             case 'user':
                 // Handle creating a new user
                 break;
+            case 'userprofile':
+                $this->success(200, $this->userService->changeUserProfile($_POST));
+                break;
             case 'product':
                 // Handle creating a new product
                 $this->success(201, $this->productService->saveProduct($_POST, $_FILES));

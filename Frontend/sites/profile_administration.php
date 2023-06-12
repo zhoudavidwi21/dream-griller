@@ -44,59 +44,59 @@ if ($db_obj->connect_error) {
 
 <div class="custom-container mt-5">
     <h1>Hallo <?php echo $_SESSION["username"]; ?>!</h1>
-    <form>
+    <form id="profileform" method="PUT">
     <div class="row">
         <div class="col-md-6 mb-3">
           <label for="profile_id" class="form-label">User-ID</label>
-          <input type="text" class="form-control" id="profile_id" value="<?php echo $_SESSION['id']?>" disabled>
+          <input type="text" class="form-control" id="profile_id" name="profile_id" value="<?php echo $_SESSION['id']?>" readonly>
         </div>
         <div class="col-md-6 mb-3">
           <label for="profile_username" class="form-label">User-Name</label>
-          <input type="text" class="form-control" id="profile_username" disabled>
+          <input type="text" class="form-control" id="profile_username"  name="profile_username" readonly>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6 mb-3">
           <label for="profile_firstname" class="form-label">Vorname</label>
-          <input type="text" class="form-control" id="profile_firstname">
+          <input type="text" class="form-control" id="profile_firstname" name="profile_firstname" required>
         </div>
         <div class="col-md-6 mb-3">
           <label for="profile_lastname" class="form-label">Nachname</label>
-          <input type="text" class="form-control" id="profile_lastname">
+          <input type="text" class="form-control" id="profile_lastname" name="profile_lastname" required>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6 mb-3">
           <label for="profile_email" class="form-label">E-Mail</label>
-          <input type="email" class="form-control" id="profile_email">
+          <input type="email" class="form-control" id="profile_email" name="profile_email" required>
         </div>
         <div class="col-md-6 mb-3">
           <label for="profile_company" class="form-label">Firma</label>
-          <input type="text" class="form-control" id="profile_company">
+          <input type="text" class="form-control" id="profile_company" name="profile_company">
         </div>
       </div>
       <div class="row">
         <div class="col-md-4 mb-3">
           <label for="profile_postcode" class="form-label">Postleitzahl</label>
-          <input type="number" class="form-control" id="profile_postcode">
+          <input type="number" class="form-control" id="profile_postcode" name="profile_postcode" required>
         </div>
         <div class="col-md-4 mb-3">
           <label for="profile_city" class="form-label">Stadt</label>
-          <input type="text" class="form-control" id="profile_city">
+          <input type="text" class="form-control" id="profile_city" name="profile_city" required>
         </div>
         <div class="col-md-4 mb-3">
           <label for="profile_adress" class="form-label">Adresse</label>
-          <input type="text" class="form-control" id="profile_adress">
+          <input type="text" class="form-control" id="profile_adress" name="profile_adress" required>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6 mb-3">
           <label for="profile_paymethod" class="form-label">Zahlungsmittel</label>
-          <input type="text" class="form-control" id="profile_paymethod">
+          <input type="text" class="form-control" id="profile_paymethod" name="profile_paymethod" required>
         </div>
       </div>
 
       
-      <button type="submit" class="btn btn-primary">Profil speichern</button>
+      <button id="changeProfilButton" type="submit" class="btn btn-registrieren">Änderungen speichern</button>
     </form>
   </div>

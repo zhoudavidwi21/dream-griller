@@ -39,6 +39,37 @@ class UserService{
 
     }
 
+    public function changeUserProfile($formdata){
+        $id = $formdata['profile_id'];
+        $firstname = $formdata['profile_firstname'];
+        $lastname = $formdata['profile_lastname'];
+        $email = $formdata['profile_email'];
+        $company = $formdata['profile_company'];
+        $postcode = $formdata['profile_postcode'];
+        $city = $formdata['profile_city'];
+        $adress = $formdata['profile_adress'];
+        $paymethod = $formdata['profile_paymethod'];
+
+        $query = "UPDATE customers SET email = :email, firstname = :firstname, lastname = :lastname,
+            company = :company, adress = :adress, postcode = :postcode, city = :city, paymethod = :paymethod
+            WHERE id = :id";
+
+        $params = array(
+            ':email' => $email,
+            ':firstname' => $firstname,
+            ':lastname' => $lastname,
+            ':company' => $company,
+            ':adress' => $adress,
+            ':postcode' => $postcode,
+            ':city' => $city,
+            ':paymethod' => $paymethod,
+            ':id' => $id
+        );
+
+        $this->database->executeQuery($query, $params);
+        
+    }
+
     public function getUserById($id){
 
         $query = "SELECT * FROM customers WHERE id = :userId";

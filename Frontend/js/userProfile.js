@@ -10,10 +10,9 @@ $(document).ready(function() {
     let id = $("#profile_id").val()
     load_UserInfo(id)
 
+
     function load_UserInfo(id){
-
         $.ajax({
-
             url: "../Backend/RequestHandler.php",
             method: "GET",
             dataType: "json",
@@ -23,12 +22,10 @@ $(document).ready(function() {
                   id: id
                 }
             },
-
             success: function(response){
-
-                console.log(response);
-                let content = "";
-
+                //console.log(response);
+            
+                $("#profile_id").val(response.id)
                 $("#profile_username").val(response.username)
                 $("#profile_firstname").val(response.firstname)
                 $("#profile_lastname").val(response.lastname)
@@ -38,15 +35,6 @@ $(document).ready(function() {
                 $("#profile_city").val(response.city)
                 $("#profile_adress").val(response.adress)
                 $("#profile_paymethod").val(response.paymethod)
-
-
-                $.each(response, function(key, user) {
-
-                
-                    
-                });
-
-                //$('#userTable').html(content);
                     
             },
             error: function(response){
@@ -55,12 +43,29 @@ $(document).ready(function() {
         })
     }
 
-    function changeStatus(id, newValue){                            
-        
-        
+    $("#profileform").on("submit", function(e){
+        e.preventDefault();
+        const formData = new FormData(this);
 
+        submitProfile(formData);
+    })
+
+    function submitProfile(formData){
+        $.ajax({
+            url: "../Backend/RequestHandler.php?resource=userprofile",
+            method: "POST",
+            dataType: "json",
+            data: formData,
+            contentType: false,
+            processData: false,
+
+            success: function(response){
+                console.log(response)
+            },
+            error: function(response){
+                console.log(response)
+            }
+        })
     }
-
-
 
 })
