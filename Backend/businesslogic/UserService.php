@@ -39,8 +39,31 @@ class UserService{
 
     }
 
-    public function getUserByName($name){
-        
+    public function getUserById($id){
+
+        $query = "SELECT * FROM customers WHERE id = :userId";
+        $params = ['userId' => $id];
+        $res = $this->database->executeQuery($query, $params);
+
+        $row = $res[0];
+        $user = new User(
+            $row['id'],
+            $row['username'],
+            $row['email'],
+            // $row['password'],
+            $row['firstname'],
+            $row['lastname'],
+            $row['company'],
+            $row['gender'],
+            $row['adress'],
+            $row['postcode'],
+            $row['city'],
+            $row['paymethod'],
+            boolval($row['enabled']),
+            $row['role']
+        );
+
+        return $user;
     }
 
     public function changeUserStatus($id, $newValue){

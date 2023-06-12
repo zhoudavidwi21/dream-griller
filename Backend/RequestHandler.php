@@ -9,17 +9,19 @@ class RequestHandler {
     private $productService;
     private $orderService;
     private $cartService;
-    //...
+    private $couponService;
 
     public function __construct() {
         include "./businesslogic/UserService.php";
         include "./businesslogic/ProductService.php";
         include "./businesslogic/OrderService.php";
         include "./businesslogic/CartService.php";
+        include "./businesslogic/CouponService.php";
         $this->userService = new UserService();
         $this->productService = new ProductService();
         $this->orderService = new OrderService();
         $this->cartService = new CartService();
+        $this->couponService = new CouponService();
     }
 
     public function handleRequest() {
@@ -53,7 +55,7 @@ class RequestHandler {
                 $this->success(200, $this->userService->getAllUsers());
                 break;
             case 'user':
-                $this->success(200, $this->userService->getUserByName($params['name']));
+                $this->success(200, $this->userService->getUserById($params['id']));
                 break;
             case 'products':
                 $this->success(200, $this->productService->getAllProducts());
@@ -70,6 +72,9 @@ class RequestHandler {
             case 'order':
                 $this->success(200, $this->orderService->getOrderById($params['id']));
                 break;
+            case 'coupons':
+                $this->success(200, $this->couponService->getAllCoupons());
+                break;
             default:
                 $this->error(404, "Resource not found");
                 break;
@@ -77,14 +82,6 @@ class RequestHandler {
     }
 
     private function handlePostRequest(string $resource) {
-//        // Get the request body
-//        $requestBody = file_get_contents('php://input');
-//        $requestData = json_decode($requestBody, true);
-
-        // Check if the request body is valid JSON
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            $this->error(400, "Invalid request body");
-        }
 
         switch ($resource) {
             case 'user':
@@ -97,6 +94,9 @@ class RequestHandler {
             case 'order':
                 // Handle creating a new order
                 break;
+            case 'coupon':
+                $requestData = $this->getTheRequestBody();
+                $this->success(201, $this->couponService->saveCoupon($requestData));
             default:
                 $this->error(500, "Post request failed");
                 break;
@@ -156,6 +156,21 @@ class RequestHandler {
         header('Content-Type: application/json');
         echo json_encode(['error' => $msg]);
         exit;
+    }
+
+    /** gets the post request body if it was json and returns it as json decoded
+     * @return mixed
+     */
+    private function getTheRequestBody(): mixed
+    {
+        // Get the request body
+        $requestBody = file_get_contents('php://input');
+        $requestData = json_decode($requestBody, true);
+        // Check if the request body is valid JSON
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            $this->error(400, "Invalid request body");
+        }
+        return $requestData;
     }
 
 }

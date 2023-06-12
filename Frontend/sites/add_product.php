@@ -32,7 +32,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
                 <div class="mb-3">
                     <label for="productName" class="form-label fw-bold">Produkt Name</label>
                     <input type="text" class="form-control" id="productName" name="productName"
-                           placeholder="Griller Name">
+                           placeholder="Griller Name" required>
                 </div>
 
                 <!-- Product Description -->
@@ -50,7 +50,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
                                 <input type="number" class="form-control" id="productPrice" step="0.01"
-                                       name="productPrice" placeholder="0.00">
+                                       name="productPrice" placeholder="0.00" required>
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
                         <div class="mb-3">
                             <label for="productRating" class="form-label fw-bold">Bewertung</label>
                             <input type="number" class="form-control" id="productRating" step="0.1" name="productRating"
-                                   placeholder="0">
+                                   placeholder="0" required>
                         </div>
                     </div>
                 </div>
@@ -81,6 +81,11 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
                             <input class="form-check-input" type="checkbox" value="pellet" id="categoryPellet"
                                    name="productCategoriesPellet">
                             <label class="form-check-label" for="categoryPellet">Pellet Griller</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="sale" id="categorySale"
+                                   name="productCategoriesSale">
+                            <label class="form-check-label" for="categorySale">Verkauf</label>
                         </div>
                     </div>
                 </div>

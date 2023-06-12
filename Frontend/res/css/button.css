@@ -76,3 +76,10 @@
 .table-fit {
     width: 1px;
 }
+
+.custom-container {
+    max-width: 1000px;
+    margin: 0 auto; /* Horizontale Zentrierung */
+    justify-content: center; /* Inhalt horizontal zentrieren */
+    align-items: center; /* Inhalt vertikal zentrieren */
+}

@@ -26,5 +26,3 @@ class Product {
         $this->sale = $sale;
     }
 }
-
-?>
