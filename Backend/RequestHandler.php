@@ -72,6 +72,9 @@ class RequestHandler {
             case 'order':
                 $this->success(200, $this->orderService->getOrderById($params['id']));
                 break;
+            case 'coupons':
+                $this->success(200, $this->couponService->getAllCoupons());
+                break;
             default:
                 $this->error(404, "Resource not found");
                 break;
