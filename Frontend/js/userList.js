@@ -52,6 +52,7 @@ $(document).ready(function() {
                         <td><a id="enableUser${user.id}" class="btn btn-success btn-sm" href="#">Aktivieren</a></td>
                         `
                     }
+                    
 
                     content += "</tr>"                              //appends table row for every DB entry
 
