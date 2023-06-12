@@ -3,6 +3,7 @@
 <?php require_once('../Backend/config/dbaccess.php'); ?>
 
 <?php
+
 // Checking the 'role' variable - only unlogged users can access login
 /*
 if ($_SESSION['role'] !== "guest") {
@@ -29,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       exit();
     }
 
-    $sql = "SELECT * FROM `customers` WHERE (`username` = ? OR `email` = ?) AND `enabled` = 1";
+    $sql = "SELECT * FROM `customers` WHERE `username` = ? AND `enabled` = 1";
     $stmt = $db_obj->prepare($sql);
-    $stmt->bind_param("ss", $_POST["username"], $_POST["username"]);
+    $stmt->bind_param("s", $_POST["username"]);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -57,8 +58,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $db_obj->close();
 
+        // Set cookies if "Eingeloggt bleiben" is checked
+        if (isset($_POST['remember']) && $_POST['remember'] == true) {
+          $cookieDuration = 31536000; // Valid for 1 year
+          setcookie('id', $_SESSION['id'], time() + $cookieDuration, "/");
+          setcookie('loginCookie', $cookieDuration, time() + $cookieDuration, "/");
+        } 
 
-        
         header('Location: ./index.php');
         exit();
       } else {
@@ -70,12 +76,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
   }
 }
+/*
 // Set cookies if "Eingeloggt bleiben" is checked
 if (isset($_POST['remember']) && $_POST['remember'] == true) {
   $cookieDuration = 31536000; // Valid for 1 year
   setcookie('id', $_SESSION['id'], time() + $cookieDuration, "/");
   setcookie('loginCookie', $cookieDuration, time() + $cookieDuration, "/");
-} 
+} */
 
 ?>
 
@@ -93,8 +100,8 @@ if (isset($_POST['remember']) && $_POST['remember'] == true) {
               <input type="text" class="form-control has-validation
                         <?php if (isset($_POST['username']) && $_SESSION['role'] === 'guest') {
                           echo "is-invalid";
-                        } ?>" id="floatingInput" placeholder="Benutzername oder E-Mail" name="username">
-              <label for="floatingInput">Benutzername oder E-Mail</label>
+                        } ?>" id="floatingInput" placeholder="Benutzername" name="username">
+              <label for="floatingInput">Benutzername</label>
             </div>
             <div class="form-floating">
               <input type="password" class="form-control has-validation

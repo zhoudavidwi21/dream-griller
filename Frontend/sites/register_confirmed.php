@@ -1,12 +1,7 @@
 <?php include "./res/templates/sessions.php"; ?>
 
-<?php
-//Nur Admins können Newsbeiträge erstellen
-if (isset($_SESSION['role']) && $_SESSION['role'] !== "guest") {
-    header('Refresh:1; url=index.php?site=error');
-    exit();
-}
-?>
+
+
 
 <?php
 session_unset();
