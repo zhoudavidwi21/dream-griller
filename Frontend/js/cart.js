@@ -83,7 +83,7 @@ $(document).ready(function() {
                     <img id="pic-${product.id}" class="img-fluid rounded mb-4 mb-lg-0" src="./res/img/products/6481f8b978031_products-image(1).jpg">
                     <p id="description-${product.id}" class="card-text">${product.description}</p>
                     <span id="price-${product.id}" class="price fs-4">${product.price} €</span>
-                    <p <span id="rating-${product.id}" style="font-style: italic" class="rating fs-6">Bewertung: ${product.rating}/10</span></p>
+                    <p <span id="rating-${product.id}" style="font-style: italic" class="rating fs-6">Bewertung: ${product.rating}/5</span></p>
                     </div>
                     <div class="card-footer">
                     <a id="prodcart-${product.id}" class="btn btn-sonstige btn-sm">In den Einkaufswagen</a>
