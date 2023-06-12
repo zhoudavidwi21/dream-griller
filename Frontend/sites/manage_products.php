@@ -36,7 +36,8 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
         <th>Katetorie-Gas</th>
         <th>Kategorie-Kohle</th>
         <th>Kategorie-Pellet</th>
-        <th>Verkauf</th>
+        <th>Aktiviert</th>
+        <th></th>
         <th></th>
       </tr>
     </thead>

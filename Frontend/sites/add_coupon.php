@@ -28,7 +28,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
                 <div class="mb-3">
                     <label for="couponCode" class="form-label fw-bold">Gutschein Code</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="couponCode" name="couponCode" placeholder="Enter coupon code" required>
+                        <input type="text" class="form-control" id="couponCode" name="couponCode" placeholder="Gutschein Code generieren -->" required>
                         <button class="btn btn-secondary" type="button" id="generateCodeButton">Code generieren</button>
                     </div>
                 </div>

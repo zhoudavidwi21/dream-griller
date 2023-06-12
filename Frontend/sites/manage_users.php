@@ -23,7 +23,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
   </div>
 </div>
 
-<div class="container"  style="margin-top: 25px">       
+<div class="row container-fluid justify-content-center mt-4">    
   <table class="table table-fit">
     <thead>
       <tr>

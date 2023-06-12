@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
     $(document).on('click', '[id^=disableProduct]', function(){
-        changeStatus(parseInt($(this).attr("id").slice(11), 10), false)
+        changeStatus(parseInt($(this).attr("id").slice(14), 10), false)
     })                                                                                  //slice productID from pushed buttons
     $(document).on('click', '[id^=enableProduct]', function(){
-        changeStatus(parseInt($(this).attr("id").slice(10), 10), true)
+        changeStatus(parseInt($(this).attr("id").slice(13), 10), true)
     });
 
     load_productList()
@@ -45,7 +45,7 @@ $(document).ready(function() {
                         <td>${product.charcoal}</td>
                         <td>${product.pellet}</td>
                         <td>${product.sale}</td>
-
+                        <td><a id="changeProduct${product.id}" class="btn btn-primary btn-sm" href="#">Produkt ändern</a></td>                    
                    `
                     if(product.sale){
                         content += `
