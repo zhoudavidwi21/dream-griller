@@ -82,6 +82,11 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
                                    name="productCategoriesPellet">
                             <label class="form-check-label" for="categoryPellet">Pellet Griller</label>
                         </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="sale" id="categorySale"
+                                   name="productCategoriesSale">
+                            <label class="form-check-label" for="categorySale">Verkauf</label>
+                        </div>
                     </div>
                 </div>
 
