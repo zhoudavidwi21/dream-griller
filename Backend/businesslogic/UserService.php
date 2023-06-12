@@ -39,6 +39,11 @@ class UserService{
 
     }
 
+    public function changeUserStatus($id, $newValue){
+        $query = "UPDATE customers SET `enabled` = $newValue WHERE `id` = $id";
+        $res = $this->database->executeQuery($query);
+    }
+
     public function getUserById($id){
 
         $query = "SELECT * FROM customers WHERE id = :userId";
@@ -66,8 +71,4 @@ class UserService{
         return $user;
     }
 
-    public function changeUserStatus($id, $newValue){
-        $query = "UPDATE customers SET `enabled` = $newValue WHERE `id` = $id";
-        $res = $this->database->executeQuery($query);
-    }
 }

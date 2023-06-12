@@ -21,7 +21,7 @@
         </div>
 
         <h2 class="font-weight-light"><strong>Unsere Griller ...</strong></h2>
-        <h2 class="font-weight-light">Wählen Sie eine Kategorie</h2>
+        <h2 class="font-weight-light">... wählen Sie eine Kategorie</h2>
 
         <!-- Choose Grill Categorie -->
         <div style="margin-bottom: 25px">
