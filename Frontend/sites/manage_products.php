@@ -38,6 +38,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
         <th>Kategorie-Pellet</th>
         <th>Aktiviert</th>
         <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody id="productTable">

@@ -42,8 +42,7 @@ $(document).ready(function() {
                             <td>${user.city}</td>
                             <td>${user.paymethod}</td>
                             <td>${user.enabled}</td>
-                            <td><a id="ordersUser${user.id}" class="btn btn-primary btn-sm" href="#">Bestellungen</a></td>                    
-
+                            <td><a id="ordersUser${user.id}" class="btn btn-primary btn-sm" href="#">Bestellungen ansehen</a></td>                    
                         `
                         if(user.enabled){
                             content += `

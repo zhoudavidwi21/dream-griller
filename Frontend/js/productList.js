@@ -45,7 +45,7 @@ $(document).ready(function() {
                         <td>${product.charcoal}</td>
                         <td>${product.pellet}</td>
                         <td>${product.sale}</td>
-
+                        <td><a id="changeProduct${product.id}" class="btn btn-primary btn-sm" href="#">Produkt ändern</a></td>                    
                    `
                     if(product.sale){
                         content += `
