@@ -12,7 +12,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
 
 <div class="text-center container-fluid">
 
-  <h1 class="h1 mb-3 fw-normal">Gutscheine verwalten</h1>
+  <h1 class="h1 mb-3 fw-normal">Gutscheine Übersicht</h1>
 
   <div class="row justify-content-md-center">
     <div class="col-lg-2 col-md-3">
