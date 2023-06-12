@@ -6,6 +6,24 @@ $(document).ready(function() {
     $(document).on('click', '[id^=removeProduct]', function(){
         removeItem(parseInt($(this).attr("id").slice(13), 10))                      //slicing productId from product that should be removed
     });
+
+    // Add event listener for dragstart event on product cards
+    $(document).on('dragstart', '.card', function(event) {
+        const productId = $(this).attr('id').slice(5);
+        event.originalEvent.dataTransfer.setData('text/plain', productId);
+    });
+
+    // Add event listener for dragover event on the cart container
+    $('#cartbtn').on('dragover', function(event) {
+        event.preventDefault();
+    });
+
+    // Add event listener for drop event on the cart container
+    $('#cartbtn').on('drop', function(event) {
+        event.preventDefault();
+        const productId = event.originalEvent.dataTransfer.getData('text/plain');
+        putInCart(productId);
+    });
     
     var cartExists = sessionStorage.getItem("cart")
 
@@ -59,9 +77,9 @@ $(document).ready(function() {
 
                     let content = `
                     <div class="col-md-4 mb-5">
-                    <div class="card h-100" id="item-">
+                    <div class="card h-100" id="item-${product.id}">
                     <div class="card-body">
-                    <a><h2 id="title-${product.id}" class="card-title">${product.name}</h2></a>
+                    <a><h2 id="title-${product.id}" class="card-title" draggable="true">${product.name}</h2></a>
                     <img id="pic-${product.id}" class="img-fluid rounded mb-4 mb-lg-0" src="./res/img/products/6481f8b978031_products-image(1).jpg">
                     <p id="description-${product.id}" class="card-text">${product.description}</p>
                     <span id="price-${product.id}" class="price fs-4">${product.price} €</span>
