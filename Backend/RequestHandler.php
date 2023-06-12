@@ -53,7 +53,7 @@ class RequestHandler {
                 $this->success(200, $this->userService->getAllUsers());
                 break;
             case 'user':
-                $this->success(200, $this->userService->getUserByName($params['name']));
+                $this->success(200, $this->userService->getUserById($params['id']));
                 break;
             case 'products':
                 $this->success(200, $this->productService->getAllProducts());
