@@ -6,7 +6,6 @@ include "./models/Product.php";
 /**
  * TODO: Implement Product Service Class
  *  - implements CRUD operations
- *  - POST product .... save product (= create new one)
  *  - DELETE product .. delete existing product
  */
 class ProductService {

@@ -32,7 +32,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
                 <div class="mb-3">
                     <label for="productName" class="form-label fw-bold">Produkt Name</label>
                     <input type="text" class="form-control" id="productName" name="productName"
-                           placeholder="Griller Name">
+                           placeholder="Griller Name" required>
                 </div>
 
                 <!-- Product Description -->
@@ -50,7 +50,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
                                 <input type="number" class="form-control" id="productPrice" step="0.01"
-                                       name="productPrice" placeholder="0.00">
+                                       name="productPrice" placeholder="0.00" required>
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
                         <div class="mb-3">
                             <label for="productRating" class="form-label fw-bold">Bewertung</label>
                             <input type="number" class="form-control" id="productRating" step="0.1" name="productRating"
-                                   placeholder="0">
+                                   placeholder="0" required>
                         </div>
                     </div>
                 </div>

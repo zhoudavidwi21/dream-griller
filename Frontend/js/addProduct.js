@@ -1,3 +1,26 @@
+/**
+ * Function to add an alert on method call
+ * @param alertType - type of message, changes color of alert
+ * (primary, secondary, success, danger, warning, info, light, dark)
+ * @param alertMessage - message inside alert
+ */
+function showAlert(alertType, alertMessage) {
+    const alertDiv = $('<div>').addClass(`alert alert-${alertType} alert-dismissible fade show`).attr('role', 'alert');
+    const strongTag = $('<strong>').text(`${alertMessage}`);
+    const button = $('<button>').addClass('btn-close').attr({
+        'type': 'button',
+        'data-bs-dismiss': 'alert',
+        'aria-label': 'Close'
+    });
+
+    alertDiv.append(strongTag, button);
+    $('h1').prepend(alertDiv);
+
+    // Automatically dismiss the alert after 3 seconds
+    setTimeout(function () {
+        alertDiv.alert('close');
+    }, 5000);
+}
 $(document).ready(function () {
     $("#productForm").on("submit", function (e) {
         e.preventDefault();
@@ -36,29 +59,5 @@ $(document).ready(function () {
                 console.log(error);
             }
         });
-    }
-
-    /**
-     * Function to add an alert on method call
-     * @param alertType - type of message, changes color of alert
-     * (primary, secondary, success, danger, warning, info, light, dark)
-     * @param alertMessage - message inside alert
-     */
-    function showAlert(alertType, alertMessage) {
-        const alertDiv = $('<div>').addClass(`alert alert-${alertType} alert-dismissible fade show`).attr('role', 'alert');
-        const strongTag = $('<strong>').text(`${alertMessage}`);
-        const button = $('<button>').addClass('btn-close').attr({
-            'type': 'button',
-            'data-bs-dismiss': 'alert',
-            'aria-label': 'Close'
-        });
-
-        alertDiv.append(strongTag, button);
-        $('h1').prepend(alertDiv);
-
-        // Automatically dismiss the alert after 3 seconds
-        setTimeout(function () {
-            alertDiv.alert('close');
-        }, 5000);
     }
 });

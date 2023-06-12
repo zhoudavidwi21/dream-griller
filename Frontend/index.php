@@ -58,7 +58,9 @@
 
   
   <script src="./js/userProfile.js"></script>
-<!--  <script src="./js/logout.js"></script>  -->
+  <script src="./js/addCoupon.js"></script>
+  <script src="./js/couponList.js"></script>
+  <!--  <script src="./js/logout.js"></script>  -->
 
 </body>
 
