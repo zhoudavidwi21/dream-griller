@@ -20,31 +20,23 @@ if ($db_obj->connect_error) {
 }
 ?>
 
+
 <div class="text-center container-fluid">
 
-    <h1 class="h1 mb-3 fw-normal">Passwort ändern</h1>
-<!--
-  <div class="row justify-content-md-center">
+  <h1 class="h1 mb-3 fw-normal">Passwort ändern</h1>
+
+  <div class="row justify-content-lg-center">
     <div class="col-lg-2 col-md-3">
 
       <img class="mb-4" src="./res/img/logo/Logo_Basis_transparent_Schrift_groß_KLEIN_500x260.png" alt="Dreamgriller Logo" width="144" height="114">
 
     </div>
   </div>
--->
-
-<!--
-  <h2 class="mt-5">Hallo
-    <?php //echo $_SESSION["username"]; ?>! <br>
-    <h4>Hier können Sie Ihre Daten ändern ...</h4>
-  </h2>
--->
 
 </div>
 
-<div class="custom-container mt-5">
-    <h1>Hallo <?php echo $_SESSION["username"]; ?>!</h1>
-
+<div class="custom-container-pw mt-5">
+<h1>Hallo <?php echo $_SESSION["username"]; ?>!</h1>
     <form id="passwordform" method="POST">
         <div class="row">
             <div class="col-md-12 mb-3">
@@ -79,7 +71,7 @@ if ($db_obj->connect_error) {
             </div>
         </div>
         <button id="changePwButton" type="submit" class="btn btn-registrieren">Änderungen speichern</button>
-       
-    </form>
-  </div>
 
+        
+    </form>
+</div>
