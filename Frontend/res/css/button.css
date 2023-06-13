@@ -83,3 +83,10 @@
     justify-content: center; /* Inhalt horizontal zentrieren */
     align-items: center; /* Inhalt vertikal zentrieren */
 }
+
+.custom-container-pw {
+    max-width: 700px;
+    margin: 0 auto; /* Horizontale Zentrierung */
+    justify-content: center; /* Inhalt horizontal zentrieren */
+    align-items: center; /* Inhalt vertikal zentrieren */
+}

@@ -1,5 +1,6 @@
 <?php
 include "./models/User.php";
+session_start();
 
 class UserService{
 
@@ -100,6 +101,58 @@ class UserService{
         );
 
         return $user;
+    }
+
+    public function checkPassword($post){
+        $plainPassword = $post['password'];
+        $userId = $post['id'];
+
+        $query = "SELECT `password` FROM customers WHERE id = :userId";
+        $params = ['userId' => $userId];
+        $res = $this->database->executeQuery($query, $params);
+
+        $hashedPassword = $res[0]['password'];
+
+        if (password_verify($plainPassword, $hashedPassword)) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public function validatePassword($post){
+        $old = $post['old'];
+        $new = $post['new'];
+        $newPwValidation = $post['newPwValidation'];
+        $userId = $_SESSION['id'];
+
+        $query = "SELECT `password` FROM customers WHERE id = :userId";
+        $params = ['userId' => $userId];
+        $res = $this->database->executeQuery($query, $params);
+
+        $hashedPassword = $res[0]['password'];
+
+        if(!password_verify($new, $hashedPassword)                      //neues Passwort != Passwort aus DB
+        && $new === $newPwValidation                                    //neues Passwort == Passwort zum Bestätigen
+        && password_verify($old, $hashedPassword)                       //altes Passwort == altes Passwort aus DB
+        ){
+            $dbPassword = password_hash($new, PASSWORD_DEFAULT);
+
+            $query = "UPDATE customers SET `password` = :password  WHERE id = :userId";
+            $params = array(
+                ':userId' => $userId,
+                ':password' => $dbPassword
+            );
+            $this->database->executeQuery($query, $params);
+
+            return true;
+
+        }else{
+            
+            return false;
+        }
+
     }
 
 }

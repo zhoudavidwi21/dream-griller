@@ -1,13 +1,6 @@
 $(document).ready(function() {
 
-    /*$(document).on('click', '[id^=disableUser]', function(){
-        changeStatus(parseInt($(this).attr("id").slice(11), 10), false)
-    })                                                                                  //slice userID from pushed buttons
-    $(document).on('click', '[id^=enableUser]', function(){
-        changeStatus(parseInt($(this).attr("id").slice(10), 10), true)
-    });*/
-
-    let id = $("#profile_id").val()
+    let id = $("#profile_id").val();
     load_UserInfo(id)
 
 
@@ -23,7 +16,6 @@ $(document).ready(function() {
                 }
             },
             success: function(response){
-                //console.log(response);
             
                 $("#profile_id").val(response.id)
                 $("#profile_username").val(response.username)
@@ -47,8 +39,42 @@ $(document).ready(function() {
         e.preventDefault();
         const formData = new FormData(this);
 
-        submitProfile(formData);
+        const plainPassword = $("#profile_password").val()
+        const id = $("#profile_id").val()
+
+        checkPassword(formData, plainPassword, id)
     })
+
+    function checkPassword(formData, plainPassword, id){
+        $.ajax({
+            
+            url: '../Backend/RequestHandler.php?resource=userpw',
+            type: 'POST',
+            data: { password: plainPassword,  id: id},
+            success: function(response) {
+              if(response){
+                $("#userChangeSuccess").show();
+                submitProfile(formData)
+
+                setTimeout(function() {
+                    $("#userChangeSuccess").hide();
+                }, 3000);
+
+
+              }else{
+                $("#userChangeFail").show();
+
+                setTimeout(function() {
+                    $("#userChangeFail").hide();
+                }, 3000);
+              }
+            },
+            error: function(error) {
+              console.error(error);
+            }
+          });
+
+    }
 
     function submitProfile(formData){
         $.ajax({
@@ -60,12 +86,52 @@ $(document).ready(function() {
             processData: false,
 
             success: function(response){
-                console.log(response)
+                //console.log(response)
             },
             error: function(response){
-                console.log(response)
+                //console.log(response)
             }
         })
     }
+
+    $("#passwordform").on("submit", function(e){
+        e.preventDefault();
+
+        const oldPw = $("#old_pw").val();
+        const newPw = $("#new-pw").val();
+        const newPwValidation = $("#new-pw-validate").val();
+
+        validateNewPassword(oldPw, newPw, newPwValidation)
+    })
+
+    function validateNewPassword(oldPw, newPw, newPwValidation){
+        $.ajax({
+            
+            url: '../Backend/RequestHandler.php?resource=newpw',
+            type: 'POST',
+            data: { old: oldPw,  new: newPw, newPwValidation: newPwValidation},
+            success: function(response) {
+                if(response){
+                    $("#pwChangeSuccess").show();
+    
+                    setTimeout(function() {
+                        $("#pwChangeSuccess").hide();
+                    }, 3000);
+    
+                  }else{
+                    $("#pwChangeFail").show();
+    
+                    setTimeout(function() {
+                        $("#pwChangeFail").hide();
+                    }, 3000);
+                  }
+            },
+            error: function(error) {
+                console.error(error);
+            }
+          });
+    }
+
+    
 
 })

@@ -96,7 +96,31 @@ if ($db_obj->connect_error) {
         </div>
       </div>
 
+      <h4>Änderungen bestätigen</h4>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="profile_password" class="form-label">Bitte geben Sie hier Ihr Passwort ein</label>
+          <input type="password" class="form-control" id="profile_password" name="profile_password" >
+        </div>
+      </div>
+      <div class="row" id="userChangeSuccess" style="display: none">
+        <div class="col-md-6 mb-3">
+          <div class="alert alert-success">
+          Änderungen erfolgreich gespeichert!
+          </div>
+        </div>
+      </div>
+      <div class="row" id="userChangeFail" style="display: none">
+        <div class="col-md-6 mb-3">
+          <div class="alert alert-danger">
+          Das Passwort wurde falsch eingegeben!
+          </div>
+        </div>
+      </div>
+
       
       <button id="changeProfilButton" type="submit" class="btn btn-registrieren">Änderungen speichern</button>
+      <a class="btn btn-registrieren" href="index.php?site=change_password">Passwort ändern</a>
     </form>
   </div>
