@@ -47,11 +47,11 @@ if ($db_obj->connect_error) {
     <form id="profileform" method="POST">
     <div class="row">
         <div class="col-md-6 mb-3">
-          <label for="profile_id" class="form-label">User-ID</label>
+          <label for="profile_id" class="form-label">User-ID (nicht änderbar)</label>
           <input type="text" class="form-control" id="profile_id" name="profile_id" value="<?php echo $_SESSION['id']?>" readonly>
         </div>
         <div class="col-md-6 mb-3">
-          <label for="profile_username" class="form-label">User-Name</label>
+          <label for="profile_username" class="form-label">User-Name (nicht änderbar)</label>
           <input type="text" class="form-control" id="profile_username"  name="profile_username" readonly>
         </div>
       </div>
@@ -118,7 +118,6 @@ if ($db_obj->connect_error) {
           </div>
         </div>
       </div>
-
       
       <button id="changeProfilButton" type="submit" class="btn btn-registrieren">Änderungen speichern</button>
       <a class="btn btn-registrieren" href="index.php?site=change_password">Passwort ändern</a>
