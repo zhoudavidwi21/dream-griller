@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="./res/css/animation.css">
+
 <br>
     <!-- Page Content-->
     <div class="container px-4 px-lg-5">
@@ -11,14 +13,17 @@
 <!--                <a class="btn btn-primary" href="#!">Call to Action!</a>    -->
             </div>
         </div>
+
         <!-- Call to Action-->
-        <div class="card text-white bg-secondary my-5 py-6 text-center">
-            <div class="card-body">
-                <h4 class="text-white m-0">Da der Sommer in schnellen Schritten naht,<br>
+<!--        <div class="card text-white bg-secondary my-5 py-6 text-center">    -->
+<div class="card text-white bg-secondary my-5 py-6 text-center rotate-horizontal" id="ctaCard">
+    <div class="card-body">
+        <h4 class="text-white m-0">Da der Sommer in schnellen Schritten naht,<br>
             bekommen Sie zu jedem Griller einen Gutschein von<br><strong>STEAK-FOR-ME</strong><br>dazu !!!!!
-            </p> </h4>
-            </div>
-        </div>
+        </h4>
+    </div>
+</div>
+
 
         <h2 class="font-weight-light"><strong>Unsere Griller ...</strong></h2>
         <h2 class="font-weight-light">... wählen Sie eine Kategorie</h2>
