@@ -75,7 +75,7 @@ $(document).ready(function() {
 
                 $.each(response, function(key, product) {
                     // Prüfen, ob das Produkt aktiv ist
-//                    if (product.sale === 1) {
+                   if (product.sale === true) {
                       let content = `
                         <div class="col-md-4 mb-5">
                           <div class="card h-100" id="item-${product.id}">
@@ -95,7 +95,7 @@ $(document).ready(function() {
                       $('#prodcart-' + product.id).on("click", function() {
                         putInCart($(this).attr("id").slice(9));
                       });
-//                    }
+                   }
                   });
                 },
             error: function(response){

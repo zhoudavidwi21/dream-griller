@@ -1,4 +1,3 @@
-//TODO Fix logout bug when cookie is set
 function logout() {
     $.ajax({
         url: './res/templates/logout.php',
