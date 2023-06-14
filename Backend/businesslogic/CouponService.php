@@ -41,11 +41,12 @@ class CouponService {
 
         // Insert extracted Data
         $query = "INSERT INTO coupons (code, amount, residual_value, expirydate) 
-              VALUES (:code, :amount, :expirydate)";
+              VALUES (:code, :amount, :residual_value, :expirydate)";
 
         $params = array(
             ':code' => $code,
             ':amount' => $amount,
+            ':residual_value' => $amount,
             ':expirydate' => $expirydate,
         );
 
