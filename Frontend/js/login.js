@@ -1,32 +1,62 @@
-// Formularübermittlung abfangen
-document.getElementById("login-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Das Standardformularverhalten verhindern
-  
-    // Formulardaten sammeln
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-  
-    // AJAX-Anfrage senden
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "./sites/login_alternative.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-        var response = JSON.parse(xhr.responseText);
-        if (response.success) {
-          // wenn Anmeldung erfolgreich, leiten Sie den Benutzer weiter
-          window.location.href = "../index.php";
-        } else {
-          // wenn Anmeldung fehlgeschlagen, Fehlermeldung anzeigen
-          alert(response.message);
-        }
-      }
-    };
-    
-    // Daten in das gewünschte Format codieren (z. B. URL-Codierung)
-    var data = "username=" + encodeURIComponent(username) + "&password=" + encodeURIComponent(password);
-  
-    // AJAX-Anfrage senden
-    xhr.send(data);
-  });
-  
+function logout() {
+    if (!document.cookie.includes('loginCookie')) {
+        $.ajax({
+            url: './res/templates/logout.php',
+            method: 'GET',
+            success: function () {
+                location.reload();
+            }
+        });
+    }
+}
+$(document).ready(function () {
+    $("#loginForm").on("submit", function(e) {
+        e.preventDefault();
+        const form = $(e.target);
+        const json = convertFormToJSON(form);
+        // Send the login info to server
+        login(json);
+    });
+
+    // Function to generate a random 5-digit alphanumeric coupon code
+
+    function login(json) {
+        // Send the coupon code as JSON
+        $.ajax({
+            url: '../Backend/RequestHandler.php?resource=login',
+            method: 'POST',
+            dataType: 'json',
+            data: JSON.stringify(json),
+            contentType: 'application/json',
+            success: function(response) {
+                if (response.loginStatus === 'failed') {
+                    let message = ''
+                    switch (response.errorCode) {
+                        case 1:
+                            message = 'Password ist falsch.'
+                            break
+                        case 2:
+                            message = 'Benutzer nicht gefunden.'
+                            break
+
+                        default:
+                            message = 'Unbekannter Fehler.'
+                    }
+
+                    showAlert('danger', `Login fehlgeschlagen! \n Fehler: ${message}`)
+                } else {
+                    // similar behavior as an HTTP redirect
+                    // with replace cannot go back
+                    window.location.replace("/DreamGriller/Frontend/index.php");
+                    console.log("Successfully logged in");
+                }
+
+            },
+            error: function(xhr, status, error) {
+                showAlert('danger', 'Fehler beim Login!');
+                console.log("There has been an error");
+                console.log(error);
+            }
+        });
+    }
+})

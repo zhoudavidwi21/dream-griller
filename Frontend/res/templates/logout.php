@@ -20,7 +20,5 @@ if (isset($_COOKIE['loginCookie'])) {
     unset($_COOKIE['loginCookie']); 
     setcookie('loginCookie', null, time() - 3600, "/"); 
 }
-header('Refresh:0; url=../../index.php');
-//header('Location: ../../index.php'); // Weiterleitung zur index.php
 exit(); // Beenden des Skripts nach der Weiterleitung
-?>
+

@@ -248,9 +248,6 @@ $(document).ready(function() {
             data: JSON.stringify(json),
             contentType: 'application/json',
             success: function(response) {
-                if (response != null) {
-
-                }
                 // similar behavior as an HTTP redirect
                 // with replace cannot go back
                 window.location.replace("/DreamGriller/Frontend/index.php?site=register_confirmed");
