@@ -47,6 +47,36 @@
     --bs-btn-active-border-color: rgb(94, 56, 0); /* Rahmenfarbe beim Klick */
 }
 
+.btn-homepage {
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: rgb(255, 255, 255); /* Farbe der Schrift */
+    --bs-btn-bg: rgba(94, 56, 0, 0.352); /* Hintergrundfarbe */
+    --bs-btn-border-color: rgb(0, 0, 0); /* Rahmenfarbe */
+    --bs-btn-border-radius: 0.25rem; /* Rahmenradius */
+    --bs-btn-hover-color: rgb(255, 255, 255); /* Farbe der Schrift beim Hover */
+    --bs-btn-hover-bg: rgb(94, 56, 0); /* Hintergrundfarbe beim Hover */
+    --bs-btn-hover-border-color: ; /* Rahmenfarbe beim Hover */
+    --bs-btn-focus-shadow-rgb: ; /* Schattenfarbe beim Fokus */
+    --bs-btn-active-color: rgb(255, 255, 255); /* Farbe der Schrift beim Klick */
+    --bs-btn-active-bg: rgb(94, 56, 0); /* Hintergrundfarbe beim Klick */
+    --bs-btn-active-border-color: rgb(94, 56, 0); /* Rahmenfarbe beim Klick */
+}
+
+.btn-homepage:hover {
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: #000; /* Schriftfarbe ändern */
+    --bs-btn-bg: #fff; /* Hintergrundfarbe ändern */
+    /* Weitere gewünschte Stilanpassungen für den Hover-Effekt */
+}
+
+/* Aktuell ausgewählter Button - für homepage */
+input[type="radio"].btn-check:checked + label.btn-homepage {
+    /* Stil für den ausgewählten Button */
+    /* Zum Beispiel: */
+    --bs-btn-color: #000000; /* Schriftfarbe ändern */
+    --bs-btn-bg: #fff; /* Hintergrundfarbe ändern */
+    /* Weitere gewünschte Stilanpassungen */
+}
 
 .btn-dg-standard {
     --bs-btn-color: #fff;

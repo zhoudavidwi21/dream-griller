@@ -1,4 +1,9 @@
+<!-- Template animations -->
 <link rel="stylesheet" type="text/css" href="./res/css/animation.css">
+<!-- Template but./tons -->
+<link rel="stylesheet" href="./res/css/button.css">
+<!-- Template background -->
+<link rel="stylesheet" href="./res/css/background.css">
 
 <br>
     <!-- Page Content-->
@@ -14,40 +19,41 @@
             </div>
         </div>
 
-        <!-- Call to Action-->
-<!--        <div class="card text-white bg-secondary my-5 py-6 text-center">    -->
-<div class="card text-white bg-secondary my-5 py-6 text-center rotate-horizontal" id="ctaCard">
-    <div class="card-body">
-        <h4 class="text-white m-0">Da der Sommer in schnellen Schritten naht,<br>
-            bekommen Sie zu jedem Griller einen Gutschein von<br><strong>STEAK-FOR-ME</strong><br>dazu !!!!!
-        </h4>
+    <!-- Call to Action-->
+    <!--        <div class="card text-white bg-secondary my-5 py-6 text-center">    -->
+    <div class="card text-white my-5 py-6 text-center rotate-horizontal" id="ctaCard">
+        <div class="card-body">
+            <h4 class="text-white m-0">Da der Sommer in schnellen Schritten naht,<br>
+                bekommen Sie zu jedem Griller einen Gutschein von<br><strong>STEAK-FOR-ME</strong><br>dazu !!!!!
+            </h4>
+        </div>
+    </div>
+
+    <h2 class="font-weight-light"><strong>Unsere Griller ...</strong></h2>
+    <h2 class="font-weight-light">... wählen Sie eine Kategorie</h2>
+
+    <!-- Choose Grill Categorie -->
+    <div style="margin-bottom: 25px">
+
+        <input type="radio" class="btn-check" name="grillCategories" id="griller1" autocomplete="off" value="gas">
+        <label class="btn btn-homepage" for="griller1">Gas</label>
+
+        <input type="radio" class="btn-check" name="grillCategories" id="griller2" autocomplete="off" value="charcoal" checked>
+        <label class="btn btn-homepage" for="griller2">Holzkohle</label>
+
+        <input type="radio" class="btn-check" name="grillCategories" id="griller3" autocomplete="off" value="pellet">
+<!--         <label class="btn btn-secondary" for="griller3">Pellet</label>  -->
+        <label class="btn btn-homepage" for="griller3">Pellet</label>
+    </div>
+    <!-- end of categories -->
+
+    <!--  Continuous Search Filter -->
+    <h4 class="font-weight-light">und suchen Sie nach Ihrem DreamGriller!</h4>
+    <input type="text" class="form-control" id="searchfilter" placeholder="Name des Produkts" style="margin-bottom: 25px; width: 50%">
+    <!--  Continuous Search Filter -->
+
+    <!-- Content Row-->
+    <div class="row gx-4 gx-lg-5" id="contentRow">
+            
     </div>
 </div>
-
-
-        <h2 class="font-weight-light"><strong>Unsere Griller ...</strong></h2>
-        <h2 class="font-weight-light">... wählen Sie eine Kategorie</h2>
-
-        <!-- Choose Grill Categorie -->
-        <div style="margin-bottom: 25px">
-            <input type="radio" class="btn-check" name="grillCategories" id="griller1" autocomplete="off" value="gas">
-            <label class="btn btn-secondary" for="griller1">Gas</label>
-
-            <input type="radio" class="btn-check" name="grillCategories" id="griller2" autocomplete="off" value="charcoal" checked>
-            <label class="btn btn-secondary" for="griller2">Holzkohle</label>
-
-            <input type="radio" class="btn-check" name="grillCategories" id="griller3" autocomplete="off" value="pellet">
-            <label class="btn btn-secondary" for="griller3">Pellet</label>
-        </div>
-        <!-- end of categories -->
-
-        <!--  Continuous Search Filter -->
-        <h4 class="font-weight-light">und suchen Sie nach Ihrem DreamGriller!</h4>
-        <input type="text" class="form-control" id="searchfilter" placeholder="Name des Produkts" style="margin-bottom: 25px; width: 50%">
-        <!--  Continuous Search Filter -->
-
-        <!-- Content Row-->
-        <div class="row gx-4 gx-lg-5" id="contentRow">
-            
-        </div>
-    </div>

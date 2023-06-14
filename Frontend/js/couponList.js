@@ -29,6 +29,7 @@ $(document).ready(function() {
                         <td>${coupon.id}</td>
                         <td>${coupon.code}</td>
                         <td>${coupon.amount}</td>
+                        <td>${coupon.residual_value}</td>
                         <td>${formattedExpiryDate}</td>
                         <td>${formattedExpired}</td>
                    `

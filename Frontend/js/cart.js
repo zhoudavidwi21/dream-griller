@@ -80,8 +80,7 @@ $(document).ready(function() {
                     <div class="card h-100" id="item-${product.id}">
                     <div class="card-body">
                     <a><h2 id="title-${product.id}" class="card-title" draggable="true">${product.name}</h2></a>
-                    <img id="pic-${product.id}" class="img-fluid rounded mb-4 mb-lg-0" src="./res/img/products/6481f8b978031_products-image(1).jpg">
-                    <p id="description-${product.id}" class="card-text">${product.description}</p>
+                    <img id="pic-${product.id}" class="img-fluid rounded mb-4 mb-lg-0" src="${product.image}">                    <p id="description-${product.id}" class="card-text">${product.description}</p>
                     <span id="price-${product.id}" class="price fs-4">${product.price} €</span>
                     <p <span id="rating-${product.id}" style="font-style: italic" class="rating fs-6">Bewertung: ${product.rating}/5</span></p>
                     </div>

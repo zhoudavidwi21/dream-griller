@@ -30,6 +30,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
             <th>ID</th>
             <th>Code</th>
             <th>Wert</th>
+            <th>Restwert</th>
             <th>Ablaufdatum</th>
             <th>Abgelaufen</th>
         </tr>

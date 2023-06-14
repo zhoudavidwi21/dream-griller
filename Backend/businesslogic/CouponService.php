@@ -21,6 +21,7 @@ class CouponService {
                 $row['id'],
                 $row['code'],
                 $row['amount'],
+                $row['residual_value'],
                 $row['expirydate'],
                 boolval($row['expired'])
             );
@@ -39,7 +40,7 @@ class CouponService {
 
 
         // Insert extracted Data
-        $query = "INSERT INTO coupons (code, amount, expirydate) 
+        $query = "INSERT INTO coupons (code, amount, residual_value, expirydate) 
               VALUES (:code, :amount, :expirydate)";
 
         $params = array(
@@ -71,6 +72,7 @@ class CouponService {
                 $row['id'],
                 $row['code'],
                 $row['amount'],
+                $row['residual_value'],
                 $row['expirydate'],
                 boolval($row['expired'])
             );

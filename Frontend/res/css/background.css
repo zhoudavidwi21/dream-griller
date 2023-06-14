@@ -11,7 +11,12 @@ body{
 
 /*Hintergrund Farbe Header*/
 body nav{
-    background-color: rgba(144, 57, 6, 0.374)
+    background-color: rgba(144, 57, 6, 0.374);
 }
+
+/* Hintergrund für Animation - für homepage */
+#ctaCard {
+    background-color: rgba(144, 57, 6, 0.374);
+  }
 
 

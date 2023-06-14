@@ -89,11 +89,13 @@ if ($db_obj->connect_error) {
           <input type="text" class="form-control" id="profile_adress" name="profile_adress" required>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label for="profile_paymethod" class="form-label">Zahlungsmittel</label>
-          <input type="text" class="form-control" id="profile_paymethod" name="profile_paymethod" required>
-        </div>
+      <div class="col-md-6 mb-3">
+        <label for="profile_paymethod" class="form-label">Zahlungsmittel (als Dropdown)</label>
+        <select class="form-control" id="profile_paymethod" name="profile_paymethod" required>
+            <option value="Kreditkarte">Kreditkarte</option>
+            <option value="Vorkasse">Vorkasse</option>
+            <option value="Rechnung">Rechnung</option>
+        </select>
       </div>
 
       <h4>Änderungen bestätigen</h4>
