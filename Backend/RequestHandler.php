@@ -10,6 +10,7 @@ class RequestHandler {
     private $orderService;
     private $cartService;
     private $couponService;
+    private $loginService;
 
     public function __construct() {
         include "./businesslogic/UserService.php";
@@ -17,11 +18,13 @@ class RequestHandler {
         include "./businesslogic/OrderService.php";
         include "./businesslogic/CartService.php";
         include "./businesslogic/CouponService.php";
+        include "./businesslogic/LoginService.php";
         $this->userService = new UserService();
         $this->productService = new ProductService();
         $this->orderService = new OrderService();
         $this->cartService = new CartService();
         $this->couponService = new CouponService();
+        $this->loginService = new LoginService();
     }
 
     public function handleRequest() {
@@ -84,6 +87,10 @@ class RequestHandler {
     private function handlePostRequest(string $resource) {
 
         switch ($resource) {
+            case 'login':
+                // Handle creating a new user
+                $requestData = $this->getTheRequestBody();
+                $this->success(201, $this->loginService->login($requestData));
             case 'user':
                 // Handle creating a new user
                 $requestData = $this->getTheRequestBody();
