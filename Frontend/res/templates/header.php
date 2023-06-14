@@ -85,7 +85,7 @@ ob_start();
               <li><hr class="dropdown-divider"></li>
             <?php } ?>
 
-            <li><a class="dropdown-item" href="../Frontend/res/templates/logout.php">Logout</a></li>
+            <li><a class="dropdown-item" href="#" onclick=logout()>Logout</a></li>
 
           </ul>
         </div>
