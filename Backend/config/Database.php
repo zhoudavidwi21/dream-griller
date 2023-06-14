@@ -49,13 +49,8 @@ class Database {
      *     $database->executeQuery($query)
      *
      * Example 2:
-     *      $query = "SELECT * FROM products WHERE price > ?";
-     *      $params = ['d', 10.57];
-     *      $database->executeQuery($query, $params)
-     *
-     * Example 3:
-     *      $query = "INSERT INTO users (user, email, password) VALUES (?, ?, ?)";
-     *      $params = ['sss', 'test', 'test', '{passwordHash}']
+     *      $query = "SELECT * FROM products WHERE price > :price";
+     *      $params = array(':price' => 10.54);
      *      $database->executeQuery($query, $params)
      */
     public function executeQuery(string $query, array $params = []): ?array
