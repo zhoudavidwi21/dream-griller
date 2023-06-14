@@ -51,11 +51,8 @@
   <?php include "./res/templates/footer.php"; ?>
 
   <script src="./js/cart.js"></script>
-  <script src="./js/addProduct.js"></script>
-  <script src="./js/userList.js"></script>
-  <script src="./js/productList.js"></script>
-  <script src="./js/addUser.js"></script>
-  <script src="./js/userProfile.js"></script>
+  <script src="js/user.js"></script>
+  <script src="js/product.js"></script>
   <script src="js/coupon.js"></script>
   <!--  <script src="./js/logout.js"></script>  -->
 

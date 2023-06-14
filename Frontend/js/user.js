@@ -1,13 +1,232 @@
-function convertFormToJSON(form) {
-    const array = $(form).serializeArray(); // Encodes the set of form elements as an array of names and values.
-    const json = {};
-    $.each(array, function () {
-        json[this.name] = this.value || "";
-    });
-    return json;
-}
-$(document).ready(function () {
+$(document).ready(function() {
 
+    //--- from userList start ---//
+    $(document).on('click', '[id^=disableUser]', function(){
+        changeStatus(parseInt($(this).attr("id").slice(11), 10), false)
+    })                                                                                  //slice userID from pushed buttons
+    $(document).on('click', '[id^=enableUser]', function(){
+        changeStatus(parseInt($(this).attr("id").slice(10), 10), true)
+    });
+
+    load_userList()
+
+    function load_userList(){                                                           //loads all current users from DB
+
+        $.ajax({
+
+            url: "../Backend/RequestHandler.php",
+            method: "GET",
+            dataType: "json",
+            data: {resource: "users"},
+
+            success: function(response){
+
+                console.log(response);
+                $('#userTable').empty();
+                let content = "";
+
+                $.each(response, function(key, user) {
+
+                    if(user.username !== "admin"){
+
+                        content += `
+                        <tr>
+                            <td>${user.id}</td>
+                            <td>${user.username}</td>
+                            <td>${user.email}</td>                       
+                            <td>${user.firstname}</td>
+                            <td>${user.lastname}</td>
+                            <td>${user.company}</td>
+                            <td>${user.gender}</td>
+                            <td>${user.adress}</td>
+                            <td>${user.postcode}</td>                        
+                            <td>${user.city}</td>
+                            <td>${user.paymethod}</td>
+                            <td>${user.enabled}</td>
+                            <td><a id="ordersUser${user.id}" class="btn btn-primary btn-sm" href="#">Bestellungen ansehen</a></td>                    
+                        `
+                        if(user.enabled){
+                            content += `
+                            <td><a id="disableUser${user.id}" class="btn btn-secondary btn-sm" href="#">Deaktivieren</a></td>
+                            `
+                        }else{
+                            content += `
+                            <td><a id="enableUser${user.id}" class="btn btn-success btn-sm" href="#">Aktivieren</a></td>
+                            `
+                        }
+
+                        content += "</tr>"                              //appends table row for every DB entry
+                    }
+                    
+
+                    
+                });
+
+                $('#userTable').html(content);
+                    
+            },
+            error: function(response){
+                console.log(response)
+            }
+        })
+    }
+
+    function changeStatus(id, newValue){                            //changes user status to the respective opposite
+        
+        $.ajax({
+
+            url: "../Backend/RequestHandler.php?resource=user&params[id]=" +  id + "&params[newValue]=" + newValue,
+            method: "PUT",
+            dataType: "json",
+
+            success: function(){
+                console.log("changed");
+                load_userList();
+                
+            },
+            error: function(response){
+                console.log(response)
+            }
+        })
+
+    }
+    //--- from userList start ---//
+
+    //--- from userProfile start ---//
+    let id = $("#profile_id").val();
+    load_UserInfo(id)
+
+
+    function load_UserInfo(id){
+        $.ajax({
+            url: "../Backend/RequestHandler.php",
+            method: "GET",
+            dataType: "json",
+            data: {
+                resource: "user",
+                params: {
+                    id: id
+                }
+            },
+            success: function(response){
+
+                $("#profile_id").val(response.id)
+                $("#profile_username").val(response.username)
+                $("#profile_firstname").val(response.firstname)
+                $("#profile_lastname").val(response.lastname)
+                $("#profile_email").val(response.email)
+                $("#profile_company").val(response.company)
+                $("#profile_postcode").val(response.postcode)
+                $("#profile_city").val(response.city)
+                $("#profile_adress").val(response.adress)
+                $("#profile_paymethod").val(response.paymethod)
+
+            },
+            error: function(response){
+                console.log(response)
+            }
+        })
+    }
+
+    $("#profileform").on("submit", function(e){
+        e.preventDefault();
+        const formData = new FormData(this);
+
+        const plainPassword = $("#profile_password").val()
+        const id = $("#profile_id").val()
+
+        checkPassword(formData, plainPassword, id)
+    })
+
+    function checkPassword(formData, plainPassword, id){
+        $.ajax({
+
+            url: '../Backend/RequestHandler.php?resource=userpw',
+            type: 'POST',
+            data: { password: plainPassword,  id: id},
+            success: function(response) {
+                if(response){
+                    $("#userChangeSuccess").show();
+                    submitProfile(formData)
+
+                    setTimeout(function() {
+                        $("#userChangeSuccess").hide();
+                    }, 3000);
+
+
+                }else{
+                    $("#userChangeFail").show();
+
+                    setTimeout(function() {
+                        $("#userChangeFail").hide();
+                    }, 3000);
+                }
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+
+    }
+
+    function submitProfile(formData){
+        $.ajax({
+            url: "../Backend/RequestHandler.php?resource=userprofile",
+            method: "POST",
+            dataType: "json",
+            data: formData,
+            contentType: false,
+            processData: false,
+
+            success: function(response){
+                //console.log(response)
+            },
+            error: function(response){
+                //console.log(response)
+            }
+        })
+    }
+
+    $("#passwordform").on("submit", function(e){
+        e.preventDefault();
+
+        const oldPw = $("#old_pw").val();
+        const newPw = $("#new-pw").val();
+        const newPwValidation = $("#new-pw-validate").val();
+
+        validateNewPassword(oldPw, newPw, newPwValidation)
+    })
+
+    function validateNewPassword(oldPw, newPw, newPwValidation){
+        $.ajax({
+
+            url: '../Backend/RequestHandler.php?resource=newpw',
+            type: 'POST',
+            data: { old: oldPw,  new: newPw, newPwValidation: newPwValidation},
+            success: function(response) {
+                if(response){
+                    $("#pwChangeSuccess").show();
+
+                    setTimeout(function() {
+                        $("#pwChangeSuccess").hide();
+                    }, 3000);
+
+                }else{
+                    $("#pwChangeFail").show();
+
+                    setTimeout(function() {
+                        $("#pwChangeFail").hide();
+                    }, 3000);
+                }
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+    }
+    //--- from userProfile end ---//
+
+    //--- from addUser start ---//
     $("#registrationForm").on("submit", function(e) {
         e.preventDefault();
         const form = $(e.target);
@@ -252,5 +471,5 @@ $(document).ready(function () {
         xhttp.open("GET", "./businesslogic/check_username_uniqueness.php?username=" + encodeURIComponent(username), true);
         xhttp.send();
     }
-
-});
+    //--- from addUser start ---//
+})

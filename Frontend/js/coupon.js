@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    //--- from couponList start ---//
     load_couponList()
 
     function load_couponList(){                                                           //loads all current coupons from DB
@@ -46,7 +47,9 @@ $(document).ready(function() {
             }
         })
     }
+    //--- from addCoupon end ---//
 
+    //--- from addCoupon start ---//
     // Map custom on click event to generate code
     $("#generateCodeButton").on("click", function() {
         // Generate a random 5-digit alphanumeric coupon code
@@ -104,5 +107,5 @@ $(document).ready(function() {
             }
         });
     }
-
+    //--- from addCoupon end ---//
 })
