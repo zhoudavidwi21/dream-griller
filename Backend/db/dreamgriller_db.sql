@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 14. Jun 2023 um 04:17
+-- Erstellungszeit: 14. Jun 2023 um 08:05
 -- Server-Version: 10.4.28-MariaDB
 -- PHP-Version: 8.2.4
 
@@ -77,7 +77,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `username`, `email`, `password`, `firstname`, `lastname`, `company`, `gender`, `adress`, `postcode`, `city`, `paymethod`, `enabled`, `role`, `logintime`) VALUES
-(1, 'admin', 'admin@admin.com', '$2y$10$sBiZ8m2XuwbBBA97owD3UOPY5e00raQd8LS6XYWxCO0cUcZepBfyi', 'admin', 'admin', 'aaa', 'Herr', 'Ringstraße 1', 1010, 'Wien', 'Vorkasse', 1, 'admin', '2023-06-14 00:42:46'),
+(1, 'admin', 'admin@admin.com', '$2y$10$sBiZ8m2XuwbBBA97owD3UOPY5e00raQd8LS6XYWxCO0cUcZepBfyi', 'admin', 'admin', 'aaa', 'Herr', 'Ringstraße 1', 1010, 'Wien', 'Vorkasse', 1, 'admin', '2023-06-14 02:19:50'),
 (2, 'test', 'test@test.com', '$2y$10$ifQ7ViSkXFNWTT8Cv3EjYOmOOyxYAdNNkAzya0cexZfZzgzmOjLoG', 'test', 'test', 'sss', 'Frau', 'Hochstädtplatz 1', 1200, 'Wien', 'Kreditkarte', 1, 'user', '2023-06-14 00:43:13'),
 (3, 'as', 'ma@ma.ar', '$2y$10$R4S9OpNT4S7mjWtwpebvpOLhz..X/my84jOw.U5Q6WuPz/smFtY9y', 'ASD', 'a', 'sfa', 'Herr', 'asd', 2, 'Wien', 'Vorkasse', 1, 'user', '2023-06-12 11:07:33'),
 (4, 'asadfsdfsd', 'a@a.wein', '$2y$10$EY3VQbBf27U1LKlVOmFkc.49klt.ZYaTcS7xna.rER35qNq9XWhiK', 'asdf', 'asdf', 'asdf', 'Herr', 'asdf', 222, 'asdf', 'Kreditkarte', 1, 'user', '2023-06-14 00:41:55'),
@@ -136,8 +136,8 @@ INSERT INTO `products` (`id`, `name`, `description`, `price`, `rating`, `image`,
 (4, 'Crown Pellet 500', 'Von low-and-slow Anbraten bis hin zu high-heat Braten – machen Sie sich bereit für erstaunliche Ergebnisse mit der Bequemlichkeit, der Technologie, der Leistung und dem Geschmack, den Sie mit der Broil King Pellet Grill Serie erhalten.', 1249, 4.90, '../Frontend/res/img/products/Crown Pellet 500.jpg', 0, 0, 1, 0),
 (5, 'Freestyle 365', 'Die neueste Errungenschaft von Napoleon®, der Freestyle! Klein, fein, aber voller Power. Die rechte Seitenablage des Freestyle 365 SIB ist klappbar, so dass dieser Gasgrill extrem kompakt daherkommt. ', 679, 4.25, '../Frontend/res/img/products/Freestyle 365.jpg', 1, 0, 0, 0),
 (6, 'Holzkohle Kugelgrill Ø 57cm', 'Napoleons Holzkohlegrill NK22CK-L mit geschraubten Beinen setzt alles auf die Komfort-Karte: Dank des drehbaren Deckels mit Eckscharnier kann der Grillmeister sicher über der Grillfläche hantieren. Ein großer Aschebehälter aus Stahl und der roboste Kohlerost sind nur weitere Annehmlichkeiten. Auf seinen großen, wetterbeständigen Rädern und mit seinen geschraubten Beinen lässt sich der Rodeo NK22CK-L einfach durchs Gelände ziehen. So ist er immer genau dort, wo Sie grillen wollen! Holzkohle Kugelgrill Ø 57cm', 199, 3.90, '../Frontend/res/img/products/Napoleon Holzkohle Kugelgrill 57cm.jpg', 0, 1, 0, 1),
-(31, 'Moesta Sheriff 6', 'ein Wahnsinns-Griller', 999.99, 4.68, '../Frontend/res/img/products/Moesta Sheriff_6.jpg', 0, 0, 1, 0),
-(32, 'Great Griller', 'Top-Gerät mit allem was das Herz begehrt!!!', 1235.48, 5.00, '../Frontend/res/img/products/6486e3b44fa3e_Griller Fun Pic.jpg', 0, 0, 1, 0);
+(7, 'Moesta Sheriff 6', 'ein Wahnsinns-Griller', 999.99, 4.68, '../Frontend/res/img/products/Moesta Sheriff_6.jpg', 0, 0, 1, 0),
+(8, 'Great Griller', 'Top-Gerät mit allem was das Herz begehrt!!!', 1235.48, 5.00, '../Frontend/res/img/products/6486e3b44fa3e_Griller Fun Pic.jpg', 0, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -204,7 +204,7 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT für Tabelle `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT für Tabelle `orders`
