@@ -33,27 +33,57 @@ $(document).ready(function() {
         var globalCart = [];
     }
 
-    
+
     load_product_data("charcoal", "");                                          //load products for Homepage (default: charcoal, and empty String --> no "search" value)
     load_cart_data();                                                           //load data for cart information
 
-    
 
+            // Funktion fetchProductsByCategory definieren
+            function fetchProductsByCategory(category, input) {
+                return fetch(`/api/products?category=${category}&input=${input}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        return data.data.map(product => {
+                            return {
+                                id: product.id,
+                                name: product.name,
+                                description: product.description,
+                                price: product.price,
+                                image: product.image,
+                                rating: product.rating,
+                                gas: product.gas,
+                                charcoal: product.charcoal,
+                                pellet: product.pellet,
+                                active: product.sale === 1 // Convert 1 to true, 0 to false
+                            };
+                        });
+                    } else {
+                        throw new Error(data.message);
+                    }
+                });
+            }
+    
+    
     $("input[name=grillCategories]").on("click", function(){
-        let categorie = $("input[name=grillCategories]:checked").val();         //"clicked" categorie is passed to load_product_data
-        load_product_data(categorie, "")
+        let categorie = $("input[name=grillCategories]:checked").val();
+        let input = $("#searchfilter").val();
+        fetchProductsByCategory(categorie, input); // Aufruf der Funktion fetchProductsByCategory
     })
 
     $("#searchfilter").on("keyup", function(){
-        let input = $("#searchfilter").val();                                   //"clicked" categorie and user input is passed
+        let input = $("#searchfilter").val();
         let categorie = $("input[name=grillCategories]:checked").val();
-        
-        load_product_data(categorie, input)
-
+        fetchProductsByCategory(categorie, input); // Aufruf der Funktion fetchProductsByCategory
     })
 
 
-    function load_product_data(categorie, input){                   //loads product for specific category and user input (searchfield)
+    function load_product_data(categorie, input, active){                   //loads product for specific category and user input (searchfield)
 
         $.ajax({
             
@@ -64,7 +94,8 @@ $(document).ready(function() {
                 resource: "productCat",
                 params: {
                   category: categorie,
-                  input: input
+                  input: input,
+                  active: active  // Only retrieve active products 
                 }
             },
 
