@@ -28,16 +28,16 @@ if (isset($_COOKIE['loginCookie']) && isset($_COOKIE['id'])) {
     exit();
   }
 
-  $sql = "SELECT * FROM `customers` WHERE `username` = ? AND `enabled` = 1";
+  $sql = "SELECT * FROM `customers` WHERE `id` = ? AND `enabled` = 1";
   $stmt = $db_obj->prepare($sql);
-  $stmt->bind_param("s", $_SESSION['id']);
+  $stmt->bind_param("i", $_SESSION['id']);
   $stmt->execute();
   $result = $stmt->get_result();
 
   if ($result->num_rows === 0) {
     $stmt->close();
     $db_obj->close();
-    header('Refresh: 1; url=logout.php');
+    header('Refresh: 1; url=templates/logout.php');
     exit();
   } else {
     // Fetch_assoc returns an array as key-value-pair, 
@@ -52,7 +52,7 @@ if (isset($_COOKIE['loginCookie']) && isset($_COOKIE['id'])) {
 }
 
 if (isset($_SESSION['loginTime']) && time() >= $_SESSION['loginTime'] + $sessionDuration) {
-  header('Refresh: 1; url=logout.php');
+  header('Refresh: 1; url=templates/logout.php');
 } 
 
 /*
