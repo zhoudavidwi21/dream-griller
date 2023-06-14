@@ -24,7 +24,7 @@ $(document).ready(function() {
         const productId = event.originalEvent.dataTransfer.getData('text/plain');
         putInCart(productId);
     });
-    
+
     var cartExists = sessionStorage.getItem("cart")
 
     if (cartExists) {
@@ -38,64 +38,33 @@ $(document).ready(function() {
     load_cart_data();                                                           //load data for cart information
 
 
-            // Funktion fetchProductsByCategory definieren
-            function fetchProductsByCategory(category, input) {
-                return fetch(`/api/products?category=${category}&input=${input}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        return data.data.map(product => {
-                            return {
-                                id: product.id,
-                                name: product.name,
-                                description: product.description,
-                                price: product.price,
-                                image: product.image,
-                                rating: product.rating,
-                                gas: product.gas,
-                                charcoal: product.charcoal,
-                                pellet: product.pellet,
-                                active: product.sale === 1 // Convert 1 to true, 0 to false
-                            };
-                        });
-                    } else {
-                        throw new Error(data.message);
-                    }
-                });
-            }
-    
-    
+
     $("input[name=grillCategories]").on("click", function(){
-        let categorie = $("input[name=grillCategories]:checked").val();
-        let input = $("#searchfilter").val();
-        fetchProductsByCategory(categorie, input); // Aufruf der Funktion fetchProductsByCategory
+        let categorie = $("input[name=grillCategories]:checked").val();         //"clicked" categorie is passed to load_product_data
+        load_product_data(categorie, "")
     })
 
     $("#searchfilter").on("keyup", function(){
-        let input = $("#searchfilter").val();
+        let input = $("#searchfilter").val();                                   //"clicked" categorie and user input is passed
         let categorie = $("input[name=grillCategories]:checked").val();
-        fetchProductsByCategory(categorie, input); // Aufruf der Funktion fetchProductsByCategory
+
+        load_product_data(categorie, input)
+
     })
 
 
-    function load_product_data(categorie, input, active){                   //loads product for specific category and user input (searchfield)
+    function load_product_data(categorie, input){                   //loads product for specific category and user input (searchfield)
 
         $.ajax({
-            
+
             url: "../Backend/RequestHandler.php",
             method: "GET",
             dataType: "json",
             data: {
                 resource: "productCat",
                 params: {
-                  category: categorie,
-                  input: input,
-                  active: active  // Only retrieve active products 
+                    category: categorie,
+                    input: input
                 }
             },
 
@@ -126,9 +95,9 @@ $(document).ready(function() {
                     $('#prodcart-' + product.id).on("click", function(){            //enables "in den Einkaufswagen"
                         putInCart($(this).attr("id").slice(9))
                     })
-                    
+
                 });
-                
+
             },
             error: function(response){
                 console.log(response)
@@ -154,11 +123,11 @@ $(document).ready(function() {
         let overallSum = 0;
 
         $.each(globalCart, function(key, item) {
-           
+
             let total = parseFloat((item.price * item.quantity).toFixed(2));
             count++;
             overallSum += total;
-            
+
             content += `
             <tr>
                 <td>${item.name}</td>
@@ -185,7 +154,7 @@ $(document).ready(function() {
         $('#cart_details').html(content);
         $('#totalCart').html("<b>Gesamtsumme " + parseFloat(overallSum.toFixed(2)) + " €</b>");
         $('#quantity').text(" " + count);
-        
+
     }
 
 
@@ -193,15 +162,15 @@ $(document).ready(function() {
 
         $.ajax({
 
-            url:"../Backend/RequestHandler.php",                         
-            method:"GET",                                              
+            url:"../Backend/RequestHandler.php",
+            method:"GET",
             dataType: "json",
             data: {
                 resource: "product",
                 params: {
-                  id: id
+                    id: id
                 }
-              },                 
+            },
 
             success:function(data) {
 
@@ -229,11 +198,11 @@ $(document).ready(function() {
                 console.log(data);
             }
         });
-        
+
 
     }
 
-    
+
 
     function changeQuant(id, method){                                   //modifiy quantity (dependent on product id and + or -)
 
@@ -248,7 +217,7 @@ $(document).ready(function() {
 
         }else if(itemToChange.quantity === 1){
             removeItem(itemToChange.id)
-            
+
         }else{
             itemToChange.quantity -= 1;
         }
@@ -270,14 +239,14 @@ $(document).ready(function() {
 
         let index = globalCart.indexOf(itemToChange);                   //search for position of product that should be deleted
         if (index > -1) {
-          globalCart.splice(index, 1);                                  //then cut it off array
+            globalCart.splice(index, 1);                                  //then cut it off array
         }
 
         sessionStorage.setItem("cart", JSON.stringify(globalCart))
-        
+
         $('#cartbtn').popover("show");
     }
-    
+
     $('#cartbtn').popover({
 
         sanitize: false,                                                //important for passing HTML elements like <td> or <th> to the popover content
@@ -291,7 +260,7 @@ $(document).ready(function() {
             load_cart_data();
             return $('#popover_content').html();                        //Shopping cart structure is loaded
         }
-        
+
     })
 
 

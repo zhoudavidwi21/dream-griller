@@ -1,14 +1,12 @@
 //TODO Fix logout bug when cookie is set
 function logout() {
-    if (!document.cookie.includes('loginCookie')) {
-        $.ajax({
-            url: './res/templates/logout.php',
-            method: 'GET',
-            success: function () {
-                location.reload();
-            }
-        });
-    }
+    $.ajax({
+        url: './res/templates/logout.php',
+        method: 'GET',
+        success: function () {
+            location.reload();
+        }
+    });
 }
 $(document).ready(function () {
     $("#loginForm").on("submit", function(e) {
