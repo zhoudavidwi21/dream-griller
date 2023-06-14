@@ -1,3 +1,4 @@
+//TODO Fix logout bug when cookie is set
 function logout() {
     if (!document.cookie.includes('loginCookie')) {
         $.ajax({
