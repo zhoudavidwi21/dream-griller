@@ -46,8 +46,15 @@ class ProductService {
         $res = $this->database->executeQuery($query);
     }
 
-    public function getProductsByCategory($category, $input): ?array {
-        $query = "SELECT * FROM products WHERE `name` LIKE '%$input%' AND $category = 1";
+    public function getProductsByCategory($category, $input, $saleFilter): ?array {
+        $saleFilter = '';
+        if ($input === 'active') {
+            $saleFilter = 'AND `sale` = 1';
+        } else if ($input === 'inactive') {
+            $saleFilter = 'AND `sale` = 0';
+        }
+
+        $query = "SELECT * FROM products WHERE `name` LIKE '%$input%' AND $category = 1 AND $saleFilter = 'active'";
         $res = $this->database->executeQuery($query);
 
         $products = [];
