@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
     session_start(); //must be at the beginning of each session 
 }
 
-//logout function 
+// Logout function 
 $_SESSION = array();
 session_unset();
 session_destroy();
@@ -21,5 +21,5 @@ if (isset($_COOKIE['loginCookie'])) {
     setcookie('loginCookie', null, time() - 3600, "/"); 
 }
 header('Refresh: 0; url=index.php');
-exit(); // Beenden des Skripts nach der Weiterleitung
+exit(); // Exiting the script after forwarding
 

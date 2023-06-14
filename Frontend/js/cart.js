@@ -74,31 +74,30 @@ $(document).ready(function() {
                 $('#contentRow').empty();
 
                 $.each(response, function(key, product) {
-
-                    let content = `
-                    <div class="col-md-4 mb-5">
-                    <div class="card h-100" id="item-${product.id}">
-                    <div class="card-body">
-                    <a><h2 id="title-${product.id}" class="card-title" draggable="true">${product.name}</h2></a>
-                    <img id="pic-${product.id}" class="img-fluid rounded mb-4 mb-lg-0" src="${product.image}">                    <p id="description-${product.id}" class="card-text">${product.description}</p>
-                    <span id="price-${product.id}" class="price fs-4">${product.price} €</span>
-                    <p <span id="rating-${product.id}" style="font-style: italic" class="rating fs-6">Bewertung: ${product.rating}/5</span></p>
-                    </div>
-                    <div class="card-footer">
-                    <a id="prodcart-${product.id}" class="btn btn-sonstige btn-sm">In den Einkaufswagen</a>
-                    </div>
-                    </div>
-                    </div>
-                    `
-
-                    $('#contentRow').append(content);                               //for every product a div block is appended
-                    $('#prodcart-' + product.id).on("click", function(){            //enables "in den Einkaufswagen"
-                        putInCart($(this).attr("id").slice(9))
-                    })
-
-                });
-
-            },
+                    // Prüfen, ob das Produkt aktiv ist
+//                    if (product.sale === 1) {
+                      let content = `
+                        <div class="col-md-4 mb-5">
+                          <div class="card h-100" id="item-${product.id}">
+                            <div class="card-body">
+                              <a><h2 id="title-${product.id}" class="card-title" draggable="true">${product.name}</h2></a>
+                              <img id="pic-${product.id}" class="img-fluid rounded mb-4 mb-lg-0" src="${product.image}">
+                              <p id="description-${product.id}" class="card-text">${product.description}</p>
+                              <span id="price-${product.id}" class="price fs-4">${product.price} €</span>
+                              <p><span id="rating-${product.id}" style="font-style: italic" class="rating fs-6">Bewertung: ${product.rating}/5</span></p>
+                            </div>
+                            <div class="card-footer">
+                              <a id="prodcart-${product.id}" class="btn btn-sonstige btn-sm">In den Einkaufswagen</a>
+                            </div>
+                          </div>
+                        </div>`;
+                      $('#contentRow').append(content);
+                      $('#prodcart-' + product.id).on("click", function() {
+                        putInCart($(this).attr("id").slice(9));
+                      });
+//                    }
+                  });
+                },
             error: function(response){
                 console.log(response)
             }
