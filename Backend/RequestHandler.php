@@ -86,6 +86,8 @@ class RequestHandler {
         switch ($resource) {
             case 'user':
                 // Handle creating a new user
+                $requestData = $this->getTheRequestBody();
+                $this->success(201, $this->userService->saveUser($requestData));
                 break;
             case 'userprofile':
                 $this->success(201, $this->userService->changeUserProfile($_POST));

@@ -121,7 +121,7 @@ class UserService{
 
     }
 
-    public function validatePassword($post){
+    public function validatePassword($post) {
         $old = $post['old'];
         $new = $post['new'];
         $newPwValidation = $post['newPwValidation'];
@@ -153,6 +153,53 @@ class UserService{
             return false;
         }
 
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function saveUser(mixed $requestData): ?User {
+        $gender = $requestData['gender'] ?? '';
+        $company = $requestData['company'] ?? '';
+        $firstname = $requestData['firstname'] ?? '';
+        $lastname = $requestData['lastname'] ?? '';
+        $adress = $requestData['adress'] ?? '';
+        $postcode = $requestData['postcode'] ?? '';
+        $city = $requestData['city'] ?? '';
+        $email = $requestData['email'] ?? '';
+        $username = $requestData['username'] ?? '';
+        $paymethod = $requestData['paymethod'] ?? '';
+        $password = $requestData['password'] ?? '';
+        //hashing password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        $query = "INSERT INTO `customers`(`gender`, `company`, `firstname`, `lastname`, `adress`, `postcode`, `city`, `email`, `username`, `paymethod`, `password`) 
+                VALUES (:gender, :company, :firstname, :lastname, :adress, :postcode, :city, :email, :username, :paymethod, :password)";
+
+        $params = array(
+            ':gender' => $gender,
+            ':company' => $company,
+            ':firstname' => $firstname,
+            ':lastname' => $lastname,
+            ':adress' => $adress,
+            ':postcode' => $postcode,
+            ':city' => $city,
+            ':email' => $email,
+            ':username' => $username,
+            ':paymethod' => $paymethod,
+            ':password' => $hashedPassword
+        );
+
+        $this->database->executeQuery($query, $params);
+
+        // Get CouponId
+        $userId = $this->database->getLastInsertedId();
+
+        if ($userId) {
+            return $this->getUserById($userId);
+        }
+
+        return null;
     }
 
 }

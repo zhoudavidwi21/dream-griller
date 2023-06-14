@@ -50,12 +50,11 @@
   <!-- Footer Area --->
   <?php include "./res/templates/footer.php"; ?>
 
-  <script src="./js/register_validation.js"></script>
   <script src="./js/cart.js"></script>
   <script src="./js/addProduct.js"></script>
   <script src="./js/userList.js"></script>
   <script src="./js/productList.js"></script>
-  
+  <script src="./js/addUser.js"></script>
   <script src="./js/userProfile.js"></script>
   <script src="./js/addCoupon.js"></script>
   <script src="./js/couponList.js"></script>

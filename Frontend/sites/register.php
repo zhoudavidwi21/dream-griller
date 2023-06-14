@@ -3,48 +3,48 @@
 <?php require_once('../Backend/db/dbaccess.php'); ?>
 
 <?php
-if (isset($_POST["submit"])) {
-    //function only comes in here when no errors have occurred
-    //database connection created
-    $db_obj = new mysqli($host, $dbUser, $dbPassword, $database);
-    if ($db_obj->connect_error) {
-      echo 'Connection error: ' . $db_obj->connect_error;
-      exit();
-    }
-    
-    $sql = "INSERT INTO `customers`(`gender`, `company`, `firstname`, `lastname`, `adress`, `postcode`, `city`, `email`, `username`, `paymethod`, `password`) 
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-    //create SQL-statement
-    $stmt = $db_obj->prepare($sql);
-
-    $gender = $_POST['gender'];
-    $company = $_POST['company'];
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $adress = $_POST['adress'];
-    $postcode = $_POST['postcode'];
-    $city = $_POST['city'];
-    $email = $_POST['email'];
-    $username = $_POST['username'];
-    $paymethod = $_POST['paymethod'];
-    $password = $_POST['password'];
-    //hashing password
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-    $stmt->bind_param("sssssssssss", $gender, $company, $firstname, $lastname, $adress, $postcode, $city, $email, $username, $paymethod, $hashedPassword);
-
-    if ($stmt->execute()) {
-      //close the statement
-      $stmt->close();
-      //close the connection
-      $db_obj->close();
-      header('Refresh:0; url=index.php?site=register_confirmed');
-      exit();
-    } else {
-      echo '<p class="red"> Registrierung fehlgeschlagen! </p>';
-    }
-  } 
+//if (isset($_POST["submit"])) {
+//    //function only comes in here when no errors have occurred
+//    //database connection created
+//    $db_obj = new mysqli($host, $dbUser, $dbPassword, $database);
+//    if ($db_obj->connect_error) {
+//      echo 'Connection error: ' . $db_obj->connect_error;
+//      exit();
+//    }
+//
+//    $sql = "INSERT INTO `customers`(`gender`, `company`, `firstname`, `lastname`, `adress`, `postcode`, `city`, `email`, `username`, `paymethod`, `password`)
+//      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+//
+//    //create SQL-statement
+//    $stmt = $db_obj->prepare($sql);
+//
+//    $gender = $_POST['gender'];
+//    $company = $_POST['company'];
+//    $firstname = $_POST['firstname'];
+//    $lastname = $_POST['lastname'];
+//    $adress = $_POST['adress'];
+//    $postcode = $_POST['postcode'];
+//    $city = $_POST['city'];
+//    $email = $_POST['email'];
+//    $username = $_POST['username'];
+//    $paymethod = $_POST['paymethod'];
+//    $password = $_POST['password'];
+//    //hashing password
+//    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+//
+//    $stmt->bind_param("sssssssssss", $gender, $company, $firstname, $lastname, $adress, $postcode, $city, $email, $username, $paymethod, $hashedPassword);
+//
+//    if ($stmt->execute()) {
+//      //close the statement
+//      $stmt->close();
+//      //close the connection
+//      $db_obj->close();
+//      header('Refresh:0; url=index.php?site=register_confirmed');
+//      exit();
+//    } else {
+//      echo '<p class="red"> Registrierung fehlgeschlagen! </p>';
+//    }
+//  }
 
 ?>
 
@@ -62,7 +62,7 @@ if (isset($_POST["submit"])) {
 
         <hr class="featurette-divider">
 
-        <form id="registrationForm" method="POST" action="index.php?site=register" onsubmit="return validateForm()">
+        <form id="registrationForm" method="POST" action="">
           <div class="mb-1">
             <label for="anrede" hidden>Anrede *</label>
             <select class="form-select" aria-label="Default select example" id="anrede" name="gender" required>
@@ -141,12 +141,12 @@ if (isset($_POST["submit"])) {
           </div>
 
           <div class="checkbox mt-3 mb-3">
-            <input type="checkbox" class="form-check-input" name="data_security" id="data_security" value="">
+            <input type="checkbox" class="form-check-input" name="data_security" id="data_security" value="accepted" required>
             <label class="form-check-label" for="data_security"><a href="index.php?site=data_security" target="_blank">Datenschutz</a> akzeptieren *</label>
 
             <br>
 
-            <input type="checkbox" class="form-check-input" name="terms_and_conditions" id="terms_and_conditions" value="">
+            <input type="checkbox" class="form-check-input" name="terms_and_conditions" id="terms_and_conditions" value="accepted" required>
             <label class="form-check-label" for="terms_and_conditions"><a href="index.php?site=terms_and_conditions" target="_blank">AGBs</a>
               akzeptieren *</label>
           </div>
