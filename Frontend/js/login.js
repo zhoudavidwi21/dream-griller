@@ -46,7 +46,7 @@ $(document).ready(function () {
                 } else {
                     // similar behavior as an HTTP redirect
                     // with replace cannot go back
-                    window.location.replace("/DreamGriller/Frontend/index.php");
+                    window.location.replace("index.php");
                     console.log("Successfully logged in");
                 }
 
