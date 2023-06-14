@@ -46,7 +46,7 @@ class ProductService {
         $res = $this->database->executeQuery($query);
     }
 
-    public function getProductsByCategory($category, $input): ?array {
+    public function getProductsByCategory($category, $input, $saleFilter): ?array {
         $saleFilter = '';
         if ($input === 'active') {
             $saleFilter = 'AND `sale` = 1';
