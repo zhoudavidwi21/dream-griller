@@ -107,6 +107,16 @@ input[type="radio"].btn-check:checked + label.btn-homepage {
     width: 1px;
 }
 
+.table-checkout {
+    table-layout: auto;
+    width: auto;
+}
+
+.table-checkout th,
+.table-checkout td {
+  font-size: 20px;
+}
+
 .custom-container {
     max-width: 1000px;
     margin: 0 auto; /* Horizontale Zentrierung */

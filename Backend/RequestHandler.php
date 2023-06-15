@@ -111,6 +111,7 @@ class RequestHandler {
                 break;
             case 'order':
                 // Handle creating a new order
+                $this->success(201, $this->orderService->createOrder($_POST));
                 break;
             case 'coupon':
                 $requestData = $this->getTheRequestBody();

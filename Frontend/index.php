@@ -53,8 +53,9 @@
   <script src="js/cart.js"></script>
   <script src="js/user.js"></script>
   <script src="js/product.js"></script>
-  <script src="js/coupon.js"></script>#
+  <script src="js/coupon.js"></script>
   <script src="js/login.js"></script>
+  <script src="js/order.js"></script>
   <!--  <script src="./js/logout.js"></script>  -->
 
 </body>
