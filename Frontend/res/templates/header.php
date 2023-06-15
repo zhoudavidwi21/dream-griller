@@ -75,7 +75,7 @@ ob_start();
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="index.php?site=view_orders">Meine Bestellungen ansehen(In Arbeit)</a></li>
+            <li><a class="dropdown-item" href="index.php?site=view_orders">Meine Bestellungen ansehen</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>
