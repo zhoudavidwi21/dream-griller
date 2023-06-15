@@ -40,7 +40,7 @@ if ($db_obj->connect_error) {
                 <div class="card-body">
                     <h5 class="card-title">Produkte</h5>
                     <a class="btn btn-outline-dark" href="index.php?site=manage_products">Produkte verwalten</a>
-                    <a class="btn btn-outline-dark" href="index.php?site=add_product">Produkt hinzufügen</a>
+                    <a class="btn btn-outline-dark" href="index.php?site=add_product">Produkt erstellen</a>
 
                 </div>
             </div>

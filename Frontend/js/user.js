@@ -43,8 +43,7 @@ $(document).ready(function() {
                             <td>${user.city}</td>
                             <td>${user.paymethod}</td>
                             <td>${user.enabled}</td>
-                            <td><a id="ordersUser${user.id}" class="btn btn-primary btn-sm" href="#">Bestellungen ansehen</a></td>                    
-                            <td><a id="invoicesUser${user.id}" class="btn btn-primary btn-sm" href="#">Rechnungen ansehen</a></td>                    
+                            <td><a id="ordersUser${user.id}" class="btn btn-primary btn-sm" href="index.php?site=manage_orders">Bestellungen ansehen</a></td>                    
                         `
 
                         if(user.enabled){
@@ -241,6 +240,7 @@ $(document).ready(function() {
 
     // Function to generate a random 5-digit alphanumeric coupon code
 
+    
     function submitUser(json) {
         // Send the coupon code as JSON
         $.ajax({
@@ -252,7 +252,7 @@ $(document).ready(function() {
             success: function(response) {
                 // similar behavior as an HTTP redirect
                 // with replace cannot go back
-                window.location.replace("/DreamGriller/Frontend/index.php?site=register_confirmed");
+                window.location.replace("index.php?site=register_confirmed");
                 console.log("Successfully created user");
             },
             error: function(xhr, status, error) {
@@ -264,6 +264,8 @@ $(document).ready(function() {
     }
 
     console.log()
+
+    // Function to validate all formular-input from registration
 
     function validateForm() {
 
@@ -284,8 +286,8 @@ $(document).ready(function() {
         } else if (company.trim() !== "" && gender !== "firma") {
             alert("Anrede muss auf 'Firma' gesetzt werden, wenn ein Firmenname angegeben ist.");
             return false;
-        } else if (company.trim() !== "" && !/^[A-Za-z0-9\s\.\-]+$/.test(company)) {
-            alert("Ungültiger Firmenname. Bitte geben Sie nur Groß- und Kleinbuchstaben, Zahlen, Leerzeichen, Punkt und Bindestrich ein.");
+        } else if (company.trim() !== "" && !/^[A-Za-z0-9\s\.\-ßüäöÄÜÖ]+$/.test(company)) {
+            alert("Ungültiger Firmenname. Bitte geben Sie nur Groß- und Kleinbuchstaben, Zahlen, Leerzeichen, Punkt, Bindestrich und 'ß, ä, ö, ö' ein.");
             return false;
         }
 
@@ -295,8 +297,8 @@ $(document).ready(function() {
             alert("Vorname ist erforderlich.");
             return false;
         }
-        else if (!/^[A-Za-z\s\-]+$/.test(firstname)) {
-            alert("Ungültiger Vorname. Bitte geben Sie nur Groß- und Kleinbuchstaben, Leerzeichen und Bindestriche ein.");
+        else if (!/^[A-Za-z\sßüäöÄÜÖ\-]+$/.test(firstname)) {
+            alert("Ungültiger Vorname. Bitte geben Sie nur Groß- und Kleinbuchstaben, Leerzeichen, Bindestriche und 'ß, ä, ö, ö' ein.");
             return false;
         }
 
@@ -306,8 +308,8 @@ $(document).ready(function() {
             alert("Nachname ist erforderlich.");
             return false;
         }
-        else if (!/^[A-Za-z\s\-]+$/.test(lastname)) {
-            alert("Ungültiger Nachname. Bitte geben Sie nur Groß- und Kleinbuchstaben, Leerzeichen und Bindestriche ein.");
+        else if (!/^[A-Za-z\sßüäöÄÜÖ\-]+$/.test(lastname)) {
+            alert("Ungültiger Nachname. Bitte geben Sie nur Groß- und Kleinbuchstaben, Leerzeichen, Bindestriche und 'ß, ä, ö, ö' ein.");
             return false;
         }
 
@@ -317,8 +319,8 @@ $(document).ready(function() {
             alert("Adresse ist erforderlich.");
             return false;
         }
-        else if (!/^[A-Za-z0-9\s\/\-\.]+$/.test(address)) {
-            alert("Ungültige Adresse. Bitte geben Sie nur Groß- und Kleinbuchstaben, Zahlen, Leerzeichen, Schrägstriche, Bindestriche und Punkte ein.");
+        else if (!/^[A-Za-z0-9\s\/\-\.ßüäöÄÜÖ]+$/.test(address)) {
+            alert("Ungültige Adresse. Bitte geben Sie nur Groß- und Kleinbuchstaben, Zahlen, Leerzeichen, Schrägstriche, Bindestriche, Punkte und 'ß, ä, ö, ö' ein.");
             return false;
         }
 
@@ -339,8 +341,8 @@ $(document).ready(function() {
             alert("Ort ist erforderlich.");
             return false;
         }
-        else if (!/^[a-zA-Z\s-]+$/.test(city)) {
-            alert("Ungültiger Ort. Bitte verwenden Sie nur Groß- und Kleinbuchstaben, Leerzeichen und Bindestriche.");
+        else if (!/^[a-zA-Z\s-ßüäöÄÜÖ]+$/.test(city)) {
+            alert("Ungültiger Ort. Bitte geben Sie nur Groß- und Kleinbuchstaben, Leerzeichen, Bindestriche und 'ß, ä, ö, ö' ein.");
             return false;
         }
 
@@ -363,7 +365,7 @@ $(document).ready(function() {
             return false;
         }
         if (!/^[a-zA-Z0-9]+$/.test(username)) {
-            alert("Ungültiger Benutzername. Bitte verwenden Sie nur Groß- und Kleinbuchstaben sowie Zahlen.");
+            alert("Ungültiger Benutzername. Bitte geben Sie nur Groß- und Kleinbuchstaben und Zahlen ein.");
             return false;
         }
         isUsernameUnique(username);

@@ -12,7 +12,7 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
 
 <div class="text-center container-fluid">
 
-  <h1 class="h1 mb-3 fw-normal">Gutscheine verwalten</h1>
+  <h1 class="h1 mb-3 fw-normal">Bestellungen ansehen</h1>
 
   <div class="row justify-content-md-center">
     <div class="col-lg-2 col-md-3">
@@ -28,14 +28,12 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
         <thead>
         <tr>
             <th>ID</th>
-            <th>Code</th>
-            <th>Wert</th>
-            <th>Restwert</th>
-            <th>Ablaufdatum</th>
-            <th>Abgelaufen</th>
+            <th>Gesamtwert</th>
+            <th>Datum</th>
+            <th></th>
         </tr>
         </thead>
-        <tbody id="couponTable">
+        <tbody id="orderTable">
 
         </tbody>
     </table>

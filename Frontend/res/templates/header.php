@@ -71,7 +71,7 @@ ob_start();
             <?php echo $_SESSION['username']; ?>
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="index.php?site=profile_administration">Profil bearbeiten (In Arbeit)</a></li>
+            <li><a class="dropdown-item" href="index.php?site=profile_administration">Profil bearbeiten</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>

@@ -1,8 +1,5 @@
 <?php include "./res/templates/sessions.php"; ?>
 
-
-
-
 <?php
 session_unset();
 session_destroy();
@@ -28,7 +25,7 @@ $_SESSION = array();
             document.getElementById('countdown').innerHTML = timeLeft;
             if (timeLeft === 0) {
               clearInterval(cinterval);
-              document.location.href = "index.php"
+              document.location.href = "./index.php"
             }
           };
           cinterval = setInterval(timeDec, 1000);
