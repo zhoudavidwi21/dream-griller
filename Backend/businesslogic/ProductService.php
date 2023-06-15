@@ -1,5 +1,4 @@
 <?php
-
 $currentDirectory = dirname(__FILE__);
 include "./models/Product.php";
 

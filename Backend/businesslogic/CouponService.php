@@ -1,6 +1,6 @@
 <?php
-
 include "./models/Coupon.php";
+
 class CouponService {
 
     private Database $database;
