@@ -58,9 +58,7 @@ $(document).ready(function() {
 
                         content += "</tr>"                              //appends table row for every DB entry
                     }
-                    
 
-                    
                 });
 
                 $('#userTable').html(content);

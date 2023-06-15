@@ -123,7 +123,8 @@ $(document).ready(function() {
 
         $.each(globalCart, function(key, item) {
 
-            let total = parseFloat((item.price * item.quantity).toFixed(2));
+            formatCurrency(item.price * item.quantity)
+            let total = formatCurrency(item.price * item.quantity);
             count++;
             overallSum += total;
 
@@ -151,7 +152,7 @@ $(document).ready(function() {
         }
 
         $('#cart_details').html(content);
-        $('#totalCart').html("<b>Gesamtsumme " + parseFloat(overallSum.toFixed(2)) + " €</b>");
+        $('#totalCart').html("<b>Gesamtsumme " + formatCurrency(overallSum) + " €</b>");
         $('#quantity').text(" " + count);
 
     }

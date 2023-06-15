@@ -19,28 +19,20 @@ $(document).ready(function() {
                 let content = "";
 
                 $.each(response, function(key, coupon) {
-                    // Format the expiry date to dd.mm.yyyy
-                    var expiryDate = new Date(Date.parse(coupon.date));
-                    var formattedExpiryDate = expiryDate.toLocaleDateString('de-DE');
                     // Format the expired variable as "Nein" or "Ja"
                     var formattedExpired = coupon.expired ? "Ja" : "Nein";
-
                     content += `
                     <tr>
                         <td>${coupon.id}</td>
                         <td>${coupon.code}</td>
                         <td>${coupon.amount}</td>
                         <td>${coupon.residual_value}</td>
-                        <td>${formattedExpiryDate}</td>
+                        <td>${formatDate(coupon.date)}</td>
                         <td>${formattedExpired}</td>
                    `
-
                     content += "</tr>"                              //appends table row for every DB entry
-
                 });
-
                 $('#couponTable').html(content);
-
             },
             error: function(response){
                 console.log(response)
@@ -61,11 +53,10 @@ $(document).ready(function() {
 
     $("#couponForm").on("submit", function(e) {
         e.preventDefault();
-        let couponCode = $("#couponCode").val();
-        let couponValue = $("#couponValue").val();
-        let couponExpiration = $("#couponExpiration").val();
+        const form = $(e.target);
+        const json = convertFormToJSON(form);
         // Send the coupon code to the server
-        submitCoupon(couponCode, couponValue, couponExpiration);
+        submitCoupon(json);
     });
 
     // Function to generate a random 5-digit alphanumeric coupon code
@@ -81,20 +72,13 @@ $(document).ready(function() {
         return couponCode;
     }
 
-    function submitCoupon(couponCode, couponValue, couponExpiration) {
-        // Prepare the data to be sent
-        var jsonData = {
-            couponCode: couponCode,
-            couponValue: couponValue,
-            couponExpiration: couponExpiration
-        };
-
+    function submitCoupon(json) {
         // Send the coupon code as JSON
         $.ajax({
             url: '../Backend/RequestHandler.php?resource=coupon',
             method: 'POST',
             dataType: 'json',
-            data: JSON.stringify(jsonData),
+            data: JSON.stringify(json),
             contentType: 'application/json',
             success: function(response) {
                 showAlert('success', `Coupon ${response.code} erfolgreich erstellt!`);

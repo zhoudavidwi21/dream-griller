@@ -73,7 +73,10 @@ class RequestHandler {
                 $this->success(200, $this->orderService->getAllOrders());
                 break;
             case 'order':
-                $this->success(200, $this->orderService->getOrderById($params['id']));
+                $this->success(200, $this->orderService->getOrderDetailsById($params['orderId']));
+                break;
+            case 'orderByCustomer':
+                $this->success(200, $this->orderService->getOrderByCustomerId($params['customerId']));
                 break;
             case 'coupons':
                 $this->success(200, $this->couponService->getAllCoupons());

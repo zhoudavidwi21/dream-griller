@@ -1,7 +1,5 @@
 <?php include "./res/templates/sessions.php"; ?>
 
-<?php require_once('../Backend/db/dbaccess.php'); ?>
-
 <?php
 //Only logged in person can administrate profiles
 if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
@@ -9,17 +7,6 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
   exit();
 }
 ?>
-
-<?php
-$db_obj = new mysqli($host, $dbUser, $dbPassword, $database);
-
-//check if connection is successful
-if ($db_obj->connect_error) {
-  echo 'Connection error: ' . $db_obj->connect_error;
-  exit();
-}
-?>
-
 <div class="text-center container-fluid">
 
   <h1 class="h1 mb-3 fw-normal">Profil bearbeiten</h1>
