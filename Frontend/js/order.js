@@ -120,8 +120,10 @@ $(document).ready(function() {
     });
 
 
-
-    // Function to view the order details and display the invoice
+    /**
+     * Displays orderDetails for a given OrderId
+     * @param orderId
+     */
     function viewOrderDetails(orderId) {
         // Make an AJAX request to fetch the order details from the backend
         $.ajax({
@@ -171,6 +173,10 @@ $(document).ready(function() {
 
 })
 
+/**
+ * Displays the a list of orders for a given customerId
+ * @param customerId
+ */
 function load_orderList_by_userID(customerId) {
     $.ajax({
 
