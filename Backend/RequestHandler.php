@@ -112,6 +112,10 @@ class RequestHandler {
                 // Handle creating a new product
                 $this->success(201, $this->productService->saveProduct($_POST, $_FILES));
                 break;
+            case 'changeproduct':
+                // Handle creating a new product
+                $this->success(201, $this->productService->changeProduct($_POST));
+                break;
             case 'order':
                 // Handle creating a new order
                 $this->success(201, $this->orderService->createOrder($_POST));

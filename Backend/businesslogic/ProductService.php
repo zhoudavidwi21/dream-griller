@@ -94,6 +94,38 @@ class ProductService {
         return null;
     }
 
+    public function changeProduct($formdata){
+        $id = $formdata['form_productId'];
+        $name = $formdata['form_productName'];
+        $price = $formdata['form_productPrice'];
+        $rating = $formdata['form_productRating'];
+        $image = $formdata['form_imagePath'];
+        $description = $formdata['form_description'];
+        $gas = isset($formdata['form_productCategoriesGas']);
+        $charcoal = isset($formdata['form_productCategoriesCharcoal']);
+        $pellet = isset($formdata['form_productCategoriesPellet']);
+        $sale = isset($formdata['form_productCategoriesSale']);
+
+        $query = "UPDATE products SET name = :name, description = :description, price = :price,
+            rating = :rating, image = :image, gas = :gas, charcoal = :charcoal, pellet = :pellet, sale = :sale
+            WHERE id = :id";
+
+        $params = array(
+            ':name' => $name,
+            ':description' => $description,
+            ':price' => $price,
+            ':rating' => $rating,
+            ':image' => $image,
+            ':gas' => $gas,
+            ':charcoal' => $charcoal,
+            ':pellet' => $pellet,
+            ':sale' => $sale,
+            ':id' => $id
+        );
+
+        $this->database->executeQuery($query, $params);
+    }
+
     /**
      * @throws Exception
      */

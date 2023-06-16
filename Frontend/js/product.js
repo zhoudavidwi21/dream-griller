@@ -84,7 +84,7 @@ $(document).ready(function() {
                         <td>${product.charcoal}</td>
                         <td>${product.pellet}</td>
                         <td>${product.sale}</td>
-                        <td><a id="changeProduct${product.id}" class="btn btn-primary btn-sm" href="#">Produkt bearbeiten</a></td>                    
+                        <td><a id="changeProduct${product.id}" class="btn btn-primary btn-sm" href="index.php?site=product_administration&id=${product.id}">Produkt bearbeiten</a></td>                    
                    `
                     if(product.sale){
                         content += `
@@ -103,6 +103,73 @@ $(document).ready(function() {
 
                 $('#productTable').html(content);
                     
+            },
+            error: function(response){
+                console.log(response)
+            }
+        })
+    }
+
+    let id = $("#form_productId").val();
+    load_productDetails(id)
+
+    function load_productDetails(id){
+
+        $.ajax({
+            url: "../Backend/RequestHandler.php",
+            method: "GET",
+            dataType: "json",
+            data: {
+                resource: "product",
+                params: {
+                    id: id
+                }
+            },
+            success: function(response){
+               
+                $("#form_productId").val(response.id)
+                $("#form_productName").val(response.name)
+                $("#form_productPrice").val(response.price)
+                $("#form_productRating").val(response.rating)
+                $("#form_imagePath").val(response.image)
+                $("#form_description").val(response.description)
+                
+                if(response.gas){$("#form_productCategoriesGas").prop("checked", true)}
+                if(response.charcoal){$("#form_productCategoriesCharcoal").prop("checked", true)}
+                if(response.pellet){$("#form_productCategoriesPellet").prop("checked", true)}
+                if(response.sale){$("#form_productCategoriesSale").prop("checked", true)}
+                
+            },
+            error: function(response){
+                console.log(response)
+            }
+        })
+
+    }
+
+    $("#productChangeForm").on("submit", function(e){
+        e.preventDefault();
+        const formData = new FormData(this);
+
+        submitChangedProduct(formData);
+
+    })
+
+    function submitChangedProduct(formData){
+        $.ajax({
+            url: "../Backend/RequestHandler.php?resource=changeproduct",
+            method: "POST",
+            dataType: "json",
+            data: formData,
+            contentType: false,
+            processData: false,
+
+            success: function(reponse){
+                $("#productChangeSuccess").show();
+
+                setTimeout(function() {
+                    $("#productChangeSuccess").hide();
+                }, 3000);
             },
             error: function(response){
                 console.log(response)
