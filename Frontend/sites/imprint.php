@@ -39,18 +39,6 @@
         Gesellschaftsanteile: <br>
         David Zhou (50%), Nico Jöch (25%), Martin Frischmann (25%) <br><br>
 
-        <hr class="featurette-divider">
-
-        <strong>
-          <h4>Informationsplicht laut ECG:</h4>
-        </strong>
-        <strong>
-          <h5>Wir über uns ...</h5>
-        </strong>
-        Blablabla
-        <br><br>
- 
-
     </div>
     <div class="col">
     </div>
