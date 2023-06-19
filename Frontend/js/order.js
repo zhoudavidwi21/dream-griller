@@ -177,6 +177,10 @@ $(document).ready(function() {
  * Displays the a list of orders for a given customerId
  * @param customerId
  */
+
+let idForOrders = $("#idForOrders").val();
+load_orderList_by_userID(idForOrders)
+
 function load_orderList_by_userID(customerId) {
     $.ajax({
 
@@ -194,6 +198,7 @@ function load_orderList_by_userID(customerId) {
 
             console.log(response);
             $('#orderTable').empty();
+            $('#adminOrderTable').empty();
             let content = "";
             // Sort the orders by date in ascending order
             response.sort(function(a, b) {
@@ -212,6 +217,7 @@ function load_orderList_by_userID(customerId) {
             });
 
             $('#orderTable').html(content);
+            $('#adminOrderTable').html(content);
 
         },
         error: function(response){
