@@ -1,7 +1,5 @@
 <?php include "./res/templates/sessions.php"; ?>
 
-<?php require_once('../Backend/config/dbaccess.php'); ?>
-
 <?php
 if (isset($_SESSION['role']) && $_SESSION['role'] !== "guest") {
   header('location: ?site=error');

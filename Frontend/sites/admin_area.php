@@ -1,21 +1,9 @@
 <?php include "./res/templates/sessions.php"; ?>
 
-<?php require_once('../Backend/db/dbaccess.php'); ?>
-
 <?php
 //Only logged in person can open admin area
 if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
   header('Refresh:1; url=index.php?site=error');
-  exit();
-}
-?>
-
-<?php
-$db_obj = new mysqli($host, $dbUser, $dbPassword, $database);
-
-//check if connection is successful
-if ($db_obj->connect_error) {
-  echo 'Connection error: ' . $db_obj->connect_error;
   exit();
 }
 ?>

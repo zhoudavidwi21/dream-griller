@@ -1,7 +1,5 @@
 <?php include "./res/templates/sessions.php"; ?>
 
-<?php require_once('../Backend/db/dbaccess.php'); ?>
-
 <?php
 //if (isset($_POST["submit"])) {
 //    //function only comes in here when no errors have occurred

@@ -1,7 +1,5 @@
 <?php include "./res/templates/sessions.php"; ?>
 
-<?php require_once('../Backend/db/dbaccess.php'); ?>
-
 <?php
 //Only logged in person can manage users
 if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
