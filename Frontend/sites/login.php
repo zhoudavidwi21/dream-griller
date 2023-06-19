@@ -19,6 +19,16 @@ if (isset($_SESSION['role']) && $_SESSION['role'] !== "guest") {
           <form method="POST" id="loginForm" action="">
             <img class="mb-4" src="./res/img/logo/Logo_Basis_transparent_Schrift_groß_KLEIN_500x260.png" alt="Dream Griller Logo" width="250" height="130">
             <h1 class="h3 mb-3 fw-normal">Bitte hier anmelden ...</h1>
+
+            <div class="row container-fluid justify-content-center mt-4" 
+              <?php if(!isset($_SESSION['orderAccess'])) {?> style="display: none"<?php } ?> >
+              <div class="col-auto">
+                <div class="alert alert-primary">
+                  Nur eingeloggte User können den Bezahlvorgang durchführen!
+                </div>
+              </div>
+            </div>
+
             <div class="form-floating">
               <input type="text" class="form-control has-validation
                         <?php if (isset($_POST['username']) && $_SESSION['role'] === 'guest') {
@@ -46,7 +56,9 @@ if (isset($_SESSION['role']) && $_SESSION['role'] !== "guest") {
               <a class="w-100 btn btn-lg btn-registrieren" href="index.php?site=register" role="button">registrieren</a>
             </div>
           </form>
-        <?php } ?>
+        <?php }
+        if(isset($_SESSION['orderAccess'])){unset($_SESSION['orderAccess']);}
+        ?>
       </main>
     </div>
     <div class="col">

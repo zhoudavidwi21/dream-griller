@@ -3,7 +3,8 @@
 <?php
 //Only logged in person can view orders
 if (isset($_SESSION['role']) && $_SESSION['role'] === "guest") {
-  header('Refresh:1; url=index.php?site=error');
+  $_SESSION['orderAccess'] = false;
+  header('Refresh:0; url=index.php?site=login');
   exit();
 }
 ?>
