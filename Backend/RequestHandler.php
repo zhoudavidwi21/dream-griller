@@ -16,13 +16,11 @@ class RequestHandler {
         include "./businesslogic/UserService.php";
         include "./businesslogic/ProductService.php";
         include "./businesslogic/OrderService.php";
-        include "./businesslogic/CartService.php";
         include "./businesslogic/CouponService.php";
         include "./businesslogic/LoginService.php";
         $this->userService = new UserService();
         $this->productService = new ProductService();
         $this->orderService = new OrderService();
-        $this->cartService = new CartService();
         $this->couponService = new CouponService();
         $this->loginService = new LoginService();
     }
