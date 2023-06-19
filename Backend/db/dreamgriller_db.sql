@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 14. Jun 2023 um 08:05
+-- Erstellungszeit: 19. Jun 2023 um 13:25
 -- Server-Version: 10.4.28-MariaDB
 -- PHP-Version: 8.2.4
 
@@ -77,13 +77,14 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `username`, `email`, `password`, `firstname`, `lastname`, `company`, `gender`, `adress`, `postcode`, `city`, `paymethod`, `enabled`, `role`, `logintime`) VALUES
-(1, 'admin', 'admin@admin.com', '$2y$10$sBiZ8m2XuwbBBA97owD3UOPY5e00raQd8LS6XYWxCO0cUcZepBfyi', 'admin', 'admin', 'aaa', 'Herr', 'Ringstraße 1', 1010, 'Wien', 'Vorkasse', 1, 'admin', '2023-06-14 02:19:50'),
-(2, 'test', 'test@test.com', '$2y$10$ifQ7ViSkXFNWTT8Cv3EjYOmOOyxYAdNNkAzya0cexZfZzgzmOjLoG', 'test', 'test', 'sss', 'Frau', 'Hochstädtplatz 1', 1200, 'Wien', 'Kreditkarte', 1, 'user', '2023-06-14 00:43:13'),
-(3, 'as', 'ma@ma.ar', '$2y$10$R4S9OpNT4S7mjWtwpebvpOLhz..X/my84jOw.U5Q6WuPz/smFtY9y', 'ASD', 'a', 'sfa', 'Herr', 'asd', 2, 'Wien', 'Vorkasse', 1, 'user', '2023-06-12 11:07:33'),
-(4, 'asadfsdfsd', 'a@a.wein', '$2y$10$EY3VQbBf27U1LKlVOmFkc.49klt.ZYaTcS7xna.rER35qNq9XWhiK', 'asdf', 'asdf', 'asdf', 'Herr', 'asdf', 222, 'asdf', 'Kreditkarte', 1, 'user', '2023-06-14 00:41:55'),
-(22, 'MF', 'ma@ma.at', '$2y$10$qffvnQVvxur2IYqI6r0sEuLlrPREzfc/MZedRkawGGEles/3GQrba', 'Martin', 'Frischmann', 'Martin EU', 'Firma', 'Ra 23', 2222, 'Wien', 'Kreditkarte', 1, 'user', '2023-06-12 17:11:21'),
-(24, 'sd', 'a@a.asdfsdf', '$2y$10$2c3/NnKH0Jle1mlDCv4.tunDzemwrOQ8dUaceufJpQDoPAI4svCta', 'Martin', 'Frischmann', 'Martin EU', 'Firma', 'asdf 34', 2222, 'Wien', 'Rechnung', 1, 'user', '2023-06-12 10:04:47'),
-(25, 'MJF', 'ma@master.at', '$2y$10$nNlRYNMoc2Ur5eQ9bA7Z.uhNDlmO6hNOSYJ8e2zjwxDkJ3qho13.m', 'Martin', 'Frischmann', 'Martin EU', 'Firma', 'asdf 34', 2222, 'Wien', 'Vorkasse', 1, 'user', '2023-06-11 19:34:00');
+(1, 'admin', 'admin@admin.com', '$2y$10$sBiZ8m2XuwbBBA97owD3UOPY5e00raQd8LS6XYWxCO0cUcZepBfyi', 'admin', 'admin', 'aaa', 'Herr', 'Ringstraße 1', 1010, 'Wien', 'Vorkasse', 1, 'admin', '2023-06-19 11:19:22'),
+(2, 'test', 'test@test.com', '$2y$10$ifQ7ViSkXFNWTT8Cv3EjYOmOOyxYAdNNkAzya0cexZfZzgzmOjLoG', 'test', 'test', 'sss', 'Frau', 'Hochstädtplatz 1', 1200, 'Wien', 'Kreditkarte', 1, 'user', '2023-06-16 20:23:23'),
+(3, 'AM', 'alfred.milch@milch.at', '$2y$10$VHcrGoOwyI2O11j9.f7E8OxgiX5GqQCmdW8.JCdZwZUeR9HRkMweu', 'Alfred ', 'Milch', 'Milch GmbH', 'Firma', 'Milchstraße 23-23/23', 2230, 'Milchstadt', 'Vorkasse', 1, 'user', '2023-06-19 11:10:35'),
+(4, 'MJF', 'ma@mas.at', '$2y$10$blBLz7lKfqrib2G5qQKmu.evdJei0Jz6.qM.tERb63KO3pXOUf6wu', 'Martin', 'Frischmann', 'Martin EU', 'Firma', 'asdf 34', 2222, 'Wien', 'Vorkasse', 1, 'user', '2023-06-19 11:23:01'),
+(5, 'JE', 'josef.ei@gmail.com', '$2y$10$K8akaAR21N8R4dXPicu8PusIqmoO6U0pmbKZTOlO9TBKG1DJdjgEe', 'Josef', 'Ei', 'Landeier GmbH', 'Firma', 'Eierhof 23', 1111, 'Eierdorf', 'Kreditkarte', 1, 'user', '2023-06-15 12:23:46'),
+(6, 'MF', 'ma@ma.at', '$2y$10$qffvnQVvxur2IYqI6r0sEuLlrPREzfc/MZedRkawGGEles/3GQrba', 'Martin', 'Frischmann', 'Martin EU', 'Firma', 'Ra 23', 2222, 'Wien', 'Kreditkarte', 1, 'user', '2023-06-15 13:11:05'),
+(7, 'AR', 'anna.reiss@outlook.com', '$2y$10$G1.11Ih9yyA6v8YcaiL0QOkAKbL3Z6Rt1iuq1WkkGnwCbGKW1.J0.', 'Anna', 'Reis', '', 'Frau', 'Radgasse 23/2', 1220, 'Wien', 'Rechnung', 1, 'user', '2023-06-15 13:11:26'),
+(8, 'JR', 'jasmin.ross@hallo.at', '$2y$10$AGlk0.fNdAiJBJrRTxxg/Oe1gtClqYwnfAzoKQcFDO.ub.FGvRuly', 'Jasmin', 'Roß', '', 'Divers', 'Roßgasse 22-23/2/1a', 1100, 'Wien', 'Vorkasse', 1, 'user', '2023-06-15 13:11:52');
 
 -- --------------------------------------------------------
 
@@ -104,7 +105,13 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `total`, `date`, `fk_customerId`, `fk_couponId`) VALUES
-(1, 234.00, '2023-06-11', 25, NULL);
+(2, 199.00, '2023-06-15', 1, NULL),
+(3, 7083.47, '2023-06-15', 1, NULL),
+(4, 8281.47, '2023-06-15', 1, NULL),
+(5, 1235.48, '2023-06-16', 2, NULL),
+(6, 23235.43, '2023-06-16', 1, NULL),
+(7, 199.00, '2023-06-17', 1, NULL),
+(8, 249.99, '2023-06-19', 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -130,14 +137,15 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `price`, `rating`, `image`, `gas`, `charcoal`, `pellet`, `sale`) VALUES
-(1, 'Orlando XXL', 'Erfüllen Sie sich jeden Wunsch beim Grillen mit dem Rost in Rost System des Grillwagens, das nahezu unbegrenzt erweitert werden kann. Auf diese Weise lassen sich leckere Wok-, Gemüse-, und Kartoffelgerichte zubereiten.', 249.99, 4.48, '../Frontend/res/img/products/Orlande XXL.jpg', 0, 1, 0, 0),
-(2, 'Traeger Timberline XL', 'Entdecken Sie die Perfektion des Kochens im Freien mit dem brandneuen Traeger Timberline® Holzpelletgrill -- leistungsstark und extrem vielseitig.', 4399.99, 4.78, '../Frontend/res/img/products/Traeger Timberline XL.jpg', 0, 0, 1, 0),
+(1, 'Orlando XXL', 'Erfüllen Sie sich jeden Wunsch beim Grillen mit dem Rost in Rost System des Grillwagens, das nahezu unbegrenzt erweitert werden kann. Auf diese Weise lassen sich leckere Wok-, Gemüse-, und Kartoffelgerichte zubereiten.', 249.99, 4.40, '../Frontend/res/img/products/Orlande XXL.jpg', 0, 1, 0, 1),
+(2, 'Traeger Timberline XL', 'Entdecken Sie die Perfektion des Kochens im Freien mit dem brandneuen Traeger Timberline® Holzpelletgrill -- leistungsstark und extrem vielseitig.', 4399.99, 4.70, '../Frontend/res/img/products/Traeger Timberline XL.jpg', 0, 0, 1, 1),
 (3, 'Rogue SE 525', 'Das limitierte Sondermodell, da bei uns exkl. in Österreich erhältlich ist, ist technisch komplett identisch mit dem Napoleon Rogue SE 525, sieht aber dank seines edlen, Mattschwarzen Designs aus wie ein Phantom. Und das zu einem phantastischen Preis!', 999, 4.50, '../Frontend/res/img/products/Rogue SE 525.jpg', 1, 0, 0, 1),
-(4, 'Crown Pellet 500', 'Von low-and-slow Anbraten bis hin zu high-heat Braten – machen Sie sich bereit für erstaunliche Ergebnisse mit der Bequemlichkeit, der Technologie, der Leistung und dem Geschmack, den Sie mit der Broil King Pellet Grill Serie erhalten.', 1249, 4.90, '../Frontend/res/img/products/Crown Pellet 500.jpg', 0, 0, 1, 0),
-(5, 'Freestyle 365', 'Die neueste Errungenschaft von Napoleon®, der Freestyle! Klein, fein, aber voller Power. Die rechte Seitenablage des Freestyle 365 SIB ist klappbar, so dass dieser Gasgrill extrem kompakt daherkommt. ', 679, 4.25, '../Frontend/res/img/products/Freestyle 365.jpg', 1, 0, 0, 0),
+(4, 'Crown Pellet 500', 'Von low-and-slow Anbraten bis hin zu high-heat Braten – machen Sie sich bereit für erstaunliche Ergebnisse mit der Bequemlichkeit, der Technologie, der Leistung und dem Geschmack, den Sie mit der Broil King Pellet Grill Serie erhalten.', 1249, 4.90, '../Frontend/res/img/products/Crown Pellet 500.jpg', 0, 0, 1, 1),
+(5, 'Freestyle 365', 'Die neueste Errungenschaft von Napoleon®, der Freestyle! Klein, fein, aber voller Power. Die rechte Seitenablage des Freestyle 365 SIB ist klappbar, so dass dieser Gasgrill extrem kompakt daherkommt. ', 679, 4.20, '../Frontend/res/img/products/Freestyle 365.jpg', 1, 0, 0, 1),
 (6, 'Holzkohle Kugelgrill Ø 57cm', 'Napoleons Holzkohlegrill NK22CK-L mit geschraubten Beinen setzt alles auf die Komfort-Karte: Dank des drehbaren Deckels mit Eckscharnier kann der Grillmeister sicher über der Grillfläche hantieren. Ein großer Aschebehälter aus Stahl und der roboste Kohlerost sind nur weitere Annehmlichkeiten. Auf seinen großen, wetterbeständigen Rädern und mit seinen geschraubten Beinen lässt sich der Rodeo NK22CK-L einfach durchs Gelände ziehen. So ist er immer genau dort, wo Sie grillen wollen! Holzkohle Kugelgrill Ø 57cm', 199, 3.90, '../Frontend/res/img/products/Napoleon Holzkohle Kugelgrill 57cm.jpg', 0, 1, 0, 1),
-(7, 'Moesta Sheriff 6', 'ein Wahnsinns-Griller', 999.99, 4.68, '../Frontend/res/img/products/Moesta Sheriff_6.jpg', 0, 0, 1, 0),
-(8, 'Great Griller', 'Top-Gerät mit allem was das Herz begehrt!!!', 1235.48, 5.00, '../Frontend/res/img/products/6486e3b44fa3e_Griller Fun Pic.jpg', 0, 1, 0, 0);
+(7, 'Moesta Sheriff 6', 'ein Wahnsinns-Griller', 999.99, 4.60, '../Frontend/res/img/products/Moesta Sheriff_6.jpg', 0, 0, 1, 1),
+(8, 'Great Griller', 'Top-Gerät mit allem was das Herz begehrt!!!', 1235.48, 5.00, '../Frontend/res/img/products/6486e3b44fa3e_Griller Fun Pic.jpg', 0, 1, 0, 1),
+(9, 'Royal Series 4-Brenner Gasgrill ', 'Robuste Verarbeitung durch massive Seitenwände von Deckel und Brennkammer aus Aluminiumdruckguss, sowie einem Unterschrank aus hochwertigem Edelstahl.\r\nDrei Schubladen mit extra-weitem Auszug.\r\nBBQ-Equipment und Zubehör finden in 3 geräumigen Edelstahl-Schubladen mit extra-weitem Auszug Platz – für mehr Ordnung am Grill.\r\nEARLs emaillierte Gusseisenroste sorgen für fette Grillstreifen und beste Hitzeverteilung in der Grillkammer.', 1499.23, 4.80, '../Frontend/res/img/products/648b11b13d6a2_Royal Series 4-Brenner Gasgrill.jpg', 1, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -150,6 +158,27 @@ CREATE TABLE `products_orders` (
   `fk_productId` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Daten für Tabelle `products_orders`
+--
+
+INSERT INTO `products_orders` (`fk_orderId`, `fk_productId`, `quantity`) VALUES
+(2, 6, 1),
+(3, 6, 1),
+(3, 8, 1),
+(3, 2, 1),
+(3, 4, 1),
+(4, 8, 1),
+(4, 6, 2),
+(4, 4, 1),
+(4, 2, 1),
+(4, 3, 1),
+(5, 8, 1),
+(6, 2, 5),
+(6, 8, 1),
+(7, 6, 1),
+(8, 1, 1);
 
 --
 -- Indizes der exportierten Tabellen
@@ -204,19 +233,19 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT für Tabelle `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT für Tabelle `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT für Tabelle `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Constraints der exportierten Tabellen
