@@ -122,7 +122,7 @@
               </option>
               <option value="kreditkarte" >Kreditkarte</option>
               <option value="vorkasse" >Vorkasse</option>
-              <option value="bar" >Bar</option>
+              <option value="bar">Rechnung</option>
             </select>
           </div>
 
